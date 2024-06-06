@@ -135,10 +135,11 @@ a {
   }
   .submit input {
     border-radius: 3px;
-    background-color: rgb(21 28 61);
+    background-color: transparent;
     padding: 0;
     margin: 0;
     height: full;
+    width: 100%;
   }
   .search_form input,
   .search_form button {

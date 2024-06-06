@@ -4,19 +4,21 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/ApiSlice"
 import { Navigate, useNavigate } from "react-router-dom";
-function Login() {
+function Register() {
   var myref = useRef(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
+  const [email, setEmail] = useState("");
+
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
 
   useEffect(() => {
   
-      navigate("/students", { replace: true });    
+      // navigate("/students", { replace: true });    
   }, []);
 
 
@@ -24,9 +26,10 @@ function Login() {
     firstName,
     lastName,
     password,
+    email,
     confirmPassword
   };
-  const LoginUser = (e) => {
+  const RegisterUser = (e) => {
     //let error = JSON.parse(localStorage.getItem("logginError"));
 
     e.preventDefault();
@@ -42,20 +45,20 @@ function Login() {
     
       <div className="w-[30%] m-auto  login_form">
         <h4
-          className=" my-4 font-bold   underline-offset-2 underline 
- text-center font-poppins "
+          className=" my-6 font-bold   underline-offset-2  
+ text-center font-lobs "
         >
-          LOGIN FORM
+          REGISTER
         </h4>
 
         <form
           onSubmit={(e) => {
-            LoginUser(e);
+            RegisterUser(e);
           }}
         >
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">First Name</label>
-            <input
+            <input required
               value={firstName}
               onChange={(e) => {
                 setfirstName(e.target.value);
@@ -66,8 +69,8 @@ function Login() {
           </div>
 
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">First Name</label>
-            <input
+            <label className="font-bold   ml-2 block">Last Name</label>
+            <input required
               value={lastName}
               onChange={(e) => {
                 setlastName(e.target.value);
@@ -77,9 +80,21 @@ function Login() {
             />
           </div>
 
+          <div className="mb-1  ">
+            <label className="font-bold   ml-2 block">Email</label>
+            <input required 
+            type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              className=" w-full   py-3 text-center"
+            />
+          </div>
+
           <div className="   mb-1">
             <label className="font-bold   ml-2 block">Password</label>
-            <input
+            <input required
               value={password}
               onChange={(e) => {
                 setpassword(e.target.value);
@@ -91,7 +106,7 @@ function Login() {
           
           <div className="   mb-1">
             <label className="font-bold   ml-2 block"> Confirm Password</label>
-            <input
+            <input required
               value={confirmPassword}
               onChange={(e) => {
                 setconfirmPassword(e.target.value);
@@ -102,11 +117,11 @@ function Login() {
           </div>
 
           <div
-            className="mt-6 text-white   font-bold w-full m-auto
+            className="mt-6 text-white submit   font-bold w-full m-auto
     text-center  bg-green-700 rounded hover:bg-slate-700"
           >
             <input
-              className="uppercase    text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-100"
+              className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
               type="submit"
             />
           </div>
@@ -116,4 +131,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

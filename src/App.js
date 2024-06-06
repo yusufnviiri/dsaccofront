@@ -12,8 +12,10 @@ function App() {
       <Dashbord/>
 
       <Routes>
-<Route path='/' component={<Dashbord/>}/>
-<Route path='/register' component={<Register/>}/>
+<Route path='/' element={<Dashbord/>}/>
+<Route path='/register' element={<Register/>}/>
+<Route path='/da' element={<Notification/>}/>
+
 
 
       </Routes>

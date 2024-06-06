@@ -9,8 +9,11 @@ function Dashbord() {
   const count = useSelector((state)=>state.ApiSlice.age)
   return (
     <>
-    <menu className='bg-black w-full py-2'>
-  <Link to='/register'>Sign In</Link>
+    <menu className='bg-black w-full py-2 '>
+  <Link className='text-stone-300 mr-2' to='/'>Home</Link>
+  <Link className='text-stone-300 mr-2' to='/da'>Not</Link>
+  <Link className='text-stone-300 mr-2' to='/register'>Sign In</Link>
+
     </menu>
     <div  className=''>
       <h1 className='text-green-900  '> The best app ever
