@@ -19,10 +19,6 @@ function Login() {
       navigate("/students", { replace: true });    
   }, []);
 
-  const dismiss = () => {
-    myref.current.className = "hidden";
-    localStorage.clear();
-  };
 
   const userdetails = {
     firstName,

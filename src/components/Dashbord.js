@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { add } from '../redux/ApiSlice'
+import { Link } from 'react-router-dom';
 
 function Dashbord() {
   const dispatch = useDispatch();
@@ -8,6 +9,9 @@ function Dashbord() {
   const count = useSelector((state)=>state.ApiSlice.age)
   return (
     <>
+    <menu className='bg-black w-full py-2'>
+  <Link to='/register'>Sign In</Link>
+    </menu>
     <div  className=''>
       <h1 className='text-green-900  '> The best app ever
         </h1>
