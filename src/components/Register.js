@@ -1,11 +1,13 @@
 
 import { useState, useEffect } from "react";
+import { setLoginError } from "../redux/ApiSlice";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register,getUsers } from "../redux/ApiSlice"
 import { Navigate, useNavigate } from "react-router-dom";
 function Register() {
   var myref = useRef(null);
+const users = useSelector((state)=>state.ApiSlice.users)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,13 +18,28 @@ function Register() {
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
 
+
   useEffect(() => {
   
-    dispatch(getUsers())
+    // dispatch(getUsers())
+    console.log("devolorro")
+    dispatch(setLoginError(""))
+
+    console.log(users)
+
       // navigate("/students", { replace: true });    
-  }, []);
+  },[]);
 
-
+const comparePasswords=(stringA,stringB)=>{
+if(stringA!==stringB){
+  dispatch(setLoginError("password not maching"))
+  console.log("password not maching")
+  return false
+}
+else {
+  return true
+}
+}
   const userdetails = {
     firstName,
     lastName,
@@ -35,7 +52,15 @@ function Register() {
 
     e.preventDefault();
     const myresponse = async () => {
-      await dispatch(register(userdetails));
+      console.log(userdetails)
+      if (comparePasswords(password,confirmPassword) === true){
+        await dispatch(register(userdetails));
+
+      } else{
+        console.log("fuck me")
+
+      }
+
       navigate("/students", { replace: true });
     };
     myresponse();

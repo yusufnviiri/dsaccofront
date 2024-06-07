@@ -11,6 +11,8 @@ export const getLoans = createAsyncThunk("school/staff", async (id) => {
   });  
   
 export const getUsers = createAsyncThunk("school/staff", async () => {
+  console.log("devol")
+
   const res = await axios.get(`${staffUrl}`);
 
   return res.data;
@@ -20,17 +22,20 @@ export const getUsers = createAsyncThunk("school/staff", async () => {
     return res;
   });
   export const register = createAsyncThunk("dsacco/register", async (item) => {
+    console.log(item)
     const res = await axios.post(`${URL}`, item);
-    return res;
+    console.log(res)
+
+    return res.data;
   });
 
 export const apiSlice=createSlice({
     name:"dsacco",
-    initialState:{age:2,notification:" "},
+    initialState:{age:2,notification:" ",users:{},logginError:""},
     reducers:{
         add:(state)=>{
             state.age+=1
-        }},extraReducers:(builder)=>{  builder.addCase(login.fulfilled, (state, action) => {
+        },setLoginError:(state,action)=>{state.logginError=action.payload}},extraReducers:(builder)=>{  builder.addCase(login.fulfilled, (state, action) => {
             console.log(action.payload);});
             builder.addCase(register.fulfilled, (state, action) => {
             if(action.payload==="Accepted"){
@@ -40,9 +45,12 @@ export const apiSlice=createSlice({
             }
               console.log(action.payload)});
         builder.addCase(getUsers.fulfilled, (state, action) => {
+          console.log("devol")
+
         console.log(action.payload)
+        state.users=action.payload
         });}
 })
 
-export const {add} = apiSlice.actions;
+export const {add,setLoginError} = apiSlice.actions;
 export default apiSlice.reducer;
