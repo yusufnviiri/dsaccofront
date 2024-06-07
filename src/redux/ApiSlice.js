@@ -1,6 +1,6 @@
 import { createAsyncThunk,createSlice } from "@reduxjs/toolkit"
 import axios from 'axios'
-const staffUrl =""
+const staffUrl ="https://localhost:7146/api/Login"
 const affairsUrl=""
 const URL ="https://localhost:7146/api/Login/register";
 
@@ -8,7 +8,13 @@ export const getLoans = createAsyncThunk("school/staff", async (id) => {
     const res = await axios.get(`${staffUrl}/${id}`);
   
     return res.data;
-  });    
+  });  
+  
+export const getUsers = createAsyncThunk("school/staff", async () => {
+  const res = await axios.get(`${staffUrl}`);
+
+  return res.data;
+});   
   export const login = createAsyncThunk("school/newAsset", async (item) => {
     const res = await axios.post(`${affairsUrl}/asset`, item);
     return res;
@@ -32,13 +38,9 @@ export const apiSlice=createSlice({
             } else{
               state.notification=action.payload
             }
-
-
-
               console.log(action.payload)});
-        builder.addCase(getLoans.fulfilled, (state, action) => {
-          state.guardians.length = 0;
-          state.guardians = action.payload;
+        builder.addCase(getUsers.fulfilled, (state, action) => {
+        console.log(action.payload)
         });}
 })
 

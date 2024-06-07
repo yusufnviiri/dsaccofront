@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../redux/ApiSlice"
+import { register,getUsers } from "../redux/ApiSlice"
 import { Navigate, useNavigate } from "react-router-dom";
 function Register() {
   var myref = useRef(null);
@@ -18,6 +18,7 @@ function Register() {
 
   useEffect(() => {
   
+    dispatch(getUsers())
       // navigate("/students", { replace: true });    
   }, []);
 
