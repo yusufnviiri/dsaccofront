@@ -23,10 +23,10 @@ const isFail = "Red";
 
   return (
     <div className="App font-mul w-fit  m-auto">
-<p className='message  px-3 py-1 rounded'>
+<div className='message  px-3 py-1 rounded'>
 {logginError!==""?(<p>{logginError }<span><button onClick={()=>{dispatch( setLoginError(clearError))}}>    <FontAwesomeIcon className='h-6 w-6 inline text-black  relative top-2' icon={faXmark} /></button></span></p>):""}
 
-</p>
+</div>
     </div>
   )
 }

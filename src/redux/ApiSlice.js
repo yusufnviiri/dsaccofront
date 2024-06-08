@@ -20,12 +20,8 @@ export const login = createAsyncThunk("school/newAsset", async (item) => {
   return res;
 });
 export const register = createAsyncThunk("dsacco/register", async (item) => {
-  console.log(item);
   const result = await axios.post(`${URL}`, item)
-  
-  console.log(result);
-
-  return result;
+  return result.data;
 });
 
 export const apiSlice = createSlice({
@@ -43,16 +39,19 @@ export const apiSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       console.log(action.payload);
     });
-    builder.addCase(register.fulfilled, (state, action) => {
-      console.log("done");
+    builder.addCase(register.pending, (state, action) => {
+      state.notification = "waiting......";
 
-      console.log(action.payload);
-      console.log("done deal");
+    });
+    builder.addCase(register.fulfilled, (state, action) => {   
 
-      state.logginError = "success!!";
       if (action.payload === "Accepted") {
+        state.logginError = "success too!!";
+
       } else {
         state.notification = action.payload;
+        state.logginError = "Email Already";
+
       }
       console.log(action.payload);
     });

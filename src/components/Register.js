@@ -8,6 +8,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 function Register() {
   var myref = useRef(null);
 const users = useSelector((state)=>state.ApiSlice.users)
+const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ if(stringA!==stringB){
   return false
 }
 else {
-  dispatch(setLoginError("success!!"))
 
   return true
 }
@@ -49,27 +49,27 @@ else {
     email,
     confirmPassword
   };
-  const RegisterUser = (e) => {
+ async function RegisterUser (e)  {
     //let error = JSON.parse(localStorage.getItem("logginError"));
 
     e.preventDefault();
     const myresponse = async () => {
       if (comparePasswords(password,confirmPassword) === true){
-        await dispatch(register(userdetails));
+       await dispatch(register(userdetails));
+       navigate("/da", { replace: true });
 
       } else{
-        console.log("fuck me")
+        // console.log("fuck me")
 
       }
 
-      navigate("/students", { replace: true });
     };
     myresponse();
   };
 
   return (
-    <>
-    
+    <><h4>Login status in register     {logginError}
+</h4>
       <div className="w-[30%] m-auto  login_form">
         <h4
           className=" my-6 font-bold   underline-offset-2  
