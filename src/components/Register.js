@@ -23,7 +23,7 @@ const users = useSelector((state)=>state.ApiSlice.users)
   
     // dispatch(getUsers())
     console.log("devolorro")
-    dispatch(setLoginError(""))
+    // dispatch(setLoginError("hey"))
 
     console.log(users)
 
@@ -37,6 +37,8 @@ if(stringA!==stringB){
   return false
 }
 else {
+  dispatch(setLoginError("success!!"))
+
   return true
 }
 }
@@ -52,7 +54,6 @@ else {
 
     e.preventDefault();
     const myresponse = async () => {
-      console.log(userdetails)
       if (comparePasswords(password,confirmPassword) === true){
         await dispatch(register(userdetails));
 
