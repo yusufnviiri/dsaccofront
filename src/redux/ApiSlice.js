@@ -17,7 +17,7 @@ export const getUsers = createAsyncThunk("school/staff", async () => {
 });
 export const login = createAsyncThunk("school/newAsset", async (item) => {
   const res = await axios.post(`${affairsUrl}/asset`, item);
-  return res;
+  return res.data;
 });
 export const register = createAsyncThunk("dsacco/register", async (item) => {
   const result = await axios.post(`${URL}`, item)
@@ -37,7 +37,13 @@ export const apiSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action.payload);
+   
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+
+      } else {
+        state.logginError = "Invalid User Name or Password";
+      }
     });
     builder.addCase(register.pending, (state, action) => {
       state.notification = "waiting......";
@@ -46,14 +52,11 @@ export const apiSlice = createSlice({
     builder.addCase(register.fulfilled, (state, action) => {   
 
       if (action.payload === "Accepted") {
-        state.logginError = "success too!!";
+        state.logginError = "success!!";
 
       } else {
-        state.notification = action.payload;
-        state.logginError = "Email Already";
-
+        state.logginError = "Email already taken";
       }
-      console.log(action.payload);
     });
     builder.addCase(getUsers.fulfilled, (state, action) => {
       console.log("devol");

@@ -34,7 +34,6 @@ const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 const comparePasswords=(stringA,stringB)=>{
 if(stringA!==stringB){
   dispatch(setLoginError("password not maching"))
-  console.log("password not maching")
   return false
 }
 else {
