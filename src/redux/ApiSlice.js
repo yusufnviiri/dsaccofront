@@ -21,10 +21,11 @@ export const login = createAsyncThunk("school/newAsset", async (item) => {
 });
 export const register = createAsyncThunk("dsacco/register", async (item) => {
   console.log(item);
-  const res = await axios.post(`${URL}`, item);
-  console.log(res);
+  const result = await axios.post(`${URL}`, item)
+  
+  console.log(result);
 
-  return res.data;
+  return result;
 });
 
 export const apiSlice = createSlice({
