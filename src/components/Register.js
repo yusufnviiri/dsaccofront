@@ -23,7 +23,6 @@ const  logginError = useSelector((state)=>state.ApiSlice.logginError)
   useEffect(() => {
   
     // dispatch(getUsers())
-    console.log("devolorro")
     // dispatch(setLoginError("hey"))
 
     console.log(users)
