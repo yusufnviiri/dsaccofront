@@ -141,7 +141,6 @@ else {
               type="text"
             />
           </div>
-
           <div
             className="mt-6 text-white submit   font-bold w-full m-auto
     text-center  bg-green-700 rounded hover:bg-slate-700"

@@ -14,7 +14,8 @@ function Dashbord() {
     <menu className='bg-black w-full py-2 '>
   <Link className='text-stone-300 mr-2' to='/'>Home</Link>
   <Link className='text-stone-300 mr-2' to='/da'>Not</Link>
-  <Link className='text-stone-300 mr-2' to='/register'>Sign In</Link>
+  <Link className='text-stone-300 mr-2' to='/register'>Sign Up</Link>
+  <Link className='text-stone-300 mr-2' to='/logins'>Sign In</Link>
 
     </menu>
     <div  className=''>

@@ -2,37 +2,36 @@
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../redux/ApiSlice"
+import { login } from "../redux/ApiSlice"
 import { Navigate, useNavigate } from "react-router-dom";
 function Login() {
   var myref = useRef(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [firstName, setfirstName] = useState("");
+  const [email, setEmail] = useState("");
   const [lastName, setlastName] = useState("");
   const [password, setpassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
+  const rememberMe=true;
 
   useEffect(() => {
   
-      navigate("/students", { replace: true });    
+      // navigate("/students", { replace: true });    
   }, []);
 
 
-  const userdetails = {
-    firstName,
-    lastName,
+  const loginDetails = {
+   email,
     password,
-    confirmPassword
+    rememberMe
   };
   const LoginUser = (e) => {
     //let error = JSON.parse(localStorage.getItem("logginError"));
 
     e.preventDefault();
     const myresponse = async () => {
-      await dispatch(register(userdetails));
-      navigate("/students", { replace: true });
+      await dispatch(login(loginDetails));
+      navigate("/da", { replace: true });
     };
     myresponse();
   };
@@ -54,28 +53,16 @@ function Login() {
           }}
         >
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">First Name</label>
+            <label className="font-bold   ml-2 block">Email</label>
             <input
-              value={firstName}
+              value={email}
               onChange={(e) => {
-                setfirstName(e.target.value);
+                setEmail(e.target.value);
               }}
               className=" w-full   py-3 text-center"
-              type="text"
+              type="email"
             />
-          </div>
-
-          <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">First Name</label>
-            <input
-              value={lastName}
-              onChange={(e) => {
-                setlastName(e.target.value);
-              }}
-              className=" w-full   py-3 text-center"
-              type="text"
-            />
-          </div>
+          </div>       
 
           <div className="   mb-1">
             <label className="font-bold   ml-2 block">Password</label>
@@ -88,25 +75,12 @@ function Login() {
               type="text"
             />
           </div>
-          
-          <div className="   mb-1">
-            <label className="font-bold   ml-2 block"> Confirm Password</label>
-            <input
-              value={confirmPassword}
-              onChange={(e) => {
-                setconfirmPassword(e.target.value);
-              }}
-              className=" w-full   py-3 text-center"
-              type="text"
-            />
-          </div>
-
           <div
-            className="mt-6 text-white   font-bold w-full m-auto
+            className="mt-6 text-white submit   font-bold w-full m-auto
     text-center  bg-green-700 rounded hover:bg-slate-700"
           >
             <input
-              className="uppercase    text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-100"
+              className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
               type="submit"
             />
           </div>

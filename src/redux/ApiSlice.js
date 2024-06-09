@@ -1,27 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const baseUrl = "https://localhost:7146/api"
 const staffUrl = "https://localhost:7146/api/Login";
 const affairsUrl = "";
 const URL = "https://localhost:7146/api/Login/register";
 
-export const getLoans = createAsyncThunk("school/staff", async (id) => {
-  const res = await axios.get(`${staffUrl}/${id}`);
-
-  return res.data;
-});
-
+//get users
 export const getUsers = createAsyncThunk("school/staff", async () => {
-  const res = await axios.get(`${staffUrl}`);
-
+  const res = await axios.get(`${baseUrl}/Login`);
   return res.data;
 });
-export const login = createAsyncThunk("school/newAsset", async (item) => {
-  const res = await axios.post(`${affairsUrl}/asset`, item);
+//user login
+export const login = createAsyncThunk("school/login", async (item) => {
+  const res = await axios.post(`${baseUrl}/Login/login`, item);
   return res.data;
 });
+// register user
 export const register = createAsyncThunk("dsacco/register", async (item) => {
   const result = await axios.post(`${URL}`, item)
   return result.data;
+});
+
+//user login
+export const createAccount = createAsyncThunk("school/newAccount", async (item) => {
+  const res = await axios.post(`${baseUrl}/Account/openaccount`, item);
+  return res.data;
 });
 
 export const apiSlice = createSlice({
@@ -59,11 +62,18 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(getUsers.fulfilled, (state, action) => {
-      console.log("devol");
-
-      console.log(action.payload);
-      state.users = action.payload;
+      console.log(action.payload);    
     });
+
+    builder.addCase(createAccount.fulfilled, (state, action) => {   
+
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+      } else {
+        state.logginError = "Not Authorized!!";
+      }
+    });
+
   },
 });
 
