@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { setLoginError } from "../redux/ApiSlice";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register,getUsers } from "../redux/ApiSlice"
+import { register,getUsers ,createAccount} from "../redux/ApiSlice"
 import { Navigate, useNavigate } from "react-router-dom";
 function NewAccount() {
     const  logginError = useSelector((state)=>state.ApiSlice.logginError)
@@ -21,9 +21,9 @@ function NewAccount() {
         //let error = JSON.parse(localStorage.getItem("logginError"));
     
         e.preventDefault();
-        const myresponse = async () => {
-      await dispatch(register(userdetails));
-       navigate("/da", { replace: true });}}
+      dispatch(createAccount(userdetails));
+       navigate("/da", { replace: true });}
+
        return (
         <><h4>Login status in register     {logginError}
     </h4>
