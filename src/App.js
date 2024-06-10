@@ -5,6 +5,7 @@ import Notification from './components/Notification';
 import Register from './components/Register'
 import Login from './components/Login';
 import NewAccount from './components/account/NewAccount';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -13,9 +14,11 @@ function App() {
       <Dashbord/>
 
       <Routes>
-<Route path='/' element={<Dashbord/>}/>
+<Route path='/dashboard' element={<Dashbord/>}/>
 <Route path='/new-account' element={<NewAccount/>}/>
 <Route path='/logins' element={<Login/>}/>
+<Route path='/' element={<Home/>}/>
+
 <Route path='/register' element={<Register/>}/>
 <Route path='/da' element={<Notification/>}/>
 

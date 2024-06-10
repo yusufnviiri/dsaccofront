@@ -13,14 +13,28 @@ const getToken = async () => {
 };
 
 //get users
-export const getUsers = createAsyncThunk("dsacco/staff", async () => {
-  const res = await axios.get(`${baseUrl}/Login`);
+export const getMemberLoans = createAsyncThunk("dsacco/loans", async () => { 
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  }; 
+  const res = await axios.get(`${baseUrl}/Loan/loans`,config);
+  console.log(res)
+  return res.data;
+});
+
+//get users
+export const getUsers = createAsyncThunk("dsacco/users", async () => { 
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  }; 
+  const res = await axios.get(`${baseUrl}/Login`,config);
   return res.data;
 });
 //user login
 export const login = createAsyncThunk("dsacco/login", async (item) => {
   const res = await axios.post(`${baseUrl}/Login/login`, item);
-  console.log(res)
   return res.data;
 });
 // register user
@@ -46,7 +60,7 @@ export const createAccount = createAsyncThunk("dsacco/createAccount", async (ite
 
 export const apiSlice = createSlice({
   name: "dsacco",
-  initialState: { age: 2, notification: " ", users: {}, logginError: "" },
+  initialState: { age: 2, notification: " ", users: [], logginError: "",loans:[],accounts:[],withdraws:[],deposits:[],shares:[] },
   reducers: {
     add: (state) => {
       state.age += 1;
@@ -57,11 +71,14 @@ export const apiSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-      localStorage.clear();
-      localStorage.setItem("bearer", JSON.stringify(action.payload.token));
+   
       if (action.payload.status === true) {
-        state.logginError = "success!!";
 
+        localStorage.clear();
+        localStorage.setItem("bearer", JSON.stringify(action.payload.tokenString
+        ));
+        state.logginError = "success!!";
+           window.location.reload()
 
       } else {
         console.log(action.payload)
@@ -83,10 +100,6 @@ export const apiSlice = createSlice({
         state.logginError = "Email already taken";
       }
     });
-    builder.addCase(getUsers.fulfilled, (state, action) => {
-      console.log(action.payload);    
-    });
-
     builder.addCase(createAccount.fulfilled, (state, action) => {   
 
       if (action.payload === "Accepted") {
@@ -95,6 +108,16 @@ export const apiSlice = createSlice({
         state.logginError = "Not Authorized!!";
       }
     });
+    builder.addCase(getUsers.fulfilled, (state, action) => {
+      state.users=action.payload
+      console.log(action.payload);    
+    });
+    builder.addCase(getMemberLoans.fulfilled, (state, action) => {
+      state.loans=action.payload
+      console.log(action.payload);    
+    });
+
+   
 
   },
 });

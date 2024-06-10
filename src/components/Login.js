@@ -6,6 +6,7 @@ import { login } from "../redux/ApiSlice"
 import { Navigate, useNavigate } from "react-router-dom";
 function Login() {
   var myref = useRef(null);
+  const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,8 +16,8 @@ function Login() {
   const rememberMe=true;
 
   useEffect(() => {
+    // localStorage.clear()
   
-      // navigate("/students", { replace: true });    
   }, []);
 
 
@@ -31,8 +32,9 @@ function Login() {
     e.preventDefault();
     const myresponse = async () => {
        dispatch(login(loginDetails));
-      console.log("devol")
-      // navigate("/da", { replace: true });
+       if(logginError==="success!!"){
+      navigate("/", { replace: true });
+       }
     };
     myresponse();
   };
