@@ -21,7 +21,6 @@ export const getUsers = createAsyncThunk("dsacco/staff", async () => {
 export const login = createAsyncThunk("dsacco/login", async (item) => {
   const res = await axios.post(`${baseUrl}/Login/login`, item);
   console.log(res)
-
   return res.data;
 });
 // register user
@@ -60,7 +59,7 @@ export const apiSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       localStorage.clear();
       localStorage.setItem("bearer", JSON.stringify(action.payload.token));
-      if (action.payload === "Accepted") {
+      if (action.payload.status === true) {
         state.logginError = "success!!";
 
 
