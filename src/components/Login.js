@@ -30,8 +30,9 @@ function Login() {
 
     e.preventDefault();
     const myresponse = async () => {
-      await dispatch(login(loginDetails));
-      navigate("/da", { replace: true });
+       dispatch(login(loginDetails));
+      console.log("devol")
+      // navigate("/da", { replace: true });
     };
     myresponse();
   };

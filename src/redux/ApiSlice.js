@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const baseUrl = "https://localhost:7146/api"
+const baseUrl = "https://localhost:5001/api"
 const staffUrl = "https://localhost:7146/api/Login";
 const affairsUrl = "";
-const URL = "https://localhost:7146/api/Login/register";
+const URL = "https://localhost:5001/api/Login/register";
 
 let toke = "token";
 const getToken = async () => {
@@ -20,6 +20,8 @@ export const getUsers = createAsyncThunk("dsacco/staff", async () => {
 //user login
 export const login = createAsyncThunk("dsacco/login", async (item) => {
   const res = await axios.post(`${baseUrl}/Login/login`, item);
+  console.log(res)
+
   return res.data;
 });
 // register user
@@ -58,16 +60,19 @@ export const apiSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       localStorage.clear();
       localStorage.setItem("bearer", JSON.stringify(action.payload.token));
-   
       if (action.payload === "Accepted") {
         state.logginError = "success!!";
 
+
       } else {
+        console.log(action.payload)
+
         state.logginError = "Invalid User Name or Password";
+
       }
     });
     builder.addCase(register.pending, (state, action) => {
-      state.notification = "waiting......";
+      state.logginError= "waiting......";
 
     });
     builder.addCase(register.fulfilled, (state, action) => {   
