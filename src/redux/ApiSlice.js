@@ -5,6 +5,13 @@ const staffUrl = "https://localhost:7146/api/Login";
 const affairsUrl = "";
 const URL = "https://localhost:7146/api/Login/register";
 
+let toke = "token";
+const getToken = async () => {
+  toke = await JSON.parse(localStorage.getItem("bearer"));
+
+  return toke;
+};
+
 //get users
 export const getUsers = createAsyncThunk("dsacco/staff", async () => {
   const res = await axios.get(`${baseUrl}/Login`);
@@ -23,6 +30,15 @@ export const register = createAsyncThunk("dsacco/register", async (item) => {
 
 //user login
 export const createAccount = createAsyncThunk("dsacco/createAccount", async (item) => {
+
+  toke = await getToken();
+
+  let response = [{ data: "notAuthorized" }];
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+
+
   const res = await axios.post(`${baseUrl}/Account/openaccount`, item);
   return res.data;
 });
@@ -40,6 +56,8 @@ export const apiSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
+      localStorage.clear();
+      localStorage.setItem("bearer", JSON.stringify(action.payload.token));
    
       if (action.payload === "Accepted") {
         state.logginError = "success!!";
