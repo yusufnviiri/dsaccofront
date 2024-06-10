@@ -6,12 +6,12 @@ const affairsUrl = "";
 const URL = "https://localhost:7146/api/Login/register";
 
 //get users
-export const getUsers = createAsyncThunk("school/staff", async () => {
+export const getUsers = createAsyncThunk("dsacco/staff", async () => {
   const res = await axios.get(`${baseUrl}/Login`);
   return res.data;
 });
 //user login
-export const login = createAsyncThunk("school/login", async (item) => {
+export const login = createAsyncThunk("dsacco/login", async (item) => {
   const res = await axios.post(`${baseUrl}/Login/login`, item);
   return res.data;
 });
@@ -22,7 +22,7 @@ export const register = createAsyncThunk("dsacco/register", async (item) => {
 });
 
 //user login
-export const createAccount = createAsyncThunk("school/newAccount", async (item) => {
+export const createAccount = createAsyncThunk("dsacco/createAccount", async (item) => {
   const res = await axios.post(`${baseUrl}/Account/openaccount`, item);
   return res.data;
 });

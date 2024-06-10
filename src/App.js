@@ -4,6 +4,7 @@ import Dashbord from './components/Dashbord';
 import Notification from './components/Notification';
 import Register from './components/Register'
 import Login from './components/Login';
+import NewAccount from './components/account/NewAccount';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
       <Routes>
 <Route path='/' element={<Dashbord/>}/>
+<Route path='/new-account' element={<NewAccount/>}/>
 <Route path='/logins' element={<Login/>}/>
 <Route path='/register' element={<Register/>}/>
 <Route path='/da' element={<Notification/>}/>

@@ -16,6 +16,8 @@ function Dashbord() {
   <Link className='text-stone-300 mr-2' to='/da'>Not</Link>
   <Link className='text-stone-300 mr-2' to='/register'>Sign Up</Link>
   <Link className='text-stone-300 mr-2' to='/logins'>Sign In</Link>
+  <Link className='text-stone-300 mr-2' to='/new-account'>Create Account</Link>
+
 
     </menu>
     <div  className=''>
