@@ -33,7 +33,7 @@ function Home() {
     </h1>
 
     <menu className='bg-indigo-950 w-full py-2 text-[0.7em] '>
-  <Link className='text-stone-200 mr-2' to='/'>Deposit</Link>
+  <Link className='text-stone-200 mr-2' to='/deposit'>Deposit</Link>
   <Link className='text-stone-300 mr-2' to='/'>Deposits</Link>
   <Link className='text-stone-300 mr-2' to='/da'>Withdraw</Link>
   <Link className='text-stone-300 mr-2' to='/da'>Withdraws</Link>

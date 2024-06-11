@@ -21,7 +21,7 @@ function MemberAccounts() {
  <div>MemberAccounts</div>
 
 
- {accounts.length>0? accounts.map((item)=>(<div className='flex  flex-col justify-start text-left w-1/2 m-auto'>
+ {accounts.length>0? accounts.map((item)=>(<div key={item.accountId} className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
 
     <p className='font-semibold'>Type: <span className='font-bold'>{item.accountDescription}</span></p>
     <p className='font-semibold'>Available Balance: <span className='font-bold'>{item.currentBalance}</span></p>    <p className='font-semibold'>Opening Amount: <span className='font-bold'>{item.openingAmount}</span></p>    <p className='font-semibold'>Initial Deposit: <span className='font-bold'>{item.initialDeposit}</span></p>

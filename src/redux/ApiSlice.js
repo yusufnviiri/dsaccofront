@@ -4,6 +4,8 @@ const baseUrl = "https://localhost:5001/api"
 const staffUrl = "https://localhost:7146/api/Login";
 const affairsUrl = "";
 const URL = "https://localhost:5001/api/Login/register";
+// https://localhost:5001/api/Account/deposits
+
 let toke = "token";
 const getToken = async () => {
   toke = await JSON.parse(localStorage.getItem("bearer"));
@@ -12,31 +14,31 @@ const getToken = async () => {
 };
 
 //get users
-export const getMemberLoans = createAsyncThunk("dsacco/loans", async () => { 
+export const getMemberLoans = createAsyncThunk("dsacco/loans", async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
-  }; 
-  const res = await axios.get(`${baseUrl}/Loan/loans`,config);
+  };
+  const res = await axios.get(`${baseUrl}/Loan/loans`, config);
   console.log(res)
   return res.data;
 });
-export const getMemberAccounts = createAsyncThunk("dsacco/accounts", async () => { 
+export const getMemberAccounts = createAsyncThunk("dsacco/accounts", async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
-  }; 
-  const res = await axios.get(`${baseUrl}/Account/accounts`,config);
+  };
+  const res = await axios.get(`${baseUrl}/Account/accounts`, config);
   console.log(res)
   return res.data;
 });
 //get users
-export const getUsers = createAsyncThunk("dsacco/users", async () => { 
+export const getUsers = createAsyncThunk("dsacco/users", async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
-  }; 
-  const res = await axios.get(`${baseUrl}/Login`,config);
+  };
+  const res = await axios.get(`${baseUrl}/Login`, config);
   return res.data;
 });
 //user login
@@ -54,15 +56,24 @@ export const register = createAsyncThunk("dsacco/register", async (item) => {
 export const createAccount = createAsyncThunk("dsacco/createAccount", async (item) => {
   toke = await getToken();
   const config = {
-    headers: { Authorization: `Bearer ${toke}`},
+    headers: { Authorization: `Bearer ${toke}` },
   };
   const res = await axios.post(`${baseUrl}/Account/openaccount`, item, config);
   return res.data;
 });
 
+//deposit on account
+export const memberDeposit = createAsyncThunk("dsacco/deposit", async (item) => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.post(`${baseUrl}/Account/deposit`, item, config);
+  return res.data;
+});
 export const apiSlice = createSlice({
   name: "dsacco",
-  initialState: { age: 2, notification: " ", users: [], logginError: "",loans:[],accounts:[],withdraws:[],deposits:[],shares:[] },
+  initialState: { age: 2, notification: " ", users: [], logginError: "", loans: [], accounts: [], withdraws: [], deposits: [], shares: [] },
   reducers: {
     add: (state) => {
       state.age += 1;
@@ -73,14 +84,14 @@ export const apiSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-   
+
       if (action.payload.status === true) {
 
         localStorage.clear();
         localStorage.setItem("bearer", JSON.stringify(action.payload.tokenString
         ));
         state.logginError = "success!!";
-           window.location.reload()
+        window.location.reload()
 
       } else {
         console.log(action.payload)
@@ -90,10 +101,10 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(register.pending, (state, action) => {
-      state.logginError= "waiting......";
+      state.logginError = "waiting......";
 
     });
-    builder.addCase(register.fulfilled, (state, action) => {   
+    builder.addCase(register.fulfilled, (state, action) => {
 
       if (action.payload === "Accepted") {
         state.logginError = "success!!";
@@ -102,30 +113,36 @@ export const apiSlice = createSlice({
         state.logginError = "Email already taken";
       }
     });
-    builder.addCase(createAccount.fulfilled, (state, action) => {   
+    builder.addCase(createAccount.fulfilled, (state, action) => {
 
       if (action.payload === "Accepted") {
         state.logginError = "success!!";
-        state.notification="Created well"
+        state.notification = "Created well"
       } else {
         state.logginError = "Not Successful";
       }
     });
     builder.addCase(getUsers.fulfilled, (state, action) => {
-      state.users=action.payload
-      console.log(action.payload);    
+      state.users = action.payload
+      console.log(action.payload);
     });
     builder.addCase(getMemberLoans.fulfilled, (state, action) => {
-      state.loans=action.payload
-      console.log(action.payload);    
+      state.loans = action.payload
+      console.log(action.payload);
     });
     builder.addCase(getMemberAccounts.fulfilled, (state, action) => {
-      state.accounts=action.payload
-      console.log(action.payload);    
+      state.accounts = action.payload
+      console.log(action.payload);
     });
+    builder.addCase(memberDeposit.fulfilled, (state, action) => {
 
-   
-
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+        state.notification = "Created well"
+      } else {
+        state.logginError = "Not Successful";
+      }
+    });
   },
 });
 

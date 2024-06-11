@@ -17,17 +17,12 @@ function NewAccount() {
         openingAmount,
        currentBalance,
         accountDescription };
-      const saveAccount=(e) =>{
-        //let error = JSON.parse(localStorage.getItem("logginError"));
-    
+      const saveAccount=(e) =>{    
         e.preventDefault();
       dispatch(createAccount(accountdetails));
       if(notification!==""){
-        navigate("/", { replace: true });
-
-      }
-      
-      }
+        navigate("/accounts", { replace: true });
+      }  }
 
        return (
         <><h4>Login status in register     {logginError}
