@@ -32,16 +32,17 @@ function Home() {
     <h1 className='text-green-900  '> The Home Page
     </h1>
 
-    <menu className='bg-black w-full py-2 text-[0.9em] '>
-  <Link className='text-stone-300 mr-2' to='/'>Deposit</Link>
+    <menu className='bg-indigo-950 w-full py-2 text-[0.7em] '>
+  <Link className='text-stone-200 mr-2' to='/'>Deposit</Link>
+  <Link className='text-stone-300 mr-2' to='/'>Deposits</Link>
   <Link className='text-stone-300 mr-2' to='/da'>Withdraw</Link>
+  <Link className='text-stone-300 mr-2' to='/da'>Withdraws</Link>
   <Link className='text-stone-300 mr-2' to='/register'>Loan</Link>
+  <Link className='text-stone-300 mr-2' to='/register'>Loans</Link>
   <Link className='text-stone-300 mr-2' to='/logins'>Shares</Link>
-  <Link className='text-stone-300 mr-2' to='/new-account'>Account Status</Link>
-
+  <Link className='text-stone-300 mr-2' to='/accounts'>Accounts</Link>
+  <Link className='text-stone-300 mr-2' to='/new-account'>New Account </Link>
     </menu>
-
-
     </div>
     
     </>

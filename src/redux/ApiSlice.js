@@ -4,7 +4,6 @@ const baseUrl = "https://localhost:5001/api"
 const staffUrl = "https://localhost:7146/api/Login";
 const affairsUrl = "";
 const URL = "https://localhost:5001/api/Login/register";
-
 let toke = "token";
 const getToken = async () => {
   toke = await JSON.parse(localStorage.getItem("bearer"));
@@ -22,7 +21,15 @@ export const getMemberLoans = createAsyncThunk("dsacco/loans", async () => {
   console.log(res)
   return res.data;
 });
-
+export const getMemberAccounts = createAsyncThunk("dsacco/accounts", async () => { 
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  }; 
+  const res = await axios.get(`${baseUrl}/Account/accounts`,config);
+  console.log(res)
+  return res.data;
+});
 //get users
 export const getUsers = createAsyncThunk("dsacco/users", async () => { 
   toke = await getToken();
@@ -110,6 +117,10 @@ export const apiSlice = createSlice({
     });
     builder.addCase(getMemberLoans.fulfilled, (state, action) => {
       state.loans=action.payload
+      console.log(action.payload);    
+    });
+    builder.addCase(getMemberAccounts.fulfilled, (state, action) => {
+      state.accounts=action.payload
       console.log(action.payload);    
     });
 
