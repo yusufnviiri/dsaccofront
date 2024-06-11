@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createAccount } from '../../redux/ApiSlice';
 import { Navigate, useNavigate } from "react-router-dom";

@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 function Deposit() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.ApiSlice.age);
   const accounts = useSelector((state) => state.ApiSlice.accounts);
   const memmberLoans = useSelector((state) => state.ApiSlice.loans);
   const notification = useSelector((state) => state.ApiSlice.notification);
