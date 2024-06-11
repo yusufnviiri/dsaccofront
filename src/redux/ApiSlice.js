@@ -45,16 +45,11 @@ export const register = createAsyncThunk("dsacco/register", async (item) => {
 
 //user login
 export const createAccount = createAsyncThunk("dsacco/createAccount", async (item) => {
-
   toke = await getToken();
-
-  let response = [{ data: "notAuthorized" }];
   const config = {
-    headers: { Authorization: `Bearer ${toke}` },
+    headers: { Authorization: `Bearer ${toke}`},
   };
-
-
-  const res = await axios.post(`${baseUrl}/Account/openaccount`, item);
+  const res = await axios.post(`${baseUrl}/Account/openaccount`, item, config);
   return res.data;
 });
 
@@ -104,8 +99,9 @@ export const apiSlice = createSlice({
 
       if (action.payload === "Accepted") {
         state.logginError = "success!!";
+        state.notification="Created well"
       } else {
-        state.logginError = "Not Authorized!!";
+        state.logginError = "Not Successful";
       }
     });
     builder.addCase(getUsers.fulfilled, (state, action) => {

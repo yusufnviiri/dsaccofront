@@ -6,6 +6,7 @@ import { createAccount } from '../../redux/ApiSlice';
 import { Navigate, useNavigate } from "react-router-dom";
 function NewAccount() {
     const  logginError = useSelector((state)=>state.ApiSlice.logginError)
+    const  notification = useSelector((state)=>state.ApiSlice.notification)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,13 +22,17 @@ function NewAccount() {
     
         e.preventDefault();
       dispatch(createAccount(accountdetails));
-      //  navigate("/da", { replace: true });
+      if(notification!==""){
+        navigate("/", { replace: true });
+
+      }
       
       }
 
        return (
         <><h4>Login status in register     {logginError}
     </h4>
+    <h3>Notification {notification}</h3>
           <div className="w-[30%] m-auto  login_form">
             <h4
               className=" my-6 font-bold   underline-offset-2  

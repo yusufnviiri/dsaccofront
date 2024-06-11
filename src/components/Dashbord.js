@@ -1,11 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
-import { getUsers,getMemberLoans } from '../redux/ApiSlice';
 import { add } from '../redux/ApiSlice'
 import { Link } from 'react-router-dom';
+import { Navigate, useNavigate } from "react-router-dom";import { getUsers,getMemberLoans } from '../redux/ApiSlice';
+
 
 function Dashbord() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const count = useSelector((state)=>state.ApiSlice.age)
   const users = useSelector((state)=>state.ApiSlice.users)
@@ -19,19 +21,24 @@ useEffect(()=>{
 
 },[users.length])
 
+
+
+const logOut=()=>{
+  localStorage.clear();
+  navigate("/", { replace: true });
+}
+
   return (
     <>
-    <menu className='bg-black w-full py-2 '>
+    <menu className='bg-black w-full py-2 text-[0.9em] '>
   <Link className='text-stone-300 mr-2' to='/'>Home</Link>
   <Link className='text-stone-300 mr-2' to='/da'>Not</Link>
   <Link className='text-stone-300 mr-2' to='/register'>Sign Up</Link>
   <Link className='text-stone-300 mr-2' to='/logins'>Sign In</Link>
   <Link className='text-stone-300 mr-2' to='/new-account'>Create Account</Link>
-
-
+<button  onClick={()=>logOut()} className='text-red-500 uppercase hover:text-yellow-500'>Sign Out</button>
     </menu>
-    <div  className=''>
-      
+    <div  className=''>      
       <h1 className='text-green-900  '> The best app ever
         </h1>
 
