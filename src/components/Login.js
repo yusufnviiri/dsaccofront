@@ -32,9 +32,8 @@ function Login() {
     e.preventDefault();
     const myresponse = async () => {
        dispatch(login(loginDetails));
-       if(logginError==="success!!"){
       navigate("/", { replace: true });
-       }
+       
     };
     myresponse();
   };

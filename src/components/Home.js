@@ -1,9 +1,12 @@
 import React,{useState,useEffect} from 'react'
-import { useDispatch,useSelector } from 'react-redux'
-import { getUsers,getMemberLoans } from '../redux/ApiSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/ApiSlice"
+import { redirect } from 'react-router-dom';
+import { Navigate, useNavigate } from "react-router-dom";import { getUsers,getMemberLoans } from '../redux/ApiSlice';
 import { add } from '../redux/ApiSlice'
 import { Link } from 'react-router-dom';
 function Home() {
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -13,16 +16,26 @@ function Home() {
   
    const  logginError = useSelector((state)=>state.ApiSlice.logginError)
   useEffect(()=>{
+    let nullValue= JSON.stringify(localStorage.getItem("token"))
+  let userToken = JSON.stringify(localStorage.getItem("bearer"));
+  console.log(userToken)
+  console.log(typeof(userToken))
 
-    // check if token exists
+  console.log(nullValue)
+  console.log(typeof(nullValue))
+  
+  setTimeout(() => {
+    if(userToken===nullValue){
+        console.log("Am going to redirect")
+        navigate("/logins", { replace: true });
+      }  
+  }, 2000);
+  
 
-    const userToken = JSON.stringify(localStorage.getItem("bearer"))
-    console.log(userToken)
-    // console.log("getting Users")
-  
-    // dispatch(getMemberLoans())
-  
-  },[users.length])
+  })
+
+
+
   return (
     <>
     
