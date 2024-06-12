@@ -35,8 +35,8 @@ function Home() {
     <menu className='bg-indigo-950 w-full py-2 text-[0.7em] '>
   <Link className='text-stone-200 mr-2' to='/deposit'>Deposit</Link>
   <Link className='text-stone-300 mr-2' to='/deposits'>Deposits</Link>
-  <Link className='text-stone-300 mr-2' to='/da'>Withdraw</Link>
-  <Link className='text-stone-300 mr-2' to='/da'>Withdraws</Link>
+  <Link className='text-stone-300 mr-2' to='/withdraw'>Withdraw</Link>
+  <Link className='text-stone-300 mr-2' to='/withdraws'>Withdraws</Link>
   <Link className='text-stone-300 mr-2' to='/register'>Loan</Link>
   <Link className='text-stone-300 mr-2' to='/register'>Loans</Link>
   <Link className='text-stone-300 mr-2' to='/logins'>Shares</Link>

@@ -9,7 +9,8 @@ import Home from './components/Home';
 import MemberAccounts from './components/account/MemberAccounts';
 import Deposit from './components/account/Deposit';
 import Deposits from './components/account/Deposits';
-
+import Withdraw from './components/account/Withdraw';
+import Withdraws from './components/account/Withdraws';
 function App() {
   return (
     <div className="App font-mul w-full m-auto">
@@ -22,6 +23,8 @@ function App() {
 <Route path='/logins' element={<Login/>}/>
 <Route path='/deposit' element={<Deposit/>}/>
 <Route path='/deposits' element={<Deposits/>}/>
+<Route path='/withdraw' element={<Withdraw/>}/>
+<Route path='/withdraws' element={<Withdraws/>}/>
 
 
 <Route path='/' element={<Home/>}/>

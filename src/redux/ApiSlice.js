@@ -33,7 +33,17 @@ export const getMemberAccounts = createAsyncThunk("dsacco/accounts", async () =>
   return res.data;
 });
 //get deposits
-export const getMemberDeposits = createAsyncThunk("dsacco/deposits", async () => {
+export const getMemberDeposits = createAsyncThunk("dsacco/withdraws", async () => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+
+  const res = await axios.get(`${baseUrl}/Account/withdraws`, config);
+  return res.data;
+});
+
+export const getMemberWithdraws = createAsyncThunk("dsacco/deposits", async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
@@ -42,6 +52,7 @@ export const getMemberDeposits = createAsyncThunk("dsacco/deposits", async () =>
   const res = await axios.get(`${baseUrl}/Account/deposits`, config);
   return res.data;
 });
+
 //get users
 export const getUsers = createAsyncThunk("dsacco/users", async () => {
   toke = await getToken();
@@ -82,6 +93,17 @@ export const memberDeposit = createAsyncThunk("dsacco/deposit", async (item) => 
   const res = await axios.post(`${baseUrl}/Account/deposit`, item, config);
   return res.data;
 });
+//withdraw from account
+export const memberWithdraw = createAsyncThunk("dsacco/withdraw", async (item) => {
+  console.log(item)
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.post(`${baseUrl}/Account/withdraw`, item, config);
+  return res.data;
+});
+
 export const apiSlice = createSlice({
   name: "dsacco",
   initialState: { age: 2, notification: " ", users: [], logginError: "", loans: [], accounts: [], withdraws: [], deposits: [], shares: [] },
@@ -139,17 +161,29 @@ export const apiSlice = createSlice({
     });
     builder.addCase(getMemberLoans.fulfilled, (state, action) => {
       state.loans = action.payload
-      console.log(action.payload);
     });
     builder.addCase(getMemberAccounts.fulfilled, (state, action) => {
       state.accounts = action.payload
     });
     builder.addCase(getMemberDeposits.fulfilled, (state, action) => {
       state.deposits = action.payload
-      console.log(action.payload);
 
     });
     builder.addCase(memberDeposit.fulfilled, (state, action) => {
+
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+        state.notification = "Created well"
+      } else {
+        state.logginError = "Not Successful";
+      }
+    });
+    builder.addCase(getMemberWithdraws.fulfilled, (state, action) => {
+      state.withdraws = action.payload
+      console.log(action.payload);
+
+    });
+    builder.addCase(memberWithdraw.fulfilled, (state, action) => {
 
       if (action.payload === "Accepted") {
         state.logginError = "success!!";
