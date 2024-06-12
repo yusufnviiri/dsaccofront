@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMemberAccounts, memberDeposit,loanTypes ,loanApplication} from "../../redux/ApiSlice";
+import { getMemberAccounts, memberDeposit,loanTypes ,loanSubmission} from "../../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function LoanApplication() {
@@ -17,13 +17,14 @@ function LoanApplication() {
   const [principleAmount, setprincipleAmount] = useState(0);
   const [loanType, setloanType] = useState(0);
   const [security,setsecurity]=useState("N/A");
-  const [loanPeriod,setloanPeriod]=useState("");
+  const [loanPeriod,setloanPeriod]=useState(0);
   const [firstWitnessName,setfirstWitnessName]=useState("");
   const [firstWitnessAddress,setfirstWitnessAddress]=useState("");
   const [firstWitnessContact,setfirstWitnessContact]=useState("");
   const [secondWitnessName,setsecondWitnessName]=useState("");
   const [secondWitnessAddress,setsecondWitnessAddress]=useState("");
   const [secondWitnessContact,setsecondWitnessContact]=useState("");
+  const [numberOfInstallments,setnumberOfInstallments]=useState(0)
 
   const loanDetails = {
     principleAmount,security,loanPeriod,firstWitnessAddress,firstWitnessContact,firstWitnessName,secondWitnessAddress,secondWitnessContact,secondWitnessName,
@@ -31,14 +32,14 @@ function LoanApplication() {
   };
   const saveLoan = (e) => {
     e.preventDefault();
-    dispatch(loanApplication(loanDetails));
+    dispatch(loanSubmission(loanDetails));
     if (notification !== "") {
       navigate("/accounts", { replace: true });
     }
   };
   return (
     <>
-      <div className="w-[30%] m-auto  login_form">
+      <div className=" m-auto w-[90%] login_form">
         <h4 className=" my-6 font-bold   underline-offset-2  
      text-center font-lobs "  > Loan Application </h4>   
           <form
@@ -46,6 +47,11 @@ function LoanApplication() {
             saveLoan(e);
           }}
         >
+
+<div className="flex m-auto justify-center  gap-10 w-3/4 ">
+<div>
+
+
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block"> Loan Type </label>
 
@@ -81,6 +87,18 @@ function LoanApplication() {
               value={principleAmount}
               onChange={(e) => {
                 setprincipleAmount(e.target.value);
+              }}
+              className=" w-full   py-3 text-center"
+              type="number"
+            />
+          </div>
+          <div className="mb-1  ">
+            <label className="font-bold   ml-2 block">Installements</label>
+            <input
+              required
+              value={numberOfInstallments}
+              onChange={(e) => {
+                setnumberOfInstallments(e.target.value);
               }}
               className=" w-full   py-3 text-center"
               type="number"
@@ -124,7 +142,8 @@ function LoanApplication() {
               className=" w-full   py-3 text-center"
               type="text"
             />
-          </div>
+          </div>   </div>   
+          <div>
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">Contact</label>
             <input
@@ -186,10 +205,6 @@ function LoanApplication() {
             />
           </div>
           
-          
-          
-      
-
           <div
             className="mt-6 text-white submit   font-bold w-full m-auto
         text-center  bg-green-700 rounded hover:bg-slate-700"
@@ -198,7 +213,13 @@ function LoanApplication() {
               className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
               type="submit"
             />
-          </div>
+          </div>   
+          
+    </div>
+       </div>
+   
+
+         
         </form>
       </div>
     </>

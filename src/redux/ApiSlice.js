@@ -113,7 +113,7 @@ export const memberWithdraw = createAsyncThunk("dsacco/withdraw", async (item) =
   return res.data;
 });
 // loan application
-export const loanApplication = createAsyncThunk("dsacco/laonApplication", async (item) => {
+export const loanSubmission = createAsyncThunk("dsacco/loanApplication", async (item) => {
   console.log(item)
   toke = await getToken();
   const config = {
@@ -215,7 +215,7 @@ export const apiSlice = createSlice({
         state.logginError = "Not Successful";
       }
     });
-    builder.addCase(loanApplication.fulfilled, (state, action) => {
+    builder.addCase(loanSubmission.fulfilled, (state, action) => {
 
       if (action.payload === "Accepted") {
         state.logginError = "success!!";
