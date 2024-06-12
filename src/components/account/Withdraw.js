@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMemberAccounts, memberDeposit,memberWithdraw } from "../../redux/ApiSlice";
+import { getMemberAccounts, memberDeposit,memberWithdraw,getMemberWithdraws } from "../../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 const Withdraw = () => {

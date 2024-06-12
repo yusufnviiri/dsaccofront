@@ -32,8 +32,8 @@ export const getMemberAccounts = createAsyncThunk("dsacco/accounts", async () =>
   const res = await axios.get(`${baseUrl}/Account/accounts`, config);
   return res.data;
 });
-//get deposits
-export const getMemberDeposits = createAsyncThunk("dsacco/withdraws", async () => {
+//get withdraws
+export const getMemberWithdraws = createAsyncThunk("dsacco/withdraws", async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
@@ -42,8 +42,8 @@ export const getMemberDeposits = createAsyncThunk("dsacco/withdraws", async () =
   const res = await axios.get(`${baseUrl}/Account/withdraws`, config);
   return res.data;
 });
-
-export const getMemberWithdraws = createAsyncThunk("dsacco/deposits", async () => {
+//get deposits
+export const getMemberDeposits = createAsyncThunk("dsacco/deposits", async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },

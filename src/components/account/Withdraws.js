@@ -11,7 +11,7 @@ function Withdraws() {
     const accounts = useSelector((state)=>state.ApiSlice.accounts)
     const withdraws = useSelector((state)=>state.ApiSlice.withdraws)  
    const  logginError = useSelector((state)=>state.ApiSlice.logginError)
-   useEffect(()=>{dispatch(getMemberDeposits())},[withdraws.length])
+   useEffect(()=>{dispatch(getMemberWithdraws())},[withdraws.length])
 
   return (
 <>   
