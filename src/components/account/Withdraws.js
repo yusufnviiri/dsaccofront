@@ -1,17 +1,12 @@
 
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getMemberAccounts ,getMemberDeposits,getMemberWithdraws} from '../../redux/ApiSlice';
-import { useNavigate } from "react-router-dom"
-import { Link } from 'react-router-dom';
+import {getMemberWithdraws} from '../../redux/ApiSlice';
 function Withdraws() {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const count = useSelector((state)=>state.ApiSlice.age)
     const accounts = useSelector((state)=>state.ApiSlice.accounts)
     const withdraws = useSelector((state)=>state.ApiSlice.withdraws)  
-   const  logginError = useSelector((state)=>state.ApiSlice.logginError)
-   useEffect(()=>{dispatch(getMemberWithdraws())},[withdraws.length])
+   useEffect(()=>{dispatch(getMemberWithdraws())})
 
   return (
 <>   

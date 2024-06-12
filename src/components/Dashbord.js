@@ -1,17 +1,15 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { add } from '../redux/ApiSlice'
 import { Link } from 'react-router-dom';
-import { Navigate, useNavigate } from "react-router-dom";import { getUsers,getMemberLoans } from '../redux/ApiSlice';
+import {useNavigate } from "react-router-dom";
 
 
 function Dashbord() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const count = useSelector((state)=>state.ApiSlice.age)
   const users = useSelector((state)=>state.ApiSlice.users)
-  const memmberLoans = useSelector((state)=>state.ApiSlice.loans)
 
  const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 useEffect(()=>{

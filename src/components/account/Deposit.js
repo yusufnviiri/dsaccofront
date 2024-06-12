@@ -2,17 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMemberAccounts, memberDeposit } from "../../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 function Deposit() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const accounts = useSelector((state) => state.ApiSlice.accounts);
-  const memmberLoans = useSelector((state) => state.ApiSlice.loans);
   const notification = useSelector((state) => state.ApiSlice.notification);
 
   useEffect(() => {
     dispatch(getMemberAccounts());
-  }, []);
+  });
 
   const [amount, setAmount] = useState(0);
   const [accountId, setAccountId] = useState("");

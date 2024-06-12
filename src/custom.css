@@ -165,39 +165,8 @@ a {
   .login_form label {
     font-size: 0.99em;
     font-weight: 400;
-  }
+  }  
   
-  .notify {
-    background-color: rgb(168, 12, 33);
-    width: max-content;
-    padding: 3px 10px;
-    color: white;
-    margin: 10px auto;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .devol {
-    background-color: rgb(19, 141, 8);  
-    width: max-content;
-    padding: 3px 10px;
-    color: white;
-    margin: 10px auto;
-  }
-  
-  .hide_notify {
-    display: none;
-  }
-  
-  .student_data,
-  .student_payments {
-    border-radius: 7px;
-    padding-left: 0.9em;
-  }
-  .student_details {
-    font-size: 0.9812em;
-    font-family: sans-serif;
-  }
   .data {
     font-size: 0.8812em;
   }
@@ -223,21 +192,7 @@ a {
     /* display: none; */
   }
   
-  canvasjs-chart-canvas svg,
-  .canvasjs-chart-canvas canvas .canvasjs-chart-canvas img {
-    color: red;
-    background-color: rgb(88, 24, 24);
-    color: rgb(32, 11, 223);
-  }
-  .canvasjs-chart-canvas {
-    color: aquamarine;
-  }
-  .canvasjs-chart-toolbar {
-    /* background-color:rgb(212 212 212); */
-    background-color: rgb(19, 150, 110);
   
-    color: rgb(32, 11, 223);
-  }
   @media (max-width: 640px) {
     thead {
       font-size: 10px;

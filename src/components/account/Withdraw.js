@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMemberAccounts, memberDeposit,memberWithdraw,getMemberWithdraws } from "../../redux/ApiSlice";
+import { getMemberAccounts,memberWithdraw} from "../../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 const Withdraw = () => {
     const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -13,7 +12,7 @@ const Withdraw = () => {
 
   useEffect(() => {
     dispatch(getMemberAccounts());
-  }, []);
+  });
 
   const [amount, setAmount] = useState(0);
   const [accountId, setAccountId] = useState("");

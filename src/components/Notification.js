@@ -4,7 +4,6 @@ import gsap from 'gsap'
 import { setLoginError } from "../redux/ApiSlice";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function Notification() {

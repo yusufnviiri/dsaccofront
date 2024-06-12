@@ -1,8 +1,8 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createAccount } from '../../redux/ApiSlice';
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 function NewAccount() {
     const  logginError = useSelector((state)=>state.ApiSlice.logginError)
     const  notification = useSelector((state)=>state.ApiSlice.notification)
@@ -48,13 +48,10 @@ function NewAccount() {
                     setaccountDescription(e.target.value);
                   }} >
                     <option className=' font-thin text-red-900'>...select...</option>
-
   <option>Savings</option>
   <option>Fixed</option>
   <option>Bussiness</option>
-</select>
-
-          
+</select>          
               </div>  
               <div className="mb-1  ">
                 <label className="font-bold   ml-2 block">Opening Amount</label>
@@ -78,8 +75,7 @@ function NewAccount() {
                   className=" w-full   py-3 text-center"
                   type="text"
                 />
-              </div>
-           
+              </div>          
             
                           <div
                 className="mt-6 text-white submit   font-bold w-full m-auto

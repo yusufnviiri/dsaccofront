@@ -1,19 +1,17 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMemberAccounts, memberDeposit,loanTypes ,loanSubmission} from "../../redux/ApiSlice";
+import { loanTypes ,loanSubmission} from "../../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 function LoanApplication() {
     const navigate = useNavigate();
   const dispatch = useDispatch();
-  const accounts = useSelector((state) => state.ApiSlice.accounts);
   const loanTypesData = useSelector((state) => state.ApiSlice.loanTypes);
   const notification = useSelector((state) => state.ApiSlice.notification);
 
   useEffect(() => {
     dispatch(loanTypes());
-  }, []);
+  });
   const [principleAmount, setprincipleAmount] = useState(0);
   const [loanType, setloanType] = useState(0);
   const [security,setsecurity]=useState("N/A");
@@ -50,8 +48,6 @@ function LoanApplication() {
 
 <div className="flex m-auto justify-center  gap-10 w-3/4 ">
 <div>
-
-
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block"> Loan Type </label>
 
@@ -203,8 +199,7 @@ function LoanApplication() {
               className=" w-full   py-3 text-center"
               type="text"
             />
-          </div>
-          
+          </div>          
           <div
             className="mt-6 text-white submit   font-bold w-full m-auto
         text-center  bg-green-700 rounded hover:bg-slate-700"
@@ -213,22 +208,13 @@ function LoanApplication() {
               className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
               type="submit"
             />
-          </div>   
-          
+          </div>             
     </div>
-       </div>
-   
-
-         
+       </div>         
         </form>
       </div>
     </>
   );
 }
-
-
-
-
-
 
 export default LoanApplication

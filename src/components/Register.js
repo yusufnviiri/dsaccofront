@@ -1,12 +1,10 @@
 
 import { useState, useEffect } from "react";
 import { setLoginError } from "../redux/ApiSlice";
-import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register,getUsers } from "../redux/ApiSlice"
-import { Navigate, useNavigate } from "react-router-dom";
+import { register } from "../redux/ApiSlice"
+import {  useNavigate } from "react-router-dom";
 function Register() {
-  var myref = useRef(null);
 const users = useSelector((state)=>state.ApiSlice.users)
 const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 
@@ -28,7 +26,7 @@ const  logginError = useSelector((state)=>state.ApiSlice.logginError)
     console.log(users)
 
       // navigate("/students", { replace: true });    
-  },[]);
+  });
 
 const comparePasswords=(stringA,stringB)=>{
 if(stringA!==stringB){
