@@ -23,13 +23,23 @@ export const getMemberLoans = createAsyncThunk("dsacco/loans", async () => {
   console.log(res)
   return res.data;
 });
+//get member accounts
 export const getMemberAccounts = createAsyncThunk("dsacco/accounts", async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
   };
   const res = await axios.get(`${baseUrl}/Account/accounts`, config);
-  console.log(res)
+  return res.data;
+});
+//get deposits
+export const getMemberDeposits = createAsyncThunk("dsacco/deposits", async () => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+
+  const res = await axios.get(`${baseUrl}/Account/deposits`, config);
   return res.data;
 });
 //get users
@@ -133,7 +143,11 @@ export const apiSlice = createSlice({
     });
     builder.addCase(getMemberAccounts.fulfilled, (state, action) => {
       state.accounts = action.payload
+    });
+    builder.addCase(getMemberDeposits.fulfilled, (state, action) => {
+      state.deposits = action.payload
       console.log(action.payload);
+
     });
     builder.addCase(memberDeposit.fulfilled, (state, action) => {
 

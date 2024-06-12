@@ -8,6 +8,7 @@ import NewAccount from './components/account/NewAccount';
 import Home from './components/Home';
 import MemberAccounts from './components/account/MemberAccounts';
 import Deposit from './components/account/Deposit';
+import Deposits from './components/account/Deposits';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
 <Route path='/new-account' element={<NewAccount/>}/>
 <Route path='/logins' element={<Login/>}/>
 <Route path='/deposit' element={<Deposit/>}/>
+<Route path='/deposits' element={<Deposits/>}/>
+
 
 <Route path='/' element={<Home/>}/>
 <Route path='/accounts' element={<MemberAccounts/>}/>
