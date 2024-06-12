@@ -64,6 +64,7 @@ export const createAccount = createAsyncThunk("dsacco/createAccount", async (ite
 
 //deposit on account
 export const memberDeposit = createAsyncThunk("dsacco/deposit", async (item) => {
+  console.log(item)
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },

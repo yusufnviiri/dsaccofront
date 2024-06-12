@@ -18,7 +18,7 @@ function Home() {
         console.log("Am going to redirect")
         navigate("/logins", { replace: true });
       }  
-  }, 1000);
+  }, 3000);
   
 
   })

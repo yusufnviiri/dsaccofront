@@ -12,7 +12,7 @@ function Deposit() {
 
   useEffect(() => {
     dispatch(getMemberAccounts());
-  }, [accounts.length]);
+  }, []);
 
   const [amount, setAmount] = useState(0);
   const [accountId, setAccountId] = useState("");
@@ -52,7 +52,7 @@ function Deposit() {
 
               {accounts.length > 0 ? (
                 accounts.map((item) => (
-                  <option
+                  <option value={item.accountId}
                     key={item.accountId}
                     className="font-bold"
                   >
@@ -74,7 +74,7 @@ function Deposit() {
                 setAmount(e.target.value);
               }}
               className=" w-full   py-3 text-center"
-              type="text"
+              type="number"
             />
           </div>
 
