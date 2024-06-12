@@ -71,7 +71,7 @@ function LoanApplication() {
                     </option>              
                 ))
               ) : (
-                <p>No loan type in database</p>
+                <option>No loan type in database</option>
               )}
             </select>
           </div>
