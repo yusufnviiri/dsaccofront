@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const baseUrl = "https://localhost:5001/api"
-const staffUrl = "https://localhost:7146/api/Login";
-const affairsUrl = "";
+
 const URL = "https://localhost:5001/api/Login/register";
 // https://localhost:5001/api/Account/deposits
 
@@ -97,7 +96,6 @@ export const createAccount = createAsyncThunk("dsacco/createAccount", async (ite
 
 //deposit on account
 export const memberDeposit = createAsyncThunk("dsacco/deposit", async (item) => {
-  console.log(item)
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
@@ -107,7 +105,6 @@ export const memberDeposit = createAsyncThunk("dsacco/deposit", async (item) => 
 });
 //withdraw from account
 export const memberWithdraw = createAsyncThunk("dsacco/withdraw", async (item) => {
-  console.log(item)
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
@@ -115,7 +112,16 @@ export const memberWithdraw = createAsyncThunk("dsacco/withdraw", async (item) =
   const res = await axios.post(`${baseUrl}/Account/withdraw`, item, config);
   return res.data;
 });
-
+// loan application
+export const loanApplication = createAsyncThunk("dsacco/laonApplication", async (item) => {
+  console.log(item)
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.post(`${baseUrl}/Loan/loan`, item, config);
+  return res.data;
+});
 export const apiSlice = createSlice({
   name: "dsacco",
   initialState: { age: 2, notification: " ", users: [], logginError: "", loans: [],loanTypes:[], accounts: [], withdraws: [], deposits: [], shares: [] },
@@ -201,6 +207,15 @@ export const apiSlice = createSlice({
 
     });
     builder.addCase(memberWithdraw.fulfilled, (state, action) => {
+
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+        state.notification = "Created well"
+      } else {
+        state.logginError = "Not Successful";
+      }
+    });
+    builder.addCase(loanApplication.fulfilled, (state, action) => {
 
       if (action.payload === "Accepted") {
         state.logginError = "success!!";

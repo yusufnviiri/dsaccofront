@@ -1,14 +1,14 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMemberAccounts, memberDeposit,loanTypes } from "../../redux/ApiSlice";
+import { getMemberAccounts, memberDeposit,loanTypes ,loanApplication} from "../../redux/ApiSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function LoanApplication() {
     const navigate = useNavigate();
   const dispatch = useDispatch();
   const accounts = useSelector((state) => state.ApiSlice.accounts);
-  const loanTypes = useSelector((state) => state.ApiSlice.loanTypes);
+  const loanTypesData = useSelector((state) => state.ApiSlice.loanTypes);
   const notification = useSelector((state) => state.ApiSlice.notification);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function LoanApplication() {
   };
   const saveLoan = (e) => {
     e.preventDefault();
-    dispatch(memberDeposit(loanDetails));
+    dispatch(loanApplication(loanDetails));
     if (notification !== "") {
       navigate("/accounts", { replace: true });
     }
@@ -59,8 +59,8 @@ function LoanApplication() {
             >
               <option className=" font-thin text-red-900">...select...</option>
 
-              {loanTypes.length > 0 ? (
-             loanTypes.map((item) => (
+              {loanTypesData.length > 0 ? (
+             loanTypesData.map((item) => (
                   <option value={item.loanTypeId}
                     key={item.loanTypeId}
                     className="font-bold"

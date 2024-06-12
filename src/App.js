@@ -11,6 +11,7 @@ import Deposit from './components/account/Deposit';
 import Deposits from './components/account/Deposits';
 import Withdraw from './components/account/Withdraw';
 import Withdraws from './components/account/Withdraws';
+import LoanApplication from './components/loans/LoanApplication';
 function App() {
   return (
     <div className="App font-mul w-full m-auto">
@@ -26,6 +27,7 @@ function App() {
 <Route path='/withdraw' element={<Withdraw/>}/>
 <Route path='/withdraws' element={<Withdraws/>}/>
 
+<Route path='/loan-application' element={<LoanApplication/>}/>
 
 <Route path='/' element={<Home/>}/>
 <Route path='/accounts' element={<MemberAccounts/>}/>
