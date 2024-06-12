@@ -21,10 +21,8 @@ function Withdraws() {
 
  <div>Member Withdraws</div>
 
-
- {withdraws.length>0? withdraws.map((item)=>(<div key={item.depositId
+ {withdraws.length>0? withdraws.map((item)=>(<div key={item.withdrawId
 } className='flex   flex-col justify-start my-5 text-left w-1/2 m-auto '>
-
     <p className='font-semibold'>Account : <span className='font-bold'>{item.account.accountDescription}</span></p>
     <p className='font-semibold'>Available Balance: <span className='font-bold'>{item.account.currentBalance}</span></p>       <p className='font-semibold'>Amount: <span className='font-bold'>{item.amount
     }</span></p>
@@ -33,11 +31,4 @@ function Withdraws() {
 
 </>  )
 }
-
-
-
-
-
-
-
 export default Withdraws

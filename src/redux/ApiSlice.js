@@ -13,7 +13,19 @@ const getToken = async () => {
   return toke;
 };
 
-//get users
+//get loanTypes
+export const loanTypes = createAsyncThunk("dsacco/loanTypes", async () => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.get(`${baseUrl}/Loan/loantypes`, config);
+  console.log(res)
+  return res.data;
+});
+
+
+//get loans
 export const getMemberLoans = createAsyncThunk("dsacco/loans", async () => {
   toke = await getToken();
   const config = {
@@ -106,7 +118,7 @@ export const memberWithdraw = createAsyncThunk("dsacco/withdraw", async (item) =
 
 export const apiSlice = createSlice({
   name: "dsacco",
-  initialState: { age: 2, notification: " ", users: [], logginError: "", loans: [], accounts: [], withdraws: [], deposits: [], shares: [] },
+  initialState: { age: 2, notification: " ", users: [], logginError: "", loans: [],loanTypes:[], accounts: [], withdraws: [], deposits: [], shares: [] },
   reducers: {
     add: (state) => {
       state.age += 1;
@@ -162,6 +174,11 @@ export const apiSlice = createSlice({
     builder.addCase(getMemberLoans.fulfilled, (state, action) => {
       state.loans = action.payload
     });
+
+    builder.addCase(loanTypes.fulfilled, (state, action) => {
+      state.loanTypes = action.payload
+    });
+
     builder.addCase(getMemberAccounts.fulfilled, (state, action) => {
       state.accounts = action.payload
     });
