@@ -178,7 +178,6 @@ export const apiSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
 
       if (action.payload.status === true) {
-
         localStorage.clear();
         localStorage.setItem("bearer", JSON.stringify(action.payload.tokenString
         ));
@@ -186,7 +185,6 @@ export const apiSlice = createSlice({
         window.location.reload()
 
       } else {
-        console.log(action.payload)
 
         state.logginError = "Invalid User Name or Password";
 
@@ -245,7 +243,6 @@ export const apiSlice = createSlice({
     builder.addCase(getMemberWithdraws.fulfilled, (state, action) => {
       state.withdraws = action.payload
       console.log(action.payload);
-
     });
     builder.addCase(memberWithdraw.fulfilled, (state, action) => {
 
@@ -274,6 +271,29 @@ export const apiSlice = createSlice({
       } else {
         state.logginError = "Not Successful";
       }
+    });
+    builder.addCase(buyshares.fulfilled, (state, action) => {
+      console.log(action.payload)
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+        state.notification = "Created well"
+      } else {
+        state.logginError = "Not Successful";
+      }
+    });
+    builder.addCase(sellShares.fulfilled, (state, action) => {
+      console.log(action.payload)
+
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+        state.notification = "Created well"
+      } else {
+        state.logginError = "Not Successful";
+      }
+    });
+    builder.addCase(getMemberShares.fulfilled, (state, action) => {
+      state.shares = action.payload
+      console.log(action.payload);
     });
   },
 });

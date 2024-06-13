@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
-
 import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom';
+import { buyshares,sellShares,getMemberShares } from '../redux/ApiSlice';
 function Home() {
     const navigate = useNavigate();
 
