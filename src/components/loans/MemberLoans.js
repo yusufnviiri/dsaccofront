@@ -2,19 +2,23 @@
 
 import React,{useEffect,useState,useRef} from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getMemberLoans } from '../../redux/ApiSlice';
+import { getMemberLoans ,payLoan} from '../../redux/ApiSlice';
 
 function MemberLoans() {
-  const amountRef = useRef(0)
+  const amountRef = useRef(null)
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(getMemberLoans())},[dispatch])
 
     const loans = useSelector((state)=>state.ApiSlice.loans)
     const [payloan,setPayloan]= useState(true)
-    const [payAmount,setpayAmount]= useState(0)
+    const [amountPaid,setamountPaid]= useState(0)
+    const [loanId,setloanId]= useState(0)
 
 
-    const setPayForm=(id)=>{
+    const setPayForm=(id,amount)=>{
+        setloanId(id)
+        setamountPaid(amount)
+
         const loanpayForm= document.getElementById(id)
         if(id>0){
             loanpayForm.style.display="block"
@@ -26,8 +30,17 @@ function MemberLoans() {
             loanpayForm.style.display="none"
                 }
     }
-
-
+const paymentData= {
+    amountPaid,loanId
+}
+const payLoanAmount=(e)=>{
+    console.log("the thing is here")
+    e.preventDefault()
+    if(amountPaid>0 && loanId>0){
+        dispatch(payLoan(paymentData))
+        console.log("the shit is greater")
+    }
+}
  
 
   return (
@@ -40,16 +53,26 @@ function MemberLoans() {
  {loans.length>0? loans.map((item)=>(<div key={item.loanId}  
  
  className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
-<button onClick={()=>setPayForm(item.loanId)}    type='button' className='bg-indigo-800 text-white rounded px-2' >Pay</button>
+<button onClick={()=>setPayForm(item.loanId,Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments)))}    type='button' className='bg-indigo-800 text-white rounded px-2' >Pay</button>
 
-{payloan===true?(<form  id={item.loanId} className={`${item.loanId}  hidden`}><label>Amount</label>
-<input  placeholder='amount paid'/>
+{payloan===true?(
+    
+    <div  id={item.loanId} className='hidden'>    <form   onSubmit={(e) => {payLoanAmount(e)
+    }}  ><label>Amount</label>
+{/* <input  readOnly className={item.loanId} ref={amountRef} value={Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments))}  placeholder='amount paid'/> */}
+<input  readOnly className={item.loanId}  value={Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments))}  placeholder='amount paid'/>
+
 <div className='flex justify-between'>
-<button  type='submit' className='bg-blue-800 text-white rounded px-2' >Pay</button>
+<h3 >{loanId} loan Id</h3>
+<h3>{amountPaid}{item.payAmount%item.numberOfInstallments} amount</h3>
 
-<button  onClick={()=>hidePayForm(item.loanId)}   type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
+
+<input  type='submit' value='save' className=' bg-blue-800 cursor-pointer text-white rounded px-2' />
+<button  onClick={()=>hidePayForm(item.loanId)}    type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
 </div>
-</form>):""}
+</form></div>
+    
+):""}
 <h4> loan Id{item.loanId} </h4>
     <p className='font-semibold'>Date: <span className='font-bold'>{item.applicationDate}</span></p>
     <p className='font-semibold'>Available Balance: <span className='font-bold'>{item.currentBalance}</span></p>    <p className='font-semibold'>Loan Amount: <span className='font-bold'>{item.principleAmount}</span></p>    

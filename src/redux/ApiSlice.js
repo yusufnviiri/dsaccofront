@@ -51,6 +51,20 @@ export const getMemberWithdraws = createAsyncThunk("dsacco/withdraws", async () 
   const res = await axios.get(`${baseUrl}/Account/withdraws`, config);
   return res.data;
 });
+
+//get shares
+
+export const getMemberShares = createAsyncThunk("dsacco/shares", async () => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+
+  const res = await axios.get(`${baseUrl}/Account/membershares`, config);
+  return res.data;
+});
+
+
 //get deposits
 export const getMemberDeposits = createAsyncThunk("dsacco/deposits", async () => {
   toke = await getToken();
@@ -99,6 +113,35 @@ export const memberDeposit = createAsyncThunk("dsacco/deposit", async (item) => 
     headers: { Authorization: `Bearer ${toke}` },
   };
   const res = await axios.post(`${baseUrl}/Account/deposit`, item, config);
+  return res.data;
+});
+//buy shares
+export const buyshares = createAsyncThunk("dsacco/buyShares", async (item) => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.post(`${baseUrl}/Account/buyshares`, item, config);
+  return res.data;
+});
+//sell shares
+export const sellShares = createAsyncThunk("dsacco/sellShares", async (item) => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.post(`${baseUrl}/Account/sellshares`, item, config);
+  return res.data;
+});
+//pay loan
+
+export const payLoan = createAsyncThunk("dsacco/loanPayment", async (item) => {
+  console.log(item)
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.post(`${baseUrl}/Loan/loanpayment`, item, config);
   return res.data;
 });
 //withdraw from account
@@ -213,7 +256,17 @@ export const apiSlice = createSlice({
         state.logginError = "Not Successful";
       }
     });
+    builder.addCase(payLoan.fulfilled, (state, action) => {
+
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+        state.notification = "Created well"
+      } else {
+        state.logginError = "Not Successful";
+      }
+    });
     builder.addCase(loanSubmission.fulfilled, (state, action) => {
+      console.log(action.payload)
 
       if (action.payload === "Accepted") {
         state.logginError = "success!!";
