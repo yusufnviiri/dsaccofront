@@ -14,6 +14,30 @@ function Home() {
     const [sharesQuantity,setsharesQuantity]= useState(0)
 
 
+    const numberOfShares={
+      sharesQuantity
+    }
+    const setBuyShares=()=>{
+      console.log("Am going to redirect")      
+      setBuy(true)
+      setSell(false)
+    //   if(buy){
+    //     dispatch(buyshares(numberOfShares))
+    //     setsharesQuantity(0)      }
+     }
+    const setSellShares=()=>{
+      setBuy(false)
+      setSell(true)
+      console.log("fuck me")
+      // if(sell){
+      //   dispatch(sellShares(numberOfShares))
+      //   setsharesQuantity(0)
+
+      // }     
+
+    }
+
+
 
 
 
@@ -27,18 +51,24 @@ function Home() {
       }  
   }, 3000);
   dispatch(getMemberShares())
+  console.log(shares)
 
 
-  })
 
-  useEffect(()=>{  
+  },[shares.length])
+
+
+
+  const shareActions=(e)=>{
+    e.preventDefault()
+    if(sell){
+      dispatch(sellShares(numberOfShares))
+      setsharesQuantity(0)    }  
+      if(buy){
+        dispatch(buyshares(numberOfShares))
+        setsharesQuantity(0)      }
     
-    console.log("getting")
-    console.log(shares)
-  },[dispatch])
 
-
-  const shareActions=()=>{
 
   }
   return (
@@ -58,14 +88,21 @@ function Home() {
   <Link className='text-stone-300 mr-2' to='/new-account'>New Account </Link>
     </menu>
 <div>
+
+{shares.length>0?(  <h4>Shares {shares[0].numberOfShares}</h4>
+):""}
+
 <button onClick={()=>{setshowSharesForm(!showSharesForm)}}    type='button' className='bg-indigo-800 text-white rounded px-2 my-3' >Shares</button>
 {showSharesForm===true?(    
-    <div >    <form className='my-4'
+    <div >    <form className='my-4 w-1/3 m-auto'
       onSubmit={(e) => {shareActions(e)
     }}  ><label>Amount</label>
 <input   value={sharesQuantity}  onChange={(e)=>setsharesQuantity(e.target.value)} placeholder='shares'/>
-<div>
-<input  type='submit' value='buy' className=' mr-10 bg-blue-800 cursor-pointer text-white rounded px-2' /><input  type='submit' value='sell' className=' bg-red-800 cursor-pointer text-white rounded px-2' />
+<div className='w-1/2'>
+<button onClick={()=>{setBuyShares()}}   type='submit' className='r-10 bg-blue-800  w-1/3 cursor-pointer text-white rounded px-2 mr-6' >Buy</button>
+<button onClick={()=>{setSellShares()}}     type='submit' className='r-10 bg-red-800  w-1/3 cursor-pointer text-white rounded px-2' >Sell</button>
+
+
 </div>
 </form></div>
     
