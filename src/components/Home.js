@@ -1,7 +1,9 @@
 import React,{useEffect,useState} from 'react'
+import * as jose from 'jose'
 import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 
 import { buyshares,sellShares,getMemberShares } from '../redux/ApiSlice';
 function Home() {
@@ -12,52 +14,62 @@ function Home() {
     const [sell,setSell]= useState(false)
     const [showSharesForm,setshowSharesForm]= useState(true)
     const [sharesQuantity,setsharesQuantity]= useState(0)
+    let nullValue= JSON.stringify(localStorage.getItem("token"))
+    var userToken = JSON.stringify(localStorage.getItem("bearer"));
+    const decoded = jwtDecode(userToken );
+    
+    if(userToken !==nullValue){
+      const decoded = jwtDecode(userToken );
 
+      const obj =Object.values(decoded)
+      obj.length=2
+        
+    
+    //   const protectedHeader = jose.decodeProtectedHeader(userToken)
+    console.log(decoded)
+    console.log(obj)
+    
+    console.log(userToken)
+  //   const protectedHeader = jose.decodeProtectedHeader(userToken)
+  // console.log(protectedHeader)
+    }
 
     const numberOfShares={
       sharesQuantity
     }
     const setBuyShares=()=>{
-      console.log("Am going to redirect")      
       setBuy(true)
       setSell(false)
-    //   if(buy){
-    //     dispatch(buyshares(numberOfShares))
-    //     setsharesQuantity(0)      }
      }
     const setSellShares=()=>{
       setBuy(false)
       setSell(true)
-      console.log("fuck me")
-      // if(sell){
-      //   dispatch(sellShares(numberOfShares))
-      //   setsharesQuantity(0)
-
-      // }     
-
-    }
-
-
-
-
+}
 
   useEffect(()=>{
     let nullValue= JSON.stringify(localStorage.getItem("token"))
-  let userToken = JSON.stringify(localStorage.getItem("bearer"));  
+  var userToken = JSON.stringify(localStorage.getItem("bearer"));
+  
+  if(userToken !==nullValue){
+  console.log(userToken)
+  const decoded = jwtDecode(userToken );
+
+  const obj =Object.values(decoded)
+    
+
+//   const protectedHeader = jose.decodeProtectedHeader(userToken)
+console.log(decoded)
+console.log(obj)
+
+  }
   setTimeout(() => {
     if(userToken===nullValue){
-        console.log("Am going to redirect")
         navigate("/logins", { replace: true });
       }  
   }, 3000);
   dispatch(getMemberShares())
   console.log(shares)
-
-
-
   },[shares.length])
-
-
 
   const shareActions=(e)=>{
     e.preventDefault()
@@ -66,14 +78,13 @@ function Home() {
       setsharesQuantity(0)    }  
       if(buy){
         dispatch(buyshares(numberOfShares))
-        setsharesQuantity(0)      }
-    
-
-
+        setsharesQuantity(0)      }   
   }
   return (
     <>   
     <div>
+
+      <h4>{userToken}</h4>
     <h1 className='text-green-900  '> The Home Page
     </h1>
     <menu className='bg-indigo-950 w-full py-2 text-[0.7em] '>
