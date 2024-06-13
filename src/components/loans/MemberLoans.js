@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMemberLoans ,payLoan} from '../../redux/ApiSlice';
 
 function MemberLoans() {
-  const amountRef = useRef(null)
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(getMemberLoans())},[dispatch])
 
@@ -34,11 +33,9 @@ const paymentData= {
     amountPaid,loanId
 }
 const payLoanAmount=(e)=>{
-    console.log("the thing is here")
     e.preventDefault()
     if(amountPaid>0 && loanId>0){
         dispatch(payLoan(paymentData))
-        console.log("the shit is greater")
     }
 }
  

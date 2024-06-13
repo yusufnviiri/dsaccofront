@@ -53,14 +53,14 @@ export const getMemberWithdraws = createAsyncThunk("dsacco/withdraws", async () 
 });
 
 //get shares
-
 export const getMemberShares = createAsyncThunk("dsacco/shares", async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
   };
-
   const res = await axios.get(`${baseUrl}/Account/membershares`, config);
+  console.log(res);
+
   return res.data;
 });
 
@@ -292,8 +292,9 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(getMemberShares.fulfilled, (state, action) => {
-      state.shares = action.payload
       console.log(action.payload);
+      console.log("shares");
+      state.shares = action.payload
     });
   },
 });
