@@ -12,7 +12,7 @@ function Home() {
     const shares = useSelector((state)=>state.ApiSlice.shares)
     const [buy,setBuy]= useState(false)
     const [sell,setSell]= useState(false)
-    const [showSharesForm,setshowSharesForm]= useState(true)
+    const [showSharesForm,setshowSharesForm]= useState(false)
     const [sharesQuantity,setsharesQuantity]= useState(0)
     let nullValue= JSON.stringify(localStorage.getItem("token"))
     var userToken = JSON.stringify(localStorage.getItem("bearer"));
@@ -94,7 +94,6 @@ console.log(obj)
   <Link className=' mr-2' to='/withdraws'>Withdraws</Link>
   <Link className=' mr-2' to='/loan-application'>Loan</Link>
   <Link className=' mr-2' to='/loans'>Loans</Link>
-  <Link className='mr-2' to='/logins'>Shares</Link>
   <Link className='mr-2' to='/accounts'>Accounts</Link>
   <Link className='mr-2' to='/new-account'>New Account </Link>
 
@@ -111,7 +110,7 @@ console.log(obj)
       onSubmit={(e) => {shareActions(e)
     }}  ><label>Amount</label>
 <input   value={sharesQuantity}  onChange={(e)=>setsharesQuantity(e.target.value)} placeholder='shares'/>
-<div className='w-1/2'>
+<div className='mini_buttons'>
 <button onClick={()=>{setBuyShares()}}   type='submit' className='r-10 bg-blue-800  w-1/3 cursor-pointer text-white rounded px-2 mr-6' >Buy</button>
 <button onClick={()=>{setSellShares()}}     type='submit' className='r-10 bg-red-800  w-1/3 cursor-pointer text-white rounded px-2' >Sell</button>
 

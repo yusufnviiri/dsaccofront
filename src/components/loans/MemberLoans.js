@@ -54,16 +54,12 @@ const payLoanAmount=(e)=>{
 
 {payloan===true?(
     
-    <div  id={item.loanId} className='hidden'>    <form   onSubmit={(e) => {payLoanAmount(e)
-    }}  ><label>Amount</label>
-{/* <input  readOnly className={item.loanId} ref={amountRef} value={Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments))}  placeholder='amount paid'/> */}
+    <div  id={item.loanId} className='hidden'>  
+       <form className='mini_form'  onSubmit={(e) => {payLoanAmount(e)    }}  ><label>Amount</label>
+
 <input  readOnly className={item.loanId}  value={Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments))}  placeholder='amount paid'/>
 
-<div className='flex justify-between'>
-<h3 >{loanId} loan Id</h3>
-<h3>{amountPaid}{item.payAmount%item.numberOfInstallments} amount</h3>
-
-
+<div className='mini_buttons'>
 <input  type='submit' value='save' className=' bg-blue-800 cursor-pointer text-white rounded px-2' />
 <button  onClick={()=>hidePayForm(item.loanId)}    type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
 </div>
