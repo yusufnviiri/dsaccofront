@@ -90,22 +90,24 @@ console.log(obj)
 
   <Link className=' mr-2' to='/deposit'>Deposit</Link>
   <Link className=' mr-2' to='/deposits'>Deposits</Link>
-  <Link className='text-stone-300 mr-2' to='/withdraw'>Withdraw</Link>
-  <Link className='text-stone-300 mr-2' to='/withdraws'>Withdraws</Link>
-  <Link className='text-stone-300 mr-2' to='/loan-application'>Loan</Link>
-  <Link className='text-stone-300 mr-2' to='/loans'>Loans</Link>
-  <Link className='text-stone-300 mr-2' to='/logins'>Shares</Link>
-  <Link className='text-stone-300 mr-2' to='/accounts'>Accounts</Link>
-  <Link className='text-stone-300 mr-2' to='/new-account'>New Account </Link>
+  <Link className='mr-2' to='/withdraw'>Withdraw</Link>
+  <Link className=' mr-2' to='/withdraws'>Withdraws</Link>
+  <Link className=' mr-2' to='/loan-application'>Loan</Link>
+  <Link className=' mr-2' to='/loans'>Loans</Link>
+  <Link className='mr-2' to='/logins'>Shares</Link>
+  <Link className='mr-2' to='/accounts'>Accounts</Link>
+  <Link className='mr-2' to='/new-account'>New Account </Link>
+
+  <button onClick={()=>{setshowSharesForm(!showSharesForm)}}    type='button' className='bg-indigo-800 text-white rounded px-2 ' >Shares</button>
     </menu>
 <div>
 
 {shares.length>0?(  <h4>Shares {shares[0].numberOfShares}</h4>
 ):""}
 
-<button onClick={()=>{setshowSharesForm(!showSharesForm)}}    type='button' className='bg-indigo-800 text-white rounded px-2 my-3' >Shares</button>
+
 {showSharesForm===true?(    
-    <div >    <form className='my-4 w-1/3 m-auto'
+    <div className=' flex justify-end items-end md:pr-5 pr-2'>    <form className='mini_form'
       onSubmit={(e) => {shareActions(e)
     }}  ><label>Amount</label>
 <input   value={sharesQuantity}  onChange={(e)=>setsharesQuantity(e.target.value)} placeholder='shares'/>
