@@ -84,12 +84,12 @@ console.log(obj)
     <>   
     <div>
 
-      <h4>{userToken}</h4>
-    <h1 className='text-green-900  '> The Home Page
-    </h1>
-    <menu className='bg-indigo-950 w-full py-2 text-[0.7em] '>
-  <Link className='text-stone-200 mr-2' to='/deposit'>Deposit</Link>
-  <Link className='text-stone-300 mr-2' to='/deposits'>Deposits</Link>
+    
+    <menu className='bg-rose-800 w-full py-2 text-[0.7em] md:text-[0.9em]  flex justify-between px-5'>
+    <Link className='text-stone-200 mr-2' to='/new-account'>Create Account</Link>
+
+  <Link className=' mr-2' to='/deposit'>Deposit</Link>
+  <Link className=' mr-2' to='/deposits'>Deposits</Link>
   <Link className='text-stone-300 mr-2' to='/withdraw'>Withdraw</Link>
   <Link className='text-stone-300 mr-2' to='/withdraws'>Withdraws</Link>
   <Link className='text-stone-300 mr-2' to='/loan-application'>Loan</Link>

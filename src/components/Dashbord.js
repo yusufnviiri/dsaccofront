@@ -26,22 +26,18 @@ const logOut=()=>{
 
   return (
     <>
-    <menu className='bg-black w-full py-2 text-[0.9em] '>
-  <Link className='text-stone-300 mr-2' to='/'>Home</Link>
-  <Link className='text-stone-300 mr-2' to='/da'>Not</Link>
-  <Link className='text-stone-300 mr-2' to='/register'>Sign Up</Link>
-  <Link className='text-stone-300 mr-2' to='/logins'>Sign In</Link>
-  <Link className='text-stone-300 mr-2' to='/new-account'>Create Account</Link>
-<button  onClick={()=>logOut()} className='text-red-500 uppercase hover:text-yellow-500'>Sign Out</button>
+    <menu className='bg-emerald-950 w-full py-2 text-[0.9em]  text-stone-300 flex  justify-between font-robotoCo'>
+    
+      <Link className=' mx-2 text-stone-100 font-mul tracking-wider' to='/'>Dixieland Traders Savings Group</Link>
+
+      <nav>
+
+ 
+  <Link className=' mr-2' to='/register'>Sign Up</Link>
+  <Link className=' mr-2' to='/logins'>Sign In</Link>
+<button  onClick={()=>logOut()} className='text-red-400 uppercase hover:text-yellow-500'>Sign Out</button>     </nav>
     </menu>
-    <div  className=''>      
-     
-
-        <h4 className='text-red-900  '>Login status     {logginError}
-        </h4>
-
-        
-     </div>
+ 
     
     
     </>
