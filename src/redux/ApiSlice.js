@@ -19,7 +19,6 @@ export const loanTypes = createAsyncThunk("dsacco/loanTypes", async () => {
     headers: { Authorization: `Bearer ${toke}` },
   };
   const res = await axios.get(`${baseUrl}/Loan/loantypes`, config);
-  console.log(res)
   return res.data;
 });
 
@@ -31,7 +30,6 @@ export const getMemberLoans = createAsyncThunk("dsacco/loans", async () => {
     headers: { Authorization: `Bearer ${toke}` },
   };
   const res = await axios.get(`${baseUrl}/Loan/loans`, config);
-  console.log(res)
   return res.data;
 });
 //get member accounts

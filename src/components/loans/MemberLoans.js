@@ -1,14 +1,34 @@
 
 
-import React,{useEffect} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getMemberLoans } from '../../redux/ApiSlice';
 
 function MemberLoans() {
+  const amountRef = useRef(0)
     const dispatch = useDispatch();
-    const loans = useSelector((state)=>state.ApiSlice.loans)
+    useEffect(()=>{dispatch(getMemberLoans())},[dispatch])
 
-   useEffect(()=>{dispatch(getMemberLoans())},[dispatch])
+    const loans = useSelector((state)=>state.ApiSlice.loans)
+    const [payloan,setPayloan]= useState(true)
+    const [payAmount,setpayAmount]= useState(0)
+
+
+    const setPayForm=(id)=>{
+        const loanpayForm= document.getElementById(id)
+        if(id>0){
+            loanpayForm.style.display="block"
+               }
+    }
+    const hidePayForm=(id)=>{
+        const loanpayForm= document.getElementById(id)
+        if(id>0){
+            loanpayForm.style.display="none"
+                }
+    }
+
+
+ 
 
   return (
 <>   
@@ -17,14 +37,27 @@ function MemberLoans() {
 </h4>
 
  <div>MemberAccounts</div>
- {loans.length>0? loans.map((item)=>(<div key={item.loanId} className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
+ {loans.length>0? loans.map((item)=>(<div key={item.loanId}  
+ 
+ className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
+<button onClick={()=>setPayForm(item.loanId)}    type='button' className='bg-indigo-800 text-white rounded px-2' >Pay</button>
+
+{payloan===true?(<form  id={item.loanId} className={`${item.loanId}  hidden`}><label>Amount</label>
+<input  placeholder='amount paid'/>
+<div className='flex justify-between'>
+<button  type='submit' className='bg-blue-800 text-white rounded px-2' >Pay</button>
+
+<button  onClick={()=>hidePayForm(item.loanId)}   type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
+</div>
+</form>):""}
+<h4> loan Id{item.loanId} </h4>
     <p className='font-semibold'>Date: <span className='font-bold'>{item.applicationDate}</span></p>
     <p className='font-semibold'>Available Balance: <span className='font-bold'>{item.currentBalance}</span></p>    <p className='font-semibold'>Loan Amount: <span className='font-bold'>{item.principleAmount}</span></p>    
     <p className='font-semibold'>Installements: <span className='font-bold'>{item.numberOfInstallments}</span></p>
     <p className='font-semibold'>Payments: <span className='font-bold'>{item.numberOfPayments}</span></p>  <p className='font-semibold'>Loan Amount with interest: <span className='font-bold'>{item.payAmount}</span></p>  <p className='font-semibold'>Balance: <span className='font-bold'>{item.outstandingBalance}</span></p>
     <p className='font-semibold'>Completed?: <span className='font-bold'>{item.isCompleted}</span></p>
         "security": "Salary",
-        <p className='font-semibold'>Security: <span className='font-bold'>{item.security}</span></p>   <p className='font-semibold'>loan Period: <span className='font-bold'>{item.loanPeriod}</span></p>   <p className='font-semibold'>Completed?: <span className='font-bold'>{item.isCompleted}</span></p>
+        <p className='font-semibold'>Security: <span className='font-bold'>{item.security}</span></p>  <p className='font-semibold'>loan Period: <span className='font-bold'>{item.loanPeriod}</span></p>   <p className='font-semibold'>Completed?: <span className='font-bold'>{item.isCompleted}</span></p>
 
 
 
