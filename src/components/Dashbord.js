@@ -38,7 +38,7 @@ const decoded = jwtDecode(userToken );
     <>
     <menu className='bg-emerald-950 w-full py-2 text-[0.9em]  text-stone-300 flex  justify-between font-robotoCo'>
     
-      <Link className=' mx-2 text-stone-100 font-mul tracking-wider' to='/'>Dixieland Traders Savings Group</Link>
+      <Link className=' mx-2 text-stone-100 font-mul tracking-wider' to='/'>Opus   Savings Group</Link>
       {obj.length>0?( <div>   <h2>Name: {obj[1]}</h2></div>
 ):(  <h2>User: none</h2>)}
       <nav>

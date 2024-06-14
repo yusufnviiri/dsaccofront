@@ -1,5 +1,4 @@
 import React,{useEffect,useState} from 'react'
-import * as jose from 'jose'
 import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +15,6 @@ function Home() {
     const [sharesQuantity,setsharesQuantity]= useState(0)
     let nullValue= JSON.stringify(localStorage.getItem("token"))
     var userToken = JSON.stringify(localStorage.getItem("bearer"));
-    const decoded = jwtDecode(userToken );
     
     if(userToken !==nullValue){
       const decoded = jwtDecode(userToken );
