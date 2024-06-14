@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
-import logo from "../assets/opus logo.PNG"
-
+import logo from "../assets/opus logo.png"
 import { buyshares,sellShares,getMemberShares } from '../redux/ApiSlice';
 function Home() {
     const navigate = useNavigate();
@@ -124,9 +123,9 @@ console.log(obj)
 
 
 
-    <div>
+    <div className='flex  gap-5 md:gap-10 px-9 md:px-20 mt-20 justify-between '>
 
-    <div>
+    <div className='text-left w-1/3'>
 
 
 <h4> Did you know</h4>
@@ -141,13 +140,14 @@ console.log(obj)
   </ul>
 
       
-</div><div>
+</div>
+<div className='w-1/3'>
 
 <img src={logo} alt='logo'/>
 
 
       
-</div><ul>
+</div><ul className='text-left w-1/3'>
 
 <li> Active Members: <span className='text-red-800'> 9421</span> </li>
 
