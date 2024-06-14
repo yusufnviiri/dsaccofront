@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
+import logo from "../assets/opus logo.PNG"
 
 import { buyshares,sellShares,getMemberShares } from '../redux/ApiSlice';
 function Home() {
@@ -119,6 +120,47 @@ console.log(obj)
 ):""}
 
 </div>
+    </div>
+
+
+
+    <div>
+
+    <div>
+
+
+<h4> Did you know</h4>
+<ul><li>You can access OPUS e-shop on   <span className='text-yellow-600'>this</span> portal
+  </li>
+  
+  <li>Get all our services on your mobile <span className='text-yellow-600'>Download App</span></li>
+  <li>Salary loan interest now at <span className='text-yellow-600'>9.99 %</span></li>
+
+  <li> Dual Mortgage management now available</li>
+
+  </ul>
+
+      
+</div><div>
+
+<img src={logo} alt='logo'/>
+
+
+      
+</div><ul>
+
+<li> Active Members: <span className='text-red-800'> 9421</span> </li>
+
+<li>Assets value :  <span className='text-red-800'>$500M </span> </li>
+<li> Liabilities : <span className='text-red-800'> $100M </span> </li>
+<li> Annual Revenue :  <span className='text-red-800'>$640M </span> </li>
+<li> Active Member Loans  <span className='text-red-800'>1300 </span> </li>
+
+
+
+
+      
+</ul>
 
 
 
