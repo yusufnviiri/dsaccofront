@@ -14,14 +14,19 @@ import Withdraws from './components/account/Withdraws';
 import LoanApplication from './components/loans/LoanApplication';
 import MemberLoans from './components/loans/MemberLoans';
 import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 
 function App() {
   const navigate = useNavigate();
-
-const loginStatus=()=>{
+  var isLoggedIn = JSON.stringify(localStorage.getItem("isLoggedIn"));
 
   let nullValue= JSON.stringify(localStorage.getItem("token"))
   var userToken = JSON.stringify(localStorage.getItem("bearer"));
+const loginStatus=()=>{
+
+  
+
   
   if(userToken !==nullValue){
   }
@@ -39,6 +44,8 @@ loginStatus()
     <div className="App font-mul w-full m-auto">
       <Notification/>
       <Dashbord/>
+    {isLoggedIn!==nullValue?(
+        <Home/>):""}
 
       <Routes>
 <Route path='/dashboard' element={<Dashbord/>}/>

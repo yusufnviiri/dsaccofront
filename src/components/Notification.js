@@ -19,7 +19,7 @@ const isFail = "red";
     if(logginError!==""){
       // gsap.fromTo(".message",{position:"absolute",padding:"5px",color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:1})        
       console.log(logginError)
-     time.fromTo(".message",{position:"absolute",padding:"5px",color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:2})   
+     time.fromTo(".message",{position:"absolute",padding:"5px",color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:5})   
     } else{
         gsap.to(".message",{position:"absolute",background:"yellow",y:-100})
     }
@@ -27,7 +27,7 @@ const isFail = "red";
   return (
     <div className="App font-mul w-fit  m-auto">
 <div className='message  px-3  rounded'>
-{logginError!==""?(<p>{logginError }<span><button onClick={()=>{dispatch( setLoginError(clearError))}}>    <FontAwesomeIcon className='h-6 w-6 inline text-black ml-4 relative top-2' icon={faXmark} /></button></span></p>):""}
+{logginError!==""?(<p>{logginError }<span><button onClick={()=>{dispatch( setLoginError(clearError))}}>    <FontAwesomeIcon className='h-6 w-6 inline text-indigo-800 ml-4 relative top-2' icon={faXmark} /></button></span></p>):""}
 
 </div>
     </div>

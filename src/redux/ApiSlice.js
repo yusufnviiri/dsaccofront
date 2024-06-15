@@ -181,6 +181,8 @@ export const apiSlice = createSlice({
         localStorage.clear();
         localStorage.setItem("bearer", JSON.stringify(action.payload.tokenString
         ));
+        localStorage.setItem("isLoggedIn", JSON.stringify("true"
+        ));
         state.logginError = "success!!";
         window.location.reload()
 
