@@ -15,10 +15,18 @@ function Login() {
   const [password, setpassword] = useState("");
   const rememberMe=true;
 
-  useEffect(() => {
-    // localStorage.clear()
+  useEffect(()=>{
+    let nullValue= JSON.stringify(localStorage.getItem("token"))
+  var userToken = JSON.stringify(localStorage.getItem("bearer"));
   
-  }, []);
+  if(userToken !==nullValue){
+  }
+  setTimeout(() => {
+    if(userToken!==nullValue){
+        navigate("/", { replace: true });
+      }  
+  }, 3000);
+  },[])
 
 
   const loginDetails = {

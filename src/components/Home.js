@@ -41,23 +41,13 @@ function Home() {
     let nullValue= JSON.stringify(localStorage.getItem("token"))
   var userToken = JSON.stringify(localStorage.getItem("bearer"));
   
-  if(userToken !==nullValue){
-  console.log(userToken)
-  const decoded = jwtDecode(userToken );
-
-  const obj =Object.values(decoded)
-    
-
-//   const protectedHeader = jose.decodeProtectedHeader(userToken)
-console.log(decoded)
-console.log(obj)
-
-  }
-  setTimeout(() => {
-    if(userToken===nullValue){
-        navigate("/logins", { replace: true });
-      }  
-  }, 3000);
+  // if(userToken !==nullValue){
+  // }
+  // setTimeout(() => {
+  //   if(userToken===nullValue){
+  //       navigate("/logins", { replace: true });
+  //     }  
+  // }, 3000);
   dispatch(getMemberShares())
   console.log(shares)
   },[shares.length])

@@ -13,7 +13,28 @@ import Withdraw from './components/account/Withdraw';
 import Withdraws from './components/account/Withdraws';
 import LoanApplication from './components/loans/LoanApplication';
 import MemberLoans from './components/loans/MemberLoans';
+import { Navigate, useNavigate } from "react-router-dom";
+
 function App() {
+  const navigate = useNavigate();
+
+const loginStatus=()=>{
+
+  let nullValue= JSON.stringify(localStorage.getItem("token"))
+  var userToken = JSON.stringify(localStorage.getItem("bearer"));
+  
+  if(userToken !==nullValue){
+  }
+  setTimeout(() => {
+    if(userToken===nullValue){
+      navigate("/logins", { replace: true });
+    } 
+  }, 3000);
+}
+loginStatus()
+
+
+
   return (
     <div className="App font-mul w-full m-auto">
       <Notification/>
