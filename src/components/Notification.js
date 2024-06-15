@@ -10,12 +10,16 @@ function Notification() {
   const dispatch = useDispatch()
   const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 const isSuccess = "green";
-const isFail = "Red";
+const isFail = "red";
 
   const clearError = "";
 
+  var time = gsap.timeline({repeat:1,onComplete:()=>{dispatch(setLoginError(clearError))}});
+
     if(logginError!==""){
-        gsap.fromTo(".message",{position:"absolute",padding:"5px",background:"yellow",color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:1})
+      // gsap.fromTo(".message",{position:"absolute",padding:"5px",color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:1})        
+      console.log(logginError)
+     time.fromTo(".message",{position:"absolute",padding:"5px",color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:2})   
     } else{
         gsap.to(".message",{position:"absolute",background:"yellow",y:-100})
     }
@@ -23,7 +27,7 @@ const isFail = "Red";
   return (
     <div className="App font-mul w-fit  m-auto">
 <div className='message  px-3  rounded'>
-{logginError!==""?(<p>{logginError }<span><button onClick={()=>{dispatch( setLoginError(clearError))}}>    <FontAwesomeIcon className='h-6 w-6 inline text-black  relative top-2' icon={faXmark} /></button></span></p>):""}
+{logginError!==""?(<p>{logginError }<span><button onClick={()=>{dispatch( setLoginError(clearError))}}>    <FontAwesomeIcon className='h-6 w-6 inline text-black ml-4 relative top-2' icon={faXmark} /></button></span></p>):""}
 
 </div>
     </div>
