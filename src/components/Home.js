@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
-import logo from "../assets/opus logo.png"
+import logo from "../assets/opuslogo.png"
 import { buyshares,sellShares,getMemberShares } from '../redux/ApiSlice';
 import gsap from 'gsap'
 function Home() {
@@ -21,8 +21,7 @@ function Home() {
       const decoded = jwtDecode(userToken );
 
       const obj =Object.values(decoded)
-      obj.length=2
-        
+      obj.length=2       
 
     }
 
@@ -75,7 +74,7 @@ console.log(obj)
 
 
   const animations=()=>{
-    var t1 = gsap.timeline({repeat:-1, repeatDelay: 4});
+    var t1 = gsap.timeline({repeat:-1, repeatDelay: 10});
     t1.fromTo("#knowShop",{scale:0,opacity:0},{scale:1,opacity:1,duration:2,ease:'back'})
     t1.fromTo("#knowApp",{scale:0,opacity:0},{scale:1,opacity:1,duration:2,ease:'back'})
     t1.fromTo("#knowInterest",{scale:0,opacity:0},{scale:1,opacity:1,duration:2,ease:'back'})
