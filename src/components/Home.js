@@ -85,7 +85,6 @@ console.log(obj)
     
     <menu className='bg-rose-800 w-full py-2 text-[0.7em] md:text-[0.9em]  flex justify-between px-5'>
     <Link className='text-stone-200 mr-2' to='/new-account'>Create Account</Link>
-
   <Link className=' mr-2' to='/deposit'>Deposit</Link>
   <Link className=' mr-2' to='/deposits'>Deposits</Link>
   <Link className='mr-2' to='/withdraw'>Withdraw</Link>
@@ -94,11 +93,9 @@ console.log(obj)
   <Link className=' mr-2' to='/loans'>Loans</Link>
   <Link className='mr-2' to='/accounts'>Accounts</Link>
   <Link className='mr-2' to='/new-account'>New Account </Link>
-
   <button onClick={()=>{setshowSharesForm(!showSharesForm)}}    type='button' className='bg-indigo-800 text-white rounded px-2 ' >Shares</button>
     </menu>
 <div>
-
 {shares.length>0?(  <h4>Shares {shares[0].numberOfShares}</h4>
 ):""}
 
@@ -120,47 +117,72 @@ console.log(obj)
 
 </div>
     </div>
+    <div className='flex  gap-5   px-4 mt-16 justify-between '>
+    <div className='text-left w-[40%]  p-6 '>
+<h4 className='text-[2em] font-anton  ml-9 text-yellow-300 font-bold'> DID YOU KNOW</h4>
+<ul>
+  <li className='text-[1em] py-2 '>You can  
+  <span className='text-green-700   text-[1em] '>access</span> OPUS e-shop on<span className='text-green-700 text-[1em] '>this</span> portal
+  </li>
 
 
 
-    <div className='flex  gap-5 md:gap-10 px-9 md:px-20 mt-20 justify-between '>
-
-    <div className='text-left w-1/3'>
-
-
-<h4> Did you know</h4>
-<ul><li>You can access OPUS e-shop on   <span className='text-yellow-600'>this</span> portal
+  <li className='text-[1em] pb-2 '>Get
+  <span className='text-green-700   text-[1em] '>all</span> our services on your <span className='text-green-700 text-[1em] '>mobile</span> 
   </li>
   
-  <li>Get all our services on your mobile <span className='text-yellow-600'>Download App</span></li>
-  <li>Salary loan interest now at <span className='text-yellow-600'>9.99 %</span></li>
+  <li className='text-[1em] pb-2 '>Salary loan 
+  <span className='text-green-700   text-[1em] '>Interest</span> now at <span className='text-green-700 text-[1em] '> 9.99 %</span> 
+  </li>
 
-  <li> Dual Mortgage management now available</li>
+   
+  <li className='text-[1em] pb-2 '>Dual
+  <span className='text-green-700   text-[1em] '>Mortgage</span> now <span className='text-green-700 text-[1em] '> available </span> on low prices
+  </li>
 
   </ul>
 
       
 </div>
-<div className='w-1/3'>
+<div className='w-1/5'>
 
-<img src={logo} alt='logo'/>
-
-
-      
-</div><ul className='text-left w-1/3'>
-
-<li> Active Members: <span className='text-red-800'> 9421</span> </li>
-
-<li>Assets value :  <span className='text-red-800'>$500M </span> </li>
-<li> Liabilities : <span className='text-red-800'> $100M </span> </li>
-<li> Annual Revenue :  <span className='text-red-800'>$640M </span> </li>
-<li> Active Member Loans  <span className='text-red-800'>1300 </span> </li>
-
-
+<img src={logo} className='w-full  m-auto' alt='logo'/>
 
 
       
-</ul>
+</div>
+
+<div className=' w-[40%] pl-9 text-justify  p-6 '>
+<h4 className='text-[2em] font-anton text-center text-yellow-300 font-bold'>FACTS ABOUT OPUS</h4>
+<div className='flex  gap-10 ml-[20%]'>
+<ul className=''>
+  <li className='text-[1em] py-2 '>Active Members:
+  </li>
+  <li className='text-[1em] pb-2 '>Liabilities value YTD : 
+  </li>
+  <li className='text-[1em] by-2 '>Assets value YTD : 
+  </li>
+  <li className='text-[1em] pb-2 '>Annual Revenue :
+  </li>
+  <li className='text-[1em] pb-2 '>Active Member Loans
+  </li>
+
+  </ul>
+  <ul className=''>
+  <li className='text-[1em] py-2  text-green-800'> 9421
+  </li>
+  <li className='text-[1em] pb-2  text-red-800'> $130M
+  </li>
+  <li className='text-[1em] pb-2  text-green-800'> $700M
+  </li><li className='text-[1em] pb-2  text-red-800'> $530M
+  </li><li className='text-[1em] pb-2  text-red-800'> 12934
+  </li>
+
+  </ul>
+  </div>
+
+      
+</div>
 
 
 
