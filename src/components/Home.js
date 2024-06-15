@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import logo from "../assets/opus logo.png"
 import { buyshares,sellShares,getMemberShares } from '../redux/ApiSlice';
+import gsap from 'gsap'
 function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,14 +23,7 @@ function Home() {
       const obj =Object.values(decoded)
       obj.length=2
         
-    
-    //   const protectedHeader = jose.decodeProtectedHeader(userToken)
-    console.log(decoded)
-    console.log(obj)
-    
-    console.log(userToken)
-  //   const protectedHeader = jose.decodeProtectedHeader(userToken)
-  // console.log(protectedHeader)
+
     }
 
     const numberOfShares={
@@ -78,11 +72,25 @@ console.log(obj)
         dispatch(buyshares(numberOfShares))
         setsharesQuantity(0)      }   
   }
+
+
+  const animations=()=>{
+    var t1 = gsap.timeline({repeat:-1, repeatDelay: 4});
+    t1.fromTo("#knowShop",{scale:0,opacity:0},{scale:1,opacity:1,duration:2,ease:'back'})
+    t1.fromTo("#knowApp",{scale:0,opacity:0},{scale:1,opacity:1,duration:2,ease:'back'})
+    t1.fromTo("#knowInterest",{scale:0,opacity:0},{scale:1,opacity:1,duration:2,ease:'back'})
+    t1.fromTo("#knowMortgage",{scale:0,opacity:0},{scale:1,opacity:1,duration:2,ease:'back'}) 
+    t1.fromTo(".facts li",{scale:0,opacity:0},{scale:1,opacity:1,duration:2,stagger:0.7,ease:'back'}) 
+
+  }
+  
+  useEffect(()=>{animations()
+  },[])
+
+
   return (
     <>   
-    <div>
-
-    
+    <div>    
     <menu className='bg-rose-800 w-full py-2 text-[0.7em] md:text-[0.9em]  flex justify-between px-5'>
     <Link className='text-stone-200 mr-2' to='/new-account'>Create Account</Link>
   <Link className=' mr-2' to='/deposit'>Deposit</Link>
@@ -118,25 +126,22 @@ console.log(obj)
 </div>
     </div>
     <div className='flex  gap-5   px-4 mt-16 justify-between '>
-    <div className='text-left w-[40%]  p-6 '>
+    <div id='know' className='text-left w-[40%]  p-6 '>
 <h4 className='text-[2em] font-anton  ml-9 text-yellow-300 font-bold'> DID YOU KNOW</h4>
-<ul>
-  <li className='text-[1em] py-2 '>You can  
+<ul id='knowList'>
+  <li id='knowShop' className='text-[1em] py-2 '>You can  
   <span className='text-green-700   text-[1em] '>access</span> OPUS e-shop on<span className='text-green-700 text-[1em] '>this</span> portal
   </li>
-
-
-
-  <li className='text-[1em] pb-2 '>Get
+  <li id='knowApp' className='text-[1em] pb-2 '>Get
   <span className='text-green-700   text-[1em] '>all</span> our services on your <span className='text-green-700 text-[1em] '>mobile</span> 
   </li>
   
-  <li className='text-[1em] pb-2 '>Salary loan 
+  <li id='knowInterest' className='text-[1em] pb-2 '>Salary loan 
   <span className='text-green-700   text-[1em] '>Interest</span> now at <span className='text-green-700 text-[1em] '> 9.99 %</span> 
   </li>
 
    
-  <li className='text-[1em] pb-2 '>Dual
+  <li id='knowMortgage' className='text-[1em] pb-2 '>Dual
   <span className='text-green-700   text-[1em] '>Mortgage</span> now <span className='text-green-700 text-[1em] '> available </span> on low prices
   </li>
 
@@ -155,7 +160,7 @@ console.log(obj)
 <div className=' w-[40%] pl-9 text-justify  p-6 '>
 <h4 className='text-[2em] font-anton text-center text-yellow-300 font-bold'>FACTS ABOUT OPUS</h4>
 <div className='flex  gap-10 ml-[20%]'>
-<ul className=''>
+<ul className='facts'>
   <li className='text-[1em] py-2 '>Active Members:
   </li>
   <li className='text-[1em] pb-2 '>Liabilities value YTD : 
@@ -168,7 +173,7 @@ console.log(obj)
   </li>
 
   </ul>
-  <ul className=''>
+  <ul className='facts'>
   <li className='text-[1em] py-2  text-green-800'> 9421
   </li>
   <li className='text-[1em] pb-2  text-red-800'> $130M
