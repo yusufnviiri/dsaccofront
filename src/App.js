@@ -48,25 +48,20 @@ loginStatus()
         <Home/>):""}
 
       <Routes>
+      <Route path='/' element={<Deposits/>}/>
+
+<Route path='/' element={<Home/>}/>
 <Route path='/dashboard' element={<Dashbord/>}/>
 <Route path='/new-account' element={<NewAccount/>}/>
 <Route path='/logins' element={<Login/>}/>
 <Route path='/deposit' element={<Deposit/>}/>
-<Route path='/deposits' element={<Deposits/>}/>
 <Route path='/withdraw' element={<Withdraw/>}/>
 <Route path='/withdraws' element={<Withdraws/>}/>
-
 <Route path='/loan-application' element={<LoanApplication/>}/>
 <Route path='/loans' element={<MemberLoans/>}/>
-
-
-<Route path='/' element={<Home/>}/>
 <Route path='/accounts' element={<MemberAccounts/>}/>
 <Route path='/register' element={<Register/>}/>
 <Route path='/da' element={<Notification/>}/>
-
-
-
       </Routes>
     </div>
   );

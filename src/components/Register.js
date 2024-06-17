@@ -13,7 +13,7 @@ const  logginError = useSelector((state)=>state.ApiSlice.logginError)
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
-
+  const [title, setTitle] = useState("");
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
 
@@ -43,6 +43,7 @@ else {
     lastName,
     password,
     email,
+    title,
     confirmPassword
   };
  async function RegisterUser (e)  {
@@ -101,6 +102,34 @@ else {
               className=" w-full   py-3 text-center"
               type="text"
             />
+          </div>
+          <div className="mb-1  ">
+            <label className="font-bold   ml-2 block">Title</label>
+
+
+
+            <select
+              className="font-bold    block w-full"
+              required
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            >
+              <option className=" font-thin text-red-900">...select...</option>
+              <option className=" font-thin text-red-900">Member</option>
+              <option className=" font-thin text-red-900">Administrator</option>              
+              </select>
+
+
+            {/* <input required
+              value={lastName}
+              onChange={(e) => {
+                setlastName(e.target.value);
+              }}
+              className=" w-full   py-3 text-center"
+              type="text"
+            /> */}
           </div>
 
           <div className="mb-1  ">

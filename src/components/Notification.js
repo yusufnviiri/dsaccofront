@@ -14,12 +14,12 @@ const isFail = "red";
 
   const clearError = "";
 
-  var time = gsap.timeline({repeat:1,onComplete:()=>{dispatch(setLoginError(clearError))}});
+  var time = gsap.timeline({repeat:0,onComplete:()=>{dispatch(setLoginError(clearError))}});
 
     if(logginError!==""){
       // gsap.fromTo(".message",{position:"absolute",padding:"5px",color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:1})        
       console.log(logginError)
-     time.fromTo(".message",{position:"absolute",padding:"5px",color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:5})   
+     time.fromTo(".message",{position:"absolute",padding:"5px",y:-500,color:'white'},{position:"relative",y:0,background:`${logginError==="success!!"?isSuccess:isFail}`,duration:5})   
     } else{
         gsap.to(".message",{position:"absolute",background:"yellow",y:-100})
     }

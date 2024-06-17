@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import {useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import Menu from './Menu';
 
 
 
@@ -11,8 +12,10 @@ function Dashbord() {
 
   const users = useSelector((state)=>state.ApiSlice.users)
 
- const  logginError = useSelector((state)=>state.ApiSlice.logginError)
-useEffect(()=>{
+  var isLoggedIn = JSON.stringify(localStorage.getItem("isLoggedIn"));
+
+  let nullValue= JSON.stringify(localStorage.getItem("token"))
+  var userToken = JSON.stringify(localStorage.getItem("bearer"));useEffect(()=>{
   // console.log("getting Users")
 
   // dispatch(getMemberLoans())
@@ -25,8 +28,7 @@ const logOut=()=>{
   localStorage.clear();
   navigate("/", { replace: true });
 }
-let nullValue= JSON.stringify(localStorage.getItem("token"))
-var userToken = JSON.stringify(localStorage.getItem("bearer"));
+
 var obj=[]
 if(userToken !==nullValue){
 console.log(userToken)
@@ -53,7 +55,8 @@ const decoded = jwtDecode(userToken );
 <button  onClick={()=>logOut()} className='text-red-400 uppercase hover:text-yellow-500'>Sign Out</button>     </nav>
     </menu>
  
-    
+    {isLoggedIn!==nullValue?(
+        <Menu/>):""}
     
     </>
   )
