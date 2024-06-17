@@ -5,8 +5,6 @@ import {useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Menu from './Menu';
 
-
-
 function Dashbord() {
   const navigate = useNavigate();
 
@@ -43,7 +41,7 @@ console.log(decoded)
     <menu className='bg-emerald-950 w-full py-2 text-[0.9em]  text-stone-300 flex  justify-between font-robotoCo'>
     
       <Link className=' mx-2 text-stone-100 font-mul tracking-wider' to='/'>Opus   Savings Group</Link>
-      {obj.length>0?( <div>   <h2>Name: {obj[2]}</h2></div>
+      {obj.length>0?( <div>   <h2>Hello:    {obj[2]}</h2></div>
 ):(  <h2>User: none</h2>)}
       <nav>
        

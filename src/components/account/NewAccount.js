@@ -19,9 +19,11 @@ function NewAccount() {
       const saveAccount=(e) =>{    
         e.preventDefault();
       dispatch(createAccount(accountdetails));
-      if(notification!==""){
-        navigate("/accounts", { replace: true });
-      }  }
+      navigate("/accounts", { replace: true });
+      // if(notification!==""){
+      //   navigate("/accounts", { replace: true });
+      // }  
+    }
 
        return (
         <><h4>Login status in register     {logginError}

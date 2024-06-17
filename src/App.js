@@ -41,8 +41,7 @@ loginStatus()
     <div className="App font-mul w-full m-auto">
       <Notification/>
       <Dashbord/>
-    {isLoggedIn!==nullValue?(
-        <Home/>):""}
+    
 
       <Routes>
       <Route path='/deposits' element={<Deposits/>}/>

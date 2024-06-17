@@ -17,7 +17,7 @@ function MemberAccounts() {
       }  
 
 
-   },[dispatch])
+   },[accounts.length])
 
   return (
 <>   

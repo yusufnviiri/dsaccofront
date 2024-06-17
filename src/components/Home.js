@@ -84,7 +84,6 @@ function Home() {
 {shares.length>0?(  <h4>Shares {shares[0].numberOfShares}</h4>
 ):""}
 
-
 {showSharesForm===true?(    
     <div className=' flex justify-end items-end md:pr-5 pr-2'>    <form className='mini_form'
       onSubmit={(e) => {shareActions(e)
