@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from "react";
-import { setLoginError } from "../redux/ApiSlice";
+import { setLoginError } from "../../redux/ApiSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../redux/ApiSlice"
+// import { register } from "../../redux/ApiSlice"
+import { register } from "../../redux/ApiSlice"
 import {  useNavigate } from "react-router-dom";
 function Register() {
 const users = useSelector((state)=>state.ApiSlice.users)
@@ -10,6 +11,12 @@ const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  var isLoggedIn = JSON.stringify(localStorage.getItem("isLoggedIn"));
+
+  let nullValue= JSON.stringify(localStorage.getItem("token"))
+  var userToken = JSON.stringify(localStorage.getItem("bearer"));
+  const tempearyLogin="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,9 +27,7 @@ const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 
   useEffect(() => {
   
-    // dispatch(getUsers())
-    // dispatch(setLoginError("hey"))
-
+  //  localStorage.setItem("bearer",JSON.stringify(tempearyLogin))
     console.log(users)
 
       // navigate("/students", { replace: true });    
@@ -53,7 +58,7 @@ else {
     const myresponse = async () => {
       if (comparePasswords(password,confirmPassword) === true){
        await dispatch(register(userdetails));
-       navigate("/da", { replace: true });
+       navigate("/", { replace: true });
 
       } else{
         // console.log("fuck me")

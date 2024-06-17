@@ -2,8 +2,8 @@ import './App.css';
 import { Route,Routes } from 'react-router-dom';
 import Dashbord from './components/Dashbord';
 import Notification from './components/Notification';
-import Register from './components/Register'
-import Login from './components/Login';
+import Register from './components/access/Register'
+import Login from './components/access/Login';
 import NewAccount from './components/account/NewAccount';
 import Home from './components/Home';
 import MemberAccounts from './components/account/MemberAccounts';
@@ -13,6 +13,7 @@ import Withdraw from './components/account/Withdraw';
 import Withdraws from './components/account/Withdraws';
 import LoanApplication from './components/loans/LoanApplication';
 import MemberLoans from './components/loans/MemberLoans';
+import AccessControl from './components/access/AccessControl';
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,16 +24,12 @@ function App() {
 
   let nullValue= JSON.stringify(localStorage.getItem("token"))
   var userToken = JSON.stringify(localStorage.getItem("bearer"));
-const loginStatus=()=>{
-
-  
-
-  
+const loginStatus=()=>{  
   if(userToken !==nullValue){
   }
   setTimeout(() => {
     if(userToken===nullValue){
-      navigate("/logins", { replace: true });
+      navigate("/user-control", { replace: true });
     } 
   }, 3000);
 }
@@ -49,6 +46,8 @@ loginStatus()
 
       <Routes>
       <Route path='/' element={<Deposits/>}/>
+      <Route path='/user-control' element={<AccessControl/>}/>
+
 
 <Route path='/' element={<Home/>}/>
 <Route path='/dashboard' element={<Dashbord/>}/>
