@@ -3,8 +3,6 @@ import axios from "axios";
 const baseUrl = "https://localhost:5001/api"
 
 const URL = "https://localhost:5001/api/Login/register";
-// https://localhost:5001/api/Account/deposits
-
 let toke = "token";
 const getToken = async () => {
   toke = await JSON.parse(localStorage.getItem("bearer"));
