@@ -29,9 +29,7 @@ const logOut=()=>{
 
 var obj=[]
 if(userToken !==nullValue){
-console.log(userToken)
 const decoded = jwtDecode(userToken );
-console.log(decoded)
 
 
       obj =Object.values(decoded)}

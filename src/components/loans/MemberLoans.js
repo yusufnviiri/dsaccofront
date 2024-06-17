@@ -66,14 +66,14 @@ const payLoanAmount=(e)=>{
 </form></div>
     
 ):""}
-<h4> loan Id{item.loanId} </h4>
+<h4> loan number {item.loanId} </h4>
     <p className='font-semibold'>Date: <span className='font-bold'>{item.applicationDate}</span></p>
     <p className='font-semibold'>Available Balance: <span className='font-bold'>{item.currentBalance}</span></p>    <p className='font-semibold'>Loan Amount: <span className='font-bold'>{item.principleAmount}</span></p>    
     <p className='font-semibold'>Installements: <span className='font-bold'>{item.numberOfInstallments}</span></p>
     <p className='font-semibold'>Payments: <span className='font-bold'>{item.numberOfPayments}</span></p>  <p className='font-semibold'>Loan Amount with interest: <span className='font-bold'>{item.payAmount}</span></p>  <p className='font-semibold'>Balance: <span className='font-bold'>{item.outstandingBalance}</span></p>
     <p className='font-semibold'>Completed?: <span className='font-bold'>{item.isCompleted}</span></p>
-        "security": "Salary",
-        <p className='font-semibold'>Security: <span className='font-bold'>{item.security}</span></p>  <p className='font-semibold'>loan Period: <span className='font-bold'>{item.loanPeriod}</span></p>   <p className='font-semibold'>Completed?: <span className='font-bold'>{item.isCompleted}</span></p>
+        <p className='font-semibold'>Security: <span className='font-bold'>{item.security}</span></p>  <p className='font-semibold'>loan Period: <span className='font-bold'>{item.loanPeriod}</span></p>   <p className='font-semibold'>Status: <span className='font-bold'>{item.status}</span></p>
+        <p className='font-semibold'>Completed?: <span className='font-bold'>{item.isCompleted}</span></p>
 
 
 
