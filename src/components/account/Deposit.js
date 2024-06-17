@@ -10,6 +10,9 @@ function Deposit() {
 
   useEffect(() => {
     dispatch(getMemberAccounts());
+    if(accounts.length<1){
+       navigate("/new-account", { replace: true });
+    }  
   });
 
   const [amount, setAmount] = useState(0);

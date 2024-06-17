@@ -45,7 +45,7 @@ loginStatus()
         <Home/>):""}
 
       <Routes>
-      <Route path='/' element={<Deposits/>}/>
+      <Route path='/deposits' element={<Deposits/>}/>
       <Route path='/user-control' element={<AccessControl/>}/>
 
 

@@ -1,12 +1,23 @@
 import React,{useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getMemberAccounts } from '../../redux/ApiSlice';
+import { useNavigate } from "react-router-dom";
+
 
 function MemberAccounts() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const accounts = useSelector((state)=>state.ApiSlice.accounts)
 
-   useEffect(()=>{dispatch(getMemberAccounts())},[dispatch])
+   useEffect(()=>{dispatch(getMemberAccounts())
+
+      if(accounts.length<1){
+         navigate("/new-account", { replace: true });
+      }  
+
+
+   },[dispatch])
 
   return (
 <>   

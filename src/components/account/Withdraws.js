@@ -1,12 +1,24 @@
 
 import React,{useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import {getMemberWithdraws} from '../../redux/ApiSlice';
 function Withdraws() {
+  const navigate = useNavigate();
     const dispatch = useDispatch();
     const accounts = useSelector((state)=>state.ApiSlice.accounts)
     const withdraws = useSelector((state)=>state.ApiSlice.withdraws)  
-   useEffect(()=>{dispatch(getMemberWithdraws())})
+   useEffect(()=>{dispatch(getMemberWithdraws())
+
+
+    if(withdraws.length<1){
+      navigate("/withdraw", { replace: true });
+   }  
+   }
+  
+  
+  )
 
   return (
 <>   

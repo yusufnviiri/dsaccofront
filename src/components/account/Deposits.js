@@ -10,8 +10,13 @@ function Deposits() {
     const count = useSelector((state)=>state.ApiSlice.age)
     const accounts = useSelector((state)=>state.ApiSlice.accounts)
     const deposits = useSelector((state)=>state.ApiSlice.deposits)  
-   const  logginError = useSelector((state)=>state.ApiSlice.logginError)
-   useEffect(()=>{dispatch(getMemberDeposits())},[deposits.length])
+   useEffect(()=>{dispatch(getMemberDeposits())
+    if(deposits.length<1){
+      navigate("/deposit", { replace: true });
+   } 
+
+
+   })
 
   return (
 <>   
