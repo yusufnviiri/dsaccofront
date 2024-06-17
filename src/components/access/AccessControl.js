@@ -5,7 +5,15 @@ import { Link } from 'react-router-dom';
 
 
 function AccessControl() {
+      const tempLogin="eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJ1c2VybmFtZSI6ICJ1c2VyIiwgImlhdCI6IDE2ODY3MzEyMDB9.5a33u4A3ErsN7ix5u7F9AXu5AoJkFFGzFzVXAIbms8Q"
 const [signin,setSignIn]= useState(true)
+useEffect(() => {
+  
+     localStorage.setItem("bearer",JSON.stringify(tempLogin))
+  
+        // navigate("/students", { replace: true });    
+    });
+  
 
 
   return (

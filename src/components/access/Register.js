@@ -15,7 +15,7 @@ const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 
   let nullValue= JSON.stringify(localStorage.getItem("token"))
   var userToken = JSON.stringify(localStorage.getItem("bearer"));
-  const tempearyLogin="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  const tempLogin="eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJ1c2VybmFtZSI6ICJ1c2VyIiwgImlhdCI6IDE2ODY3MzEyMDB9.5a33u4A3ErsN7ix5u7F9AXu5AoJkFFGzFzVXAIbms8Q"
 
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -27,7 +27,7 @@ const  logginError = useSelector((state)=>state.ApiSlice.logginError)
 
   useEffect(() => {
   
-  //  localStorage.setItem("bearer",JSON.stringify(tempearyLogin))
+  //  localStorage.setItem("bearer",JSON.stringify(tempLogin))
     console.log(users)
 
       // navigate("/students", { replace: true });    
@@ -70,8 +70,7 @@ else {
   };
 
   return (
-    <><h4>Login status in register     {logginError}
-</h4>
+    <>
       <div className="w-[30%] m-auto  login_form">
         <h4
           className=" my-6 font-bold   underline-offset-2  
