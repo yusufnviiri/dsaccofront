@@ -131,6 +131,16 @@ export const sellShares = createAsyncThunk("dsacco/sellShares", async (item) => 
   const res = await axios.post(`${baseUrl}/Account/sellshares`, item, config);
   return res.data;
 });
+//approve loan
+export const approveLoan = createAsyncThunk("dsacco/loanApproval", async (id) => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.post(`${baseUrl}/Loan/loanapproval`, id, config);
+  return res.data;
+});
+
 //pay loan
 
 export const payLoan = createAsyncThunk("dsacco/loanPayment", async (item) => {
@@ -282,6 +292,16 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(sellShares.fulfilled, (state, action) => {
+      console.log(action.payload)
+
+      if (action.payload === "Accepted") {
+        state.logginError = "success!!";
+        state.notification = "Created well"
+      } else {
+        state.logginError = "Not Successful";
+      }
+    });
+    builder.addCase(approveLoan.fulfilled, (state, action) => {
       console.log(action.payload)
 
       if (action.payload === "Accepted") {

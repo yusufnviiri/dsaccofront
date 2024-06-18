@@ -2,7 +2,7 @@
 
 import React,{useEffect,useState,useRef} from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getMemberLoans ,payLoan} from '../../redux/ApiSlice';
+import { getMemberLoans ,payLoan,approveLoan} from '../../redux/ApiSlice';
 import { useNavigate } from "react-router-dom";
 
 
@@ -12,13 +12,12 @@ function MemberLoans() {
     const loans = useSelector((state)=>state.ApiSlice.loans)
 
     useEffect(()=>{dispatch(getMemberLoans())
-console.log(loans)
         if(loans.length<1){
             navigate("/loan-application", { replace: true });
          } 
 
 
-    },[loans.length])
+    },[dispatch])
 
     const [payloan,setPayloan]= useState(true)
     const [amountPaid,setamountPaid]= useState(0)
@@ -47,6 +46,15 @@ const payLoanAmount=(e)=>{
     e.preventDefault()
     if(amountPaid>0 && loanId>0){
         dispatch(payLoan(paymentData))
+        dispatch(getMemberLoans())
+    }
+}
+
+const approveMemberLoan=(e)=>{
+    e.preventDefault()
+    if(amountPaid>0 && loanId>0){
+        dispatch(approveLoan(loanId))
+        dispatch(getMemberLoans())
     }
 }
  
@@ -65,7 +73,18 @@ const payLoanAmount=(e)=>{
 
 {payloan===true?(
     
+
+    
     <div  id={item.loanId} className='hidden'>  
+    <form className='mini_form'  onSubmit={(e) => {approveMemberLoan(e)    }}  ><label>Amount</label>
+
+<input hidden value={item.loanId}  placeholder='amount paid'/>
+
+<div className='mini_buttons'>
+<input onLoad={()=>setloanId(item.loanId)} type='submit' value='approve' className=' bg-blue-800 cursor-pointer text-white rounded px-2' />
+<button  onClick={()=>hidePayForm(item.loanId)}    type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
+</div>
+</form>
        <form className='mini_form'  onSubmit={(e) => {payLoanAmount(e)    }}  ><label>Amount</label>
 
 <input  readOnly className={item.loanId}  value={Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments))}  placeholder='amount paid'/>
