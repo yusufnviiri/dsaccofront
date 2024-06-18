@@ -24,7 +24,7 @@ function LoanApplication() {
   const [secondWitnessContact,setsecondWitnessContact]=useState("");
   const [numberOfInstallments,setnumberOfInstallments]=useState(0)
 
-  const loanDetails = {
+  const loanDetails = {numberOfInstallments,
     principleAmount,security,loanPeriod,firstWitnessAddress,firstWitnessContact,firstWitnessName,secondWitnessAddress,secondWitnessContact,secondWitnessName,
     loanType,
   };
