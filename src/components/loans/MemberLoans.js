@@ -3,12 +3,23 @@
 import React,{useEffect,useState,useRef} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getMemberLoans ,payLoan} from '../../redux/ApiSlice';
+import { useNavigate } from "react-router-dom";
+
 
 function MemberLoans() {
     const dispatch = useDispatch();
-    useEffect(()=>{dispatch(getMemberLoans())},[dispatch])
-
+    const navigate = useNavigate();
     const loans = useSelector((state)=>state.ApiSlice.loans)
+
+    useEffect(()=>{dispatch(getMemberLoans())
+console.log(loans)
+        if(loans.length<1){
+            navigate("/loan-application", { replace: true });
+         } 
+
+
+    },[loans.length])
+
     const [payloan,setPayloan]= useState(true)
     const [amountPaid,setamountPaid]= useState(0)
     const [loanId,setloanId]= useState(0)
@@ -71,10 +82,9 @@ const payLoanAmount=(e)=>{
     <p className='font-semibold'>Available Balance: <span className='font-bold'>{item.currentBalance}</span></p>    <p className='font-semibold'>Loan Amount: <span className='font-bold'>{item.principleAmount}</span></p>    
     <p className='font-semibold'>Installements: <span className='font-bold'>{item.numberOfInstallments}</span></p>
     <p className='font-semibold'>Payments: <span className='font-bold'>{item.numberOfPayments}</span></p>  <p className='font-semibold'>Loan Amount with interest: <span className='font-bold'>{item.payAmount}</span></p>  <p className='font-semibold'>Balance: <span className='font-bold'>{item.outstandingBalance}</span></p>
-    <p className='font-semibold'>Completed?: <span className='font-bold'>{item.isCompleted}</span></p>
-        <p className='font-semibold'>Security: <span className='font-bold'>{item.security}</span></p>  <p className='font-semibold'>loan Period: <span className='font-bold'>{item.loanPeriod}</span></p>   <p className='font-semibold'>Status: <span className='font-bold'>{item.status}</span></p>
-        <p className='font-semibold'>Completed?: <span className='font-bold'>{item.isCompleted}</span></p>
-
+    <p className='font-semibold'>Completed? <span className='font-bold'>{item.isCompleted.toString()}</span></p>
+        <p className='font-semibold'>Security: <span className='font-bold'>{item.security}</span></p>  <p className='font-semibold'>loan Period: <span className='font-bold'>{item.loanPeriod}</span></p>   <p className='font-semibold'>Status: <span className={`${item.status==="pending"?"text-red-700":"text-blue-700"}`}>{item.status}</span></p>
+   
 
 
         <div>
