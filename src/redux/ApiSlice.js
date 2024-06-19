@@ -132,12 +132,12 @@ export const sellShares = createAsyncThunk("dsacco/sellShares", async (item) => 
   return res.data;
 });
 //approve loan
-export const approveLoan = createAsyncThunk("dsacco/loanApproval", async (id) => {
+export const approveLoan = createAsyncThunk("dsacco/loanApproval", async (loanid) => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
   };
-  const res = await axios.post(`${baseUrl}/Loan/loanapproval`, id, config);
+  const res = await axios.post(`${baseUrl}/Loan/loanapproval/${loanid}`,loanid, config);
   return res.data;
 });
 

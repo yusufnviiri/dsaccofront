@@ -12,16 +12,29 @@ function MemberLoans() {
     const loans = useSelector((state)=>state.ApiSlice.loans)
 
     useEffect(()=>{dispatch(getMemberLoans())
-        if(loans.length<1){
-            navigate("/loan-application", { replace: true });
-         } 
+
+       
+        // if(loans.length<1){
+        //     navigate("/loan-application", { replace: true });
+        
+        //  } 
 
 
-    },[dispatch])
+    },[loans.length])
+
+    const dataModal = document.querySelectorAll('[data-model-id]')
+    if(dataModal.length>0){
+        console.log(dataModal)
+
+
+    }
 
     const [payloan,setPayloan]= useState(true)
     const [amountPaid,setamountPaid]= useState(0)
     const [loanId,setloanId]= useState(0)
+    const [loanid,setloanid]= useState(0)
+
+
 
 
     const setPayForm=(id,amount)=>{
@@ -53,7 +66,7 @@ const payLoanAmount=(e)=>{
 const approveMemberLoan=(e)=>{
     e.preventDefault()
     if(amountPaid>0 && loanId>0){
-        dispatch(approveLoan(loanId))
+        dispatch(approveLoan(loanid))
         dispatch(getMemberLoans())
     }
 }
@@ -71,17 +84,19 @@ const approveMemberLoan=(e)=>{
  className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
 <button onClick={()=>setPayForm(item.loanId,Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments)))}    type='button' className='bg-indigo-800 text-white rounded px-2' >Pay</button>
 
-{payloan===true?(
-    
+{payloan===true?( 
 
     
     <div  id={item.loanId} className='hidden'>  
-    <form className='mini_form'  onSubmit={(e) => {approveMemberLoan(e)    }}  ><label>Amount</label>
 
-<input hidden value={item.loanId}  placeholder='amount paid'/>
+<button  onClick={()=>    dispatch(approveLoan(item.loanId))}    type='button' className='bg-red-800 text-white rounded px-2' >Bro approve loan</button>
+
+    <form className='mini_form' onLoad={()=>setloanid(item.loanId)} onSubmit={(e) => {approveMemberLoan(e)    }}  ><label>Amount</label>
+
+<input hidden value={item.loanid}  data-model-id={item.loanId}  placeholder='amount paid'/>
 
 <div className='mini_buttons'>
-<input onLoad={()=>setloanId(item.loanId)} type='submit' value='approve' className=' bg-blue-800 cursor-pointer text-white rounded px-2' />
+<input  type='submit' value='approve' className=' bg-blue-800 cursor-pointer text-white rounded px-2' />
 <button  onClick={()=>hidePayForm(item.loanId)}    type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
 </div>
 </form>
