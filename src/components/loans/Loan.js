@@ -1,19 +1,21 @@
 
-
 import React,{useEffect,useState,useRef} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getMemberLoans ,payLoan,approveLoan} from '../../redux/ApiSlice';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 
-function MemberLoans() {
+function Loan() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const loans = useSelector((state)=>state.ApiSlice.loans)
+    const location = useLocation();
+
+    const item= location.state;
 
     useEffect(()=>{dispatch(getMemberLoans())
-
+console.log(item)
        
         // if(loans.length<1){
         //     navigate("/loan-application", { replace: true });
@@ -79,7 +81,6 @@ const approveMemberLoan=(e)=>{
  
  className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
 <button onClick={()=>setPayForm(item.loanId,Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments)))}    type='button' className='bg-indigo-800 text-white rounded px-2' >Pay</button>
-<Link to="/loan" state={item} >View Loan</Link>
 
 {payloan===true?( 
 
@@ -136,4 +137,14 @@ const approveMemberLoan=(e)=>{
 
 
 
-export default MemberLoans
+
+
+
+
+
+
+
+
+
+
+export default Loan

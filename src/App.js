@@ -16,6 +16,7 @@ import MemberLoans from './components/loans/MemberLoans';
 import AccessControl from './components/access/AccessControl';
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Loan from './components/loans/Loan';
 
 
 function App() {
@@ -57,6 +58,8 @@ loginStatus()
 <Route path='/withdraws' element={<Withdraws/>}/>
 <Route path='/loan-application' element={<LoanApplication/>}/>
 <Route path='/loans' element={<MemberLoans/>}/>
+<Route path='/loan' element={<Loan/>}/>
+
 <Route path='/accounts' element={<MemberAccounts/>}/>
 <Route path='/register' element={<Register/>}/>
 <Route path='/da' element={<Notification/>}/>
