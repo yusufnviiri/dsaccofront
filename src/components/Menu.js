@@ -1,6 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import { useNavigate } from "react-router-dom"
-import { Link } from 'react-router-dom';
+import { useNavigate,Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import logo from "../assets/opuslogo.png"

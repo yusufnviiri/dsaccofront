@@ -1,32 +1,26 @@
 
-
 import React,{useEffect,useState,useRef} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getMemberLoans ,payLoan,approveLoan} from '../../redux/ApiSlice';
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 
-
-function MemberLoans() {
+function Loan() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     const loans = useSelector((state)=>state.ApiSlice.loans)
 
     useEffect(()=>{dispatch(getMemberLoans())
 
-       
-    
-
+  
 
     },[loans.length])
 
-    const dataModal = document.querySelectorAll('[data-model-id]')
-    if(dataModal.length>0){
-        console.log(dataModal)
-
-
-    }
-
+const item = location.state;
+console.log(item)
+const loanData = [];
+loanData.push(item)
     const [payloan,setPayloan]= useState(true)
     const [amountPaid,setamountPaid]= useState(0)
     const [loanId,setloanId]= useState(0)
@@ -77,12 +71,9 @@ const approveMemberLoan=(e)=>{
 </h4>
 
  <div>MemberAccounts</div>
- {loans.length>0? loans.map((item)=>(<div key={item.loanId}  
+ {loanData.length>0? loanData.map((item)=>(<div key={item.loanId}  
  
  className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
-
-
-<Link  state={item} className='mr-2' to='/loan'>View</Link>
 <button onClick={()=>setPayForm(item.loanId,Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments)))}    type='button' className='bg-indigo-800 text-white rounded px-2' >Pay</button>
 
 {payloan===true?( 
@@ -140,4 +131,11 @@ const approveMemberLoan=(e)=>{
 
 
 
-export default MemberLoans
+
+
+
+
+
+
+
+export default Loan
