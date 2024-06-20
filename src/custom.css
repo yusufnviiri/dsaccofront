@@ -71,7 +71,7 @@ text-transform: uppercase;
 
     /* color: white; */
 
-    
+    height: 100vh;
   }
   textarea {
     background-color: rgb(230, 237, 241);

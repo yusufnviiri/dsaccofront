@@ -24,12 +24,7 @@ var sortArray = loans}
     setsortStatus(" ")
     }
 
-    const dataModal = document.querySelectorAll('[data-model-id]')
-    if(dataModal.length>0){
-        console.log(dataModal)
-
-
-    }
+   
 
     const [payloan,setPayloan]= useState(true)
     const [amountPaid,setamountPaid]= useState(0)
@@ -104,7 +99,7 @@ const approveMemberLoan=(e)=>{
 
 
  <div>MemberAccounts</div>
- {sortArray.length>0? sortArray.map((item)=>(<div key={item.loanId}  
+ {loans.length>0? loans.map((item)=>(<div key={item.loanId}  
  
  className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
 
