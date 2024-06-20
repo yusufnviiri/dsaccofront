@@ -112,21 +112,16 @@ const approveMemberLoan=(e)=>{
 </form></div>
     
 ):""}
-<h4> loan number {item.loanId} </h4>
-    <p className='font-semibold'>Date: <span className='font-bold'>{item.applicationDate}</span></p>
-    <p className='font-semibold'>Available Balance: <span className='font-bold'>{item.currentBalance}</span></p>    <p className='font-semibold'>Loan Amount: <span className='font-bold'>{item.principleAmount}</span></p>    
-    <p className='font-semibold'>Installements: <span className='font-bold'>{item.numberOfInstallments}</span></p>
-    <p className='font-semibold'>Payments: <span className='font-bold'>{item.numberOfPayments}</span></p>  <p className='font-semibold'>Loan Amount with interest: <span className='font-bold'>{item.payAmount}</span></p>  <p className='font-semibold'>Balance: <span className='font-bold'>{item.outstandingBalance}</span></p>
-    <p className='font-semibold'>Completed? <span className='font-bold'>{item.isCompleted.toString()}</span></p>
-        <p className='font-semibold'>Security: <span className='font-bold'>{item.security}</span></p>  <p className='font-semibold'>loan Period: <span className='font-bold'>{item.loanPeriod}</span></p>   <p className='font-semibold'>Status: <span className={`${item.status==="pending"?"text-red-700":"text-blue-700"}`}>{item.status}</span></p>
+   
+     <p className='font-semibold'>Loan Amount: <span className='font-bold'>{item.principleAmount}</span></p>    
+     <p className='font-semibold'>Loan Type: <span className='font-bold'>{item.loanType.description}</span></p> 
+    <p className='font-semibold'>Installements: <span className='font-bold'>{item.numberOfInstallments}</span></p> 
+    <p className='font-semibold'>Loan  interest: <span className='font-bold'>{item.loanInterest}%</span></p> 
+    <p className='font-semibold'>Status: <span className={`${item.status==="pending"?"text-red-700":"text-blue-700"}`}>{item.status}</span></p>
    
 
 
-        <div>
-<p>Witnessess</p>
-     <p className='font-semibold'>Name: <span className='font-bold'>{item.loanWitness.firstWitnessName}</span></p>
-     <p className='font-semibold'>Address: <span className='font-bold'>{item.loanWitness.firstWitnessAddress}</span></p> <p className='font-semibold'>Contact: <span className='font-bold'>{item.loanWitness.firstWitnessContact}</span></p> <p className='font-semibold'>Name: <span className='font-bold'>{item.loanWitness.secondWitnessName}</span></p> <p className='font-semibold'>Address: <span className='font-bold'>{item.loanWitness.secondWitnessAddress}</span></p> <p className='font-semibold'>Name: <span className='font-bold'>{item.loanWitness.secondWitnessName}</span></p> <p className='font-semibold'>Contact: <span className='font-bold'>{item.loanWitness.secondWitnessContact}</span></p>
-</div>
+
 
  </div>
 
