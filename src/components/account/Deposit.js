@@ -8,7 +8,6 @@ function Deposit() {
   const accounts = useSelector((state) => state.ApiSlice.accounts);
   const notification = useSelector((state) => state.ApiSlice.notification);
 
-
   useEffect(() => {
     dispatch(getMemberAccounts());
     if(accounts.length<1){
