@@ -11,14 +11,18 @@ function MemberLoans() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const loans = useSelector((state)=>state.ApiSlice.loans)
-
-    useEffect(()=>{dispatch(getMemberLoans())
-
-       
-    
+    if(loans.length>0){
+var sortArray = loans}
+    useEffect(()=>{dispatch(getMemberLoans())  
 
 
     },[loans.length])
+
+
+    const sortLoans=(format)=>{
+  sortArray = loans.filter((a)=>{if(a.status===format) return a})
+    setsortStatus(" ")
+    }
 
     const dataModal = document.querySelectorAll('[data-model-id]')
     if(dataModal.length>0){
@@ -31,6 +35,9 @@ function MemberLoans() {
     const [amountPaid,setamountPaid]= useState(0)
     const [loanId,setloanId]= useState(0)
     const [loanid,setloanid]= useState(0)
+
+    const [sortStatus,setsortStatus]= useState(0)
+
 
 
 
@@ -76,8 +83,28 @@ const approveMemberLoan=(e)=>{
  text-center font-poppins ">Number of Loans {loans.length}
 </h4>
 
+<form className='login_form' onSubmit={(e) => {approveMemberLoan(e)}}  ><label>Sort</label>
+
+<select   onChange={(e) => {
+                setsortStatus(e.target.value);
+              }} value={sortStatus}>
+    <option>None</option>
+    <option>Pending</option>
+    <option>Approved</option>
+</select>
+
+
+
+
+<div className='mini_buttons'>
+
+<button  onClick={()=>{sortLoans(sortStatus)}}   type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
+</div>
+</form>
+
+
  <div>MemberAccounts</div>
- {loans.length>0? loans.map((item)=>(<div key={item.loanId}  
+ {sortArray.length>0? sortArray.map((item)=>(<div key={item.loanId}  
  
  className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
 
@@ -92,15 +119,7 @@ const approveMemberLoan=(e)=>{
 
 <button  onClick={()=>    dispatch(approveLoan(item.loanId))}    type='button' className='bg-red-800 text-white rounded px-2' >Bro approve loan</button>
 
-    <form className='mini_form' onLoad={()=>setloanid(item.loanId)} onSubmit={(e) => {approveMemberLoan(e)    }}  ><label>Amount</label>
-
-<input hidden value={item.loanid}  data-model-id={item.loanId}  placeholder='amount paid'/>
-
-<div className='mini_buttons'>
-<input  type='submit' value='approve' className=' bg-blue-800 cursor-pointer text-white rounded px-2' />
-<button  onClick={()=>hidePayForm(item.loanId)}    type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
-</div>
-</form>
+ 
        <form className='mini_form'  onSubmit={(e) => {payLoanAmount(e)    }}  ><label>Amount</label>
 
 <input  readOnly className={item.loanId}  value={Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments))}  placeholder='amount paid'/>
