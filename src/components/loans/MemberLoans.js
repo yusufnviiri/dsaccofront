@@ -8,124 +8,104 @@ import { useNavigate,Link } from "react-router-dom";
 
 
 function MemberLoans() {
+
+
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const loans = useSelector((state)=>state.ApiSlice.loans)
-    if(loans.length>0){
-var sortArray = loans}
-    useEffect(()=>{dispatch(getMemberLoans())  
-
-
-    },[loans.length])
-
-
-    const sortLoans=(format)=>{
-  sortArray = loans.filter((a)=>{if(a.status===format) return a})
-    setsortStatus(" ")
-    }
-
-   
-
-    const [payloan,setPayloan]= useState(true)
-    const [amountPaid,setamountPaid]= useState(0)
-    const [loanId,setloanId]= useState(0)
-    const [loanid,setloanid]= useState(0)
+    const [isSeaching,setIssearching]= useState(false)
+  
 
     const [sortStatus,setsortStatus]= useState(0)
+    var  sortedArray =[]
+let changerArray = []
 
+    let sortArray= [];
+  
 
+useEffect(()=>{dispatch(getMemberLoans())  
+},[isSeaching])
+const loans = useSelector((state)=>state.ApiSlice.loans)
+changerArray = loans
+const objSort ={tt:[]}
 
+     
 
+const sortLoans=()=>{
+    
+    
+    sortArray=[]
+loans.forEach((loan)=>{if(loan.status===sortStatus){sortArray.push(loan)}})
+    objSort.tt=sortArray
+// sortArray= sortedArray
+  console.log(sortArray)
 
-    const setPayForm=(id,amount)=>{
-        setloanId(id)
-        setamountPaid(amount)
+return sortArray
 
-        const loanpayForm= document.getElementById(id)
-        if(id>0){
-            loanpayForm.style.display="block"
-               }
-    }
-    const hidePayForm=(id)=>{
-        const loanpayForm= document.getElementById(id)
-        if(id>0){
-            loanpayForm.style.display="none"
-                }
-    }
-const paymentData= {
-    amountPaid,loanId
 }
-const payLoanAmount=(e)=>{
-    e.preventDefault()
-    if(amountPaid>0 && loanId>0){
-        dispatch(payLoan(paymentData))
-        dispatch(getMemberLoans())
+   console.log(sortArray)
+    const clearSort=()=>{
+        setIssearching(false)
+    setsortStatus(" ")
     }
+         sortArray= sortLoans()
+if(isSeaching===true){
+
+         sortArray= sortLoans()
+}else{sortArray=loans
 }
 
-const approveMemberLoan=(e)=>{
-    e.preventDefault()
-    if(amountPaid>0 && loanId>0){
-        dispatch(approveLoan(loanid))
-        dispatch(getMemberLoans())
-    }
-}
- 
+
+// if(isSeaching===true){
+//     // sortArray=[]
+
+//     console.log("sorted Array")
+//     // console.log(sortedArray)
+//      sortArray= container(container())
+    
+//   } else{
+//     sortArray=loans
+//   }
+  console.log("sortArray")
+  console.log(sortArray)
+      console.log(sortedArray)
+   console.log("sorted Array")
 
   return (
 <>   
 <h4 className=" my-4 font-bold   underline-offset-2 underline 
  text-center font-poppins ">Number of Loans {loans.length}
 </h4>
+<h4 className=" my-4 font-bold   underline-offset-2 underline 
+ text-center font-poppins ">Number of Loans  sort Array {sortArray.length}
+</h4>
 
-<form className='login_form' onSubmit={(e) => {approveMemberLoan(e)}}  ><label>Sort</label>
+<div className='login_form' ><label>Sort</label>
 
 <select   onChange={(e) => {
                 setsortStatus(e.target.value);
               }} value={sortStatus}>
     <option>None</option>
-    <option>Pending</option>
+    <option>pending</option>
     <option>Approved</option>
 </select>
 
-
-
-
 <div className='mini_buttons'>
-
-<button  onClick={()=>{sortLoans(sortStatus)}}   type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
+<button  onClick={()=>{  setIssearching(true)}}   type='button' className='bg-red-800 text-white rounded px-2' >Sort</button>
+<button  onClick={()=>{clearSort()}}   type='button' className='bg-red-800 text-white rounded px-2' >Clear</button>
 </div>
-</form>
-
+</div>
+{/* {console.log(sortArray)} */}
 
  <div>MemberAccounts</div>
- {loans.length>0? loans.map((item)=>(<div key={item.loanId}  
+ {sortArray.length>0? sortArray.map((item)=>(<div key={item.loanId}  
  
  className='flex  flex-col justify-start my-5 text-left w-1/2 m-auto '>
 
 
-<Link  state={item} className='mr-2' to='/loan'>View</Link>
-<button onClick={()=>setPayForm(item.loanId,Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments)))}    type='button' className='bg-indigo-800 text-white rounded px-2' >Pay</button>
 
-{payloan===true?( 
 
-    
-    <div  id={item.loanId} className='hidden'>  
 
-<button  onClick={()=>    dispatch(approveLoan(item.loanId))}    type='button' className='bg-red-800 text-white rounded px-2' >Bro approve loan</button>
-
- 
-       <form className='mini_form'  onSubmit={(e) => {payLoanAmount(e)    }}  ><label>Amount</label>
-
-<input  readOnly className={item.loanId}  value={Math.ceil((item.payAmount/item.numberOfInstallments)+(item.payAmount%item.numberOfInstallments))}  placeholder='amount paid'/>
-
-<div className='mini_buttons'>
-<input  type='submit' value='save' className=' bg-blue-800 cursor-pointer text-white rounded px-2' />
-<button  onClick={()=>hidePayForm(item.loanId)}    type='button' className='bg-red-800 text-white rounded px-2' >Close</button>
-</div>
-</form></div>
-    
-):""}
    
      <p className='font-semibold'>Loan Amount: <span className='font-bold'>{item.principleAmount}</span></p>    
      <p className='font-semibold'>Loan Type: <span className='font-bold'>{item.loanType.description}</span></p> 
