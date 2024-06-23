@@ -24,32 +24,14 @@ function Home() {
 
     }
 
-    const numberOfShares={
-      sharesQuantity
-    }
-    const setBuyShares=()=>{
-      setBuy(true)
-      setSell(false)
-     }
-    const setSellShares=()=>{
-      setBuy(false)
-      setSell(true)
-}
+ 
+    
 
   useEffect(()=>{
   dispatch(getMemberShares())
   console.log(shares)
   },[shares.length])
 
-  const shareActions=(e)=>{
-    e.preventDefault()
-    if(sell){
-      dispatch(sellShares(numberOfShares))
-      setsharesQuantity(0)    }  
-      if(buy){
-        dispatch(buyshares(numberOfShares))
-        setsharesQuantity(0)      }   
-  }
 
 
   const animations=()=>{
@@ -64,11 +46,11 @@ function Home() {
   
   useEffect(()=>{animations()
   },[])
-
+console.log(DetailsForm)
 
   return (
     <>   
-<button  onClick={()=>{  setDetailsForm(!DetailsForm)}}   type='button' className='bg-red-800 text-white rounded px-2' >Sort</button>
+<button  onClick={()=>{setDetailsForm(!DetailsForm)}}    className='bg-red-800 text-white rounded px-2 w-48 relative left-3' >Add Details</button>
     <div className='flex  gap-5   px-4 mt-16 justify-between '>
     <div id='know' className='text-left w-[40%]  p-6 '>
 <h4 className='text-[2em] font-anton  ml-9 text-yellow-300 font-bold'> DID YOU KNOW</h4>

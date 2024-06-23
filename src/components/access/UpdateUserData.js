@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import userData from '../../redux/ApiSlice'
 
 function UpdateUserData(props) {
-// const [showForm,setShowForm] = useState();
+  let showForm = props.showForm
 
+// const [showForm,setShowForm] = useState();
+useEffect(()=>{},[showForm])
 const [dateOfBirth,setdateOfBirth]=useState()
 const [sex,setSex]=useState()
 const [nextOfKin,setnextOfKin]=useState()
@@ -15,7 +17,6 @@ const userdetails={
     dateOfBirth,sex,nextOfKin,kinRelationShip,district,
     occupation
 }
-let showForm = props.showForm
 console.log(showForm)
 const handleSubmit=(e)=>{
 e.preventDefault()
@@ -23,8 +24,9 @@ dispatchEvent(userData(userdetails))
 
 }
 
-  return (
-    <div className='absolute w-full h-full top-0 left-0'>UserData
+  return (<>
+    {showForm?(
+    <div className='absolute w-1/2  h-fit pb-11 rounded top-1/4 bg-white left-0'>UserData
  <div className="w-[30%] m-auto  login_form">
         <h4 className=" my-6 font-bold   underline-offset-2  
      text-center font-lobs "  >  Withdraw </h4>   
@@ -131,9 +133,8 @@ dispatchEvent(userData(userdetails))
           </div>
         </form>
       </div>
+    </div>):""}</>
 
-
-    </div>
   )
 }
 
