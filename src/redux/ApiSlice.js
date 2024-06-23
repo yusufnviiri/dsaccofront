@@ -93,8 +93,17 @@ export const register = createAsyncThunk("dsacco/register", async (item) => {
   const result = await axios.post(`${URL}`, item)
   return result.data;
 });
+//user details
+export const userData = createAsyncThunk("dsacco/userdata", async (item) => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.post(`${baseUrl}/Login/userdata`, item, config);
+  return res.data;
+});
 
-//user login
+//user account
 export const createAccount = createAsyncThunk("dsacco/createAccount", async (item) => {
   toke = await getToken();
   const config = {
@@ -173,7 +182,7 @@ export const loanSubmission = createAsyncThunk("dsacco/loanApplication", async (
 });
 export const apiSlice = createSlice({
   name: "dsacco",
-  initialState: { age: 2, notification: " ", users: [], logginError: "", loans: [],loanTypes:[], accounts: [], withdraws: [], deposits: [], shares: [] },
+  initialState: { age: 2, notification: " ", users: [], logginError: "", loans: [],loanTypes:[],userData:{}, accounts: [], withdraws: [], deposits: [], shares: [] },
   reducers: {
     add: (state) => {
       state.age += 1;
@@ -186,6 +195,7 @@ export const apiSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
 
       if (action.payload.status === true) {
+        state.userData=action.payload.UserData
         localStorage.clear();
         localStorage.setItem("bearer", JSON.stringify(action.payload.tokenString
         ));
