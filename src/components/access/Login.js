@@ -1,58 +1,52 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 
-import { useState, useEffect } from "react";
-import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/ApiSlice"
+import { useState, useEffect } from 'react';
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../redux/ApiSlice';
+
 function Login() {
-  var myref = useRef(null);
-  const  logginError = useSelector((state)=>state.ApiSlice.logginError)
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [password, setpassword] = useState("");
-  const rememberMe=true;
+  const [email, setEmail] = useState('');
+  const [password, setpassword] = useState('');
+  const rememberMe = true;
 
-  useEffect(()=>{
-    let nullValue= JSON.stringify(localStorage.getItem("token"))
-  var userToken = JSON.stringify(localStorage.getItem("bearer"));
-  
-  if(userToken !==nullValue){
-  }
-  setTimeout(() => {
-    if(userToken!==nullValue){
+  useEffect(() => {
+    const nullValue = JSON.stringify(localStorage.getItem('token'));
+    const userToken = JSON.stringify(localStorage.getItem('bearer'));
+
+    setTimeout(() => {
+      if (userToken !== nullValue) {
         // navigate("/", { replace: true });
-      }  
-  }, 3000);
-  },[])
-
+      }
+    }, 3000);
+  }, []);
 
   const loginDetails = {
-   email,
+    email,
     password,
-    rememberMe
+    rememberMe,
   };
   const LoginUser = (e) => {
-    //let error = JSON.parse(localStorage.getItem("logginError"));
+    // let error = JSON.parse(localStorage.getItem("logginError"));
 
     e.preventDefault();
     const myresponse = async () => {
-       dispatch(login(loginDetails));
-      navigate("/", { replace: true });
-       
+      dispatch(login(loginDetails));
+      navigate('/', { replace: true });
     };
     myresponse();
   };
 
   return (
     <>
-    
+
       <div className="w-[30%] m-auto  login_form">
         <h4
-          className=" my-4 font-bold   underline-offset-2 underline 
+          className=" my-4 font-bold   underline-offset-2 underline
  text-center font-poppins "
         >
           LOGIN FORM
@@ -73,7 +67,7 @@ function Login() {
               className=" w-full   py-3 text-center"
               type="email"
             />
-          </div>       
+          </div>
 
           <div className="   mb-1">
             <label className="font-bold   ml-2 block">Password</label>

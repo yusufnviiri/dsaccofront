@@ -1,79 +1,67 @@
-
-import { useState, useEffect } from "react";
-import { setLoginError } from "../../redux/ApiSlice";
-import { useDispatch, useSelector } from "react-redux";
+/* eslint-disable linebreak-style */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setLoginError, register } from '../../redux/ApiSlice';
 // import { register } from "../../redux/ApiSlice"
-import { register } from "../../redux/ApiSlice"
-import {  useNavigate } from "react-router-dom";
+
 function Register() {
-const users = useSelector((state)=>state.ApiSlice.users)
-const  logginError = useSelector((state)=>state.ApiSlice.logginError)
+  const users = useSelector((state) => state.ApiSlice.users);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  var isLoggedIn = JSON.stringify(localStorage.getItem("isLoggedIn"));
 
-  let nullValue= JSON.stringify(localStorage.getItem("token"))
-  var userToken = JSON.stringify(localStorage.getItem("bearer"));
-  const tempLogin="eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJ1c2VybmFtZSI6ICJ1c2VyIiwgImlhdCI6IDE2ODY3MzEyMDB9.5a33u4A3ErsN7ix5u7F9AXu5AoJkFFGzFzVXAIbms8Q"
-
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [title, setTitle] = useState("");
-  const [password, setpassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
-
+  const [firstName, setfirstName] = useState('');
+  const [lastName, setlastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [title, setTitle] = useState('');
+  const [password, setpassword] = useState('');
+  const [confirmPassword, setconfirmPassword] = useState('');
 
   useEffect(() => {
-  
   //  localStorage.setItem("bearer",JSON.stringify(tempLogin))
-    console.log(users)
+    console.log(users);
 
-      // navigate("/students", { replace: true });    
+    // navigate("/students", { replace: true });
   });
 
-const comparePasswords=(stringA,stringB)=>{
-if(stringA!==stringB){
-  dispatch(setLoginError("password not maching"))
-  return false
-}
-else {
-
-  return true
-}
-}
+  const comparePasswords = (stringA, stringB) => {
+    if (stringA !== stringB) {
+      dispatch(setLoginError('password not maching'));
+      return false;
+    }
+    return true;
+  };
   const userdetails = {
     firstName,
     lastName,
     password,
     email,
     title,
-    confirmPassword
+    confirmPassword,
   };
- async function RegisterUser (e)  {
-    //let error = JSON.parse(localStorage.getItem("logginError"));
+  async function RegisterUser(e) {
+    // let error = JSON.parse(localStorage.getItem("logginError"));
 
     e.preventDefault();
     const myresponse = async () => {
-      if (comparePasswords(password,confirmPassword) === true){
-       await dispatch(register(userdetails));
-       navigate("/", { replace: true });
-
-      } else{
+      if (comparePasswords(password, confirmPassword) === true) {
+        await dispatch(register(userdetails));
+        navigate('/', { replace: true });
+      } else {
         // console.log("fuck me")
 
       }
-
     };
     myresponse();
-  };
+  }
 
   return (
     <>
       <div className="w-[30%] m-auto  login_form">
         <h4
-          className=" my-6 font-bold   underline-offset-2  
+          className=" my-6 font-bold   underline-offset-2
  text-center font-lobs "
         >
           REGISTER
@@ -86,7 +74,8 @@ else {
         >
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">First Name</label>
-            <input required
+            <input
+              required
               value={firstName}
               onChange={(e) => {
                 setfirstName(e.target.value);
@@ -98,7 +87,8 @@ else {
 
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">Last Name</label>
-            <input required
+            <input
+              required
               value={lastName}
               onChange={(e) => {
                 setlastName(e.target.value);
@@ -110,8 +100,6 @@ else {
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">Title</label>
 
-
-
             <select
               className="font-bold    block w-full"
               required
@@ -122,9 +110,8 @@ else {
             >
               <option className=" font-thin text-red-900">...select...</option>
               <option className=" font-thin text-red-900">Member</option>
-              <option className=" font-thin text-red-900">Administrator</option>              
-              </select>
-
+              <option className=" font-thin text-red-900">Administrator</option>
+            </select>
 
             {/* <input required
               value={lastName}
@@ -138,8 +125,9 @@ else {
 
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block">Email</label>
-            <input required 
-            type="email"
+            <input
+              required
+              type="email"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -150,7 +138,8 @@ else {
 
           <div className="   mb-1">
             <label className="font-bold   ml-2 block">Password</label>
-            <input required
+            <input
+              required
               value={password}
               onChange={(e) => {
                 setpassword(e.target.value);
@@ -159,10 +148,11 @@ else {
               type="text"
             />
           </div>
-          
+
           <div className="   mb-1">
             <label className="font-bold   ml-2 block"> Confirm Password</label>
-            <input required
+            <input
+              required
               value={confirmPassword}
               onChange={(e) => {
                 setconfirmPassword(e.target.value);

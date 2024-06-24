@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getMemberAccounts, memberDeposit } from "../../redux/ApiSlice";
-import { useNavigate } from "react-router-dom";
+/* eslint-disable linebreak-style */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMemberAccounts, memberDeposit } from '../../redux/ApiSlice';
+
 function Deposit() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -10,13 +14,13 @@ function Deposit() {
 
   useEffect(() => {
     dispatch(getMemberAccounts());
-    if(accounts.length<1){
-       navigate("/new-account", { replace: true });
-    }  
+    if (accounts.length < 1) {
+      navigate('/new-account', { replace: true });
+    }
   });
 
   const [amount, setAmount] = useState(0);
-  const [accountId, setAccountId] = useState("");
+  const [accountId, setAccountId] = useState('');
   const depositDetails = {
     amount,
     accountId,
@@ -24,16 +28,21 @@ function Deposit() {
   const saveDeposit = (e) => {
     e.preventDefault();
     dispatch(memberDeposit(depositDetails));
-    if (notification !== "") {
-      navigate("/accounts", { replace: true });
+    if (notification !== '') {
+      navigate('/accounts', { replace: true });
     }
   };
   return (
     <>
       <div className="w-[30%] m-auto  login_form">
-        <h4 className=" my-6 font-bold   underline-offset-2  
-     text-center font-lobs "  >  Deposit </h4>   
-          <form
+        <h4 className=" my-6 font-bold   underline-offset-2
+     text-center font-lobs "
+        >
+          {' '}
+          Deposit
+          {' '}
+        </h4>
+        <form
           onSubmit={(e) => {
             saveDeposit(e);
           }}
@@ -53,13 +62,14 @@ function Deposit() {
 
               {accounts.length > 0 ? (
                 accounts.map((item) => (
-                  <option value={item.accountId}
+                  <option
+                    value={item.accountId}
                     key={item.accountId}
                     className="font-bold"
                   >
-                      {item.accountDescription}
-                    </option>
-              
+                    {item.accountDescription}
+                  </option>
+
                 ))
               ) : (
                 <p>No account in database</p>
