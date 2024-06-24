@@ -1,12 +1,14 @@
 import React,{useEffect,useState} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import userData from '../../redux/ApiSlice'
+import { XMarkIcon } from '@heroicons/react/24/solid'
 
 function UpdateUserData(props) {
   let showForm = props.showForm
+  const [toggleForm,setToggle]=useState(props.showForm)
 
 // const [showForm,setShowForm] = useState();
-useEffect(()=>{},[showForm])
+useEffect(()=>{setToggle(true)},[showForm])
 const [dateOfBirth,setdateOfBirth]=useState()
 const [sex,setSex]=useState()
 const [nextOfKin,setnextOfKin]=useState()
@@ -21,15 +23,24 @@ console.log(showForm)
 const handleSubmit=(e)=>{
 e.preventDefault()
 dispatchEvent(userData(userdetails))
+setToggle(false)
 
 }
 
+
   return (<>
-    {showForm?(
-    <div className='absolute w-1/2  h-fit pb-11 rounded top-1/4 bg-white left-0'>UserData
- <div className="w-[30%] m-auto  login_form">
-        <h4 className=" my-6 font-bold   underline-offset-2  
-     text-center font-lobs "  >  Withdraw </h4>   
+    {showForm&&toggleForm?(
+<>
+<div className='absolute   size-full pb-11 rounded top-0 bg-[rgba(0,0,0,0.8)] right-0'>
+
+<div className='float-right mr-11 mt-6'>
+      <XMarkIcon className="size-11 text-blue-500 text-right" onClick={()=>{setToggle(false)}} />
+
+    </div>
+    <div className='relative w-1/2 m-auto  h-fit pb-11 rounded top-28 bg-white right-0'>
+  
+ <div className="w-[90%] lg:w-1/2 m-auto  login_form">
+    
           <form
           onSubmit={(e) => {
             handleSubmit(e);
@@ -133,7 +144,7 @@ dispatchEvent(userData(userdetails))
           </div>
         </form>
       </div>
-    </div>):""}</>
+    </div></div></>):""}</>
 
   )
 }
