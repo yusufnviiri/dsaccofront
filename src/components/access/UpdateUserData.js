@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import userData from '../../redux/ApiSlice';
+import {userData} from '../../redux/ApiSlice';
 
 function UpdateUserData(props) {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ function UpdateUserData(props) {
               <XMarkIcon className="size-11 text-blue-500 text-right" onClick={() => { setToggle(false); }} />
 
             </div>
-            <div className="relative w-3/4  md:w-1/2 lg:w-96 m-auto  h-fit sm:py-11 py-7  rounded top-28 bg-white right-0">
+            <div className="relative w-3/4  md:w-1/2 lg:w-96 m-auto  h-fit sm:py-11 py-7  rounded top-24 bg-white right-0">
 
               <div className="w-[90%]   m-auto  login_form">
                 <form

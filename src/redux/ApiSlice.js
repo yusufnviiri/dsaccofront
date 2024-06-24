@@ -59,8 +59,6 @@ export const getMemberShares = createAsyncThunk('dsacco/shares', async () => {
     headers: { Authorization: `Bearer ${toke}` },
   };
   const res = await axios.get(`${baseUrl}/Account/membershares`, config);
-  console.log(res);
-
   return res.data;
 });
 
@@ -75,8 +73,8 @@ export const getMemberDeposits = createAsyncThunk('dsacco/deposits', async () =>
   return res.data;
 });
 
-// get users
-export const getUsers = createAsyncThunk('dsacco/users', async () => {
+// get user data
+export const getUserData = createAsyncThunk('dsacco/users', async () => {
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
@@ -185,7 +183,7 @@ export const loanSubmission = createAsyncThunk('dsacco/loanApplication', async (
 export const apiSlice = createSlice({
   name: 'dsacco',
   initialState: {
-    age: 2, notification: ' ', users: [], logginError: '', loans: [], loanTypes: [], userData: {}, accounts: [], withdraws: [], deposits: [], shares: [],
+    age: 2, notification: ' ', user: [], logginError: '', loans: [], loanTypes: [], userData: {}, accounts: [], withdraws: [], deposits: [], shares: [],
   },
   reducers: {
     add: (state) => {
@@ -198,8 +196,11 @@ export const apiSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
       if (action.payload.status === true) {
+        console.log(action.payload)
         state.userData = action.payload.UserData;
         localStorage.clear();
+        sessionStorage.clear();
+        sessionStorage.setItem('userdata', JSON.stringify(action.payload.userData));
         localStorage.setItem('bearer', JSON.stringify(action.payload.tokenString));
         localStorage.setItem('isLoggedIn', JSON.stringify('true'));
         state.logginError = 'success!!';
@@ -226,8 +227,8 @@ export const apiSlice = createSlice({
         state.logginError = 'Not Successful';
       }
     });
-    builder.addCase(getUsers.fulfilled, (state, action) => {
-      state.users = action.payload;
+    builder.addCase(getUserData.fulfilled, (state, action) => {
+      state.user = action.payload;
       console.log(action.payload);
     });
     builder.addCase(getMemberLoans.fulfilled, (state, action) => {
@@ -313,9 +314,9 @@ export const apiSlice = createSlice({
     });
     builder.addCase(getMemberShares.fulfilled, (state, action) => {
       console.log(action.payload);
-      console.log('shares');
       state.shares = action.payload;
     });
+   
   },
 });
 

@@ -11,7 +11,7 @@ import Menu from './Menu';
 function Dashbord() {
   const navigate = useNavigate();
 
-  const users = useSelector((state) => state.ApiSlice.users);
+  const users = useSelector((state) => state.ApiSlice.user);
 
   const isLoggedIn = JSON.stringify(localStorage.getItem('isLoggedIn'));
 

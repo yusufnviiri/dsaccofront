@@ -7,7 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import gsap from 'gsap';
 import logo from '../assets/opuslogo.png';
 import { getMemberShares } from '../redux/ApiSlice';
-// import UpdateUserData from './access/UpdateUserData';
+import UpdateUserData from './access/UpdateUserData';
 import { Link } from 'react-router-dom';
 function Home() {
   const dispatch = useDispatch();
@@ -15,6 +15,8 @@ function Home() {
   const [DetailsForm, setDetailsForm] = useState(false);
   const nullValue = JSON.stringify(localStorage.getItem('token'));
   const userToken = JSON.stringify(localStorage.getItem('bearer'));
+  const memberDetails = JSON.stringify(sessionStorage.getItem('userdata'));
+
   if (userToken !== nullValue) {
     const decoded = jwtDecode(userToken);
     const obj = Object.values(decoded);
@@ -23,7 +25,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(getMemberShares());
-    console.log(shares);
+    console.log(memberDetails);
   }, [shares.length]);
 
   const animations = () => {
@@ -149,8 +151,8 @@ function Home() {
 
       </div>
 
-      {/* <UpdateUserData showForm={DetailsForm} /> */}
-      <Link className=" mr-2" to="/user-data">User Details</Link>
+      <UpdateUserData showForm={DetailsForm} />
+      {/* <Link className=" mr-2" to="/user-data">User Details</Link> */}
 
     </>
   );

@@ -1,14 +1,12 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setLoginError, register } from '../../redux/ApiSlice';
 // import { register } from "../../redux/ApiSlice"
 
 function Register() {
-  const users = useSelector((state) => state.ApiSlice.users);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,13 +16,6 @@ function Register() {
   const [title, setTitle] = useState('');
   const [password, setpassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
-
-  useEffect(() => {
-  //  localStorage.setItem("bearer",JSON.stringify(tempLogin))
-    console.log(users);
-
-    // navigate("/students", { replace: true });
-  });
 
   const comparePasswords = (stringA, stringB) => {
     if (stringA !== stringB) {
