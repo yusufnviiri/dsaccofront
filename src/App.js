@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable  */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import './App.css';
 import {
@@ -18,6 +18,7 @@ import Withdraws from './components/account/Withdraws';
 import LoanApplication from './components/loans/LoanApplication';
 import MemberLoans from './components/loans/MemberLoans';
 import AccessControl from './components/access/AccessControl';
+import UpdateUserData from './components/access/UpdateUserData';
 
 import Loan from './components/loans/Loan';
 
@@ -45,6 +46,8 @@ function App() {
         <Route path="/user-control" element={<AccessControl />} />
 
         <Route path="/" element={<Home />} />
+        <Route path="/user-data" element={<UpdateUserData />} />
+
 
         <Route path="/dashboard" element={<Dashbord />} />
         <Route path="/new-account" element={<NewAccount />} />

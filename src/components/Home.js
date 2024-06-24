@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable  */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 
@@ -7,8 +7,8 @@ import { jwtDecode } from 'jwt-decode';
 import gsap from 'gsap';
 import logo from '../assets/opuslogo.png';
 import { getMemberShares } from '../redux/ApiSlice';
-import UpdateUserData from './access/UpdateUserData';
-
+// import UpdateUserData from './access/UpdateUserData';
+import { Link } from 'react-router-dom';
 function Home() {
   const dispatch = useDispatch();
   const shares = useSelector((state) => state.ApiSlice.shares);
@@ -48,8 +48,6 @@ function Home() {
   useEffect(() => {
     animations();
   }, []);
-  console.log(DetailsForm);
-
   return (
     <>
       <button onClick={() => { setDetailsForm(!DetailsForm); }} type="button" className="bg-red-800 text-white rounded px-2 w-48 relative left-3">Add Details</button>
@@ -151,7 +149,8 @@ function Home() {
 
       </div>
 
-      <UpdateUserData showForm={DetailsForm} />
+      {/* <UpdateUserData showForm={DetailsForm} /> */}
+      <Link className=" mr-2" to="/user-data">User Details</Link>
 
     </>
   );

@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable  */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -96,6 +96,7 @@ export const register = createAsyncThunk('dsacco/register', async (item) => {
 });
 // user details
 export const userData = createAsyncThunk('dsacco/userdata', async (item) => {
+  
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },

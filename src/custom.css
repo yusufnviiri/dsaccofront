@@ -199,7 +199,7 @@ span {
 .submit input {
   border-radius: 3px;
   background-color: transparent;
-  padding: 0;
+  padding: 5px 0;
   margin: 0;
   height: 100%;
   width: 100%;

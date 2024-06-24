@@ -6,17 +6,19 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import userData from '../../redux/ApiSlice';
 
 function UpdateUserData(props) {
+  const dispatch = useDispatch();
+
   const { showForm } = props;
   const [toggleForm, setToggle] = useState(props.showForm);
 
   // const [showForm,setShowForm] = useState();
   useEffect(() => { setToggle(true); }, [showForm]);
-  const [dateOfBirth, setdateOfBirth] = useState();
-  const [sex, setSex] = useState();
-  const [nextOfKin, setnextOfKin] = useState();
-  const [kinRelationShip, setkinRelationShip] = useState();
-  const [district, setdistrict] = useState();
-  const [occupation, setoccupation] = useState();
+  const [dateOfBirth, setdateOfBirth] = useState("");
+  const [sex, setSex] = useState("");
+  const [nextOfKin, setnextOfKin] = useState("");
+  const [kinRelationShip, setkinRelationShip] = useState("");
+  const [district, setdistrict] = useState("");
+  const [occupation, setoccupation] = useState("");
   const userdetails = {
     dateOfBirth,
     sex,
@@ -25,10 +27,11 @@ function UpdateUserData(props) {
     district,
     occupation,
   };
-  console.log(showForm);
   const handleSubmit = (e) => {
+    debugger
     e.preventDefault();
-    dispatchEvent(userData(userdetails));
+    
+    dispatch(userData(userdetails));
     setToggle(false);
   };
 
@@ -42,10 +45,9 @@ function UpdateUserData(props) {
               <XMarkIcon className="size-11 text-blue-500 text-right" onClick={() => { setToggle(false); }} />
 
             </div>
-            <div className="relative w-1/2 m-auto  h-fit pb-11 rounded top-28 bg-white right-0">
+            <div className="relative w-3/4  md:w-1/2 lg:w-96 m-auto  h-fit sm:py-11 py-7  rounded top-28 bg-white right-0">
 
-              <div className="w-[90%] lg:w-1/2 m-auto  login_form">
-
+              <div className="w-[90%]   m-auto  login_form">
                 <form
                   onSubmit={(e) => {
                     handleSubmit(e);
@@ -142,7 +144,7 @@ function UpdateUserData(props) {
         text-center  bg-green-700 rounded hover:bg-slate-700"
                   >
                     <input
-                      className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
+                      className="uppercase  font-lobs text:[0.48em] sm:text-[0.91em] cursor-pointer text-yellow-300"
                       type="submit"
                     />
                   </div>
@@ -156,5 +158,7 @@ function UpdateUserData(props) {
 
   );
 }
-
+UpdateUserData.defaultProps = {    
+showForm:true
+}
 export default UpdateUserData;
