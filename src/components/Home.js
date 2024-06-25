@@ -61,7 +61,7 @@ function Home() {
     <div className='flex justify-between w-[95%]'>   
     <div className="flex flex-col gap-5  h-fit items-start px-6 ">
       
-    <div className="w-1/5">
+    <div className="size-1/2">
           <img src={logo} className="w-full  m-auto" alt="logo" />
         </div>
          <button onClick={() => { setDetailsForm(!DetailsForm); }} type="button" className="bg-red-800 text-white rounded px-2 w-48 relative left-0">Add Details</button>

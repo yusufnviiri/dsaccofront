@@ -36,7 +36,6 @@ function Menu() {
 
   useEffect(() => {
     dispatch(getMemberShares());
-    console.log(shares);
   }, [shares.length]);
 
   const shareActions = (e) => {
@@ -54,8 +53,8 @@ function Menu() {
   return (
     <>
       <div>
-        <menu className="bg-zinc-900 w-full py-2 text-[0.7em] md:text-[0.9em]  flex justify-between px-5">
-          <Link className=" mr-2" to="/new-account">Create Account</Link>
+        <menu className="bg-[#014701] w-full py-2 text-[0.7em] md:text-[0.9em]  flex justify-between px-5">
+          <Link className="text-yellow-500 font-bold mr-2" to="/">Home</Link>
           <Link className=" mr-2" to="/deposit">Deposit</Link>
           <Link className=" mr-2" to="/deposits">Deposits</Link>
           <Link className="mr-2" to="/withdraw">Withdraw</Link>

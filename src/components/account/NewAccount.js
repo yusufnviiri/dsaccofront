@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React, { useState } from 'react';
@@ -25,26 +25,14 @@ function NewAccount() {
     e.preventDefault();
     dispatch(createAccount(accountdetails));
     navigate('/accounts', { replace: true });
-    // if(notification!==""){
-    //   navigate("/accounts", { replace: true });
-    // }
+
   };
 
   return (
     <>
-      <h4>
-        Login status in register
-        {logginError}
-      </h4>
-      <h3>
-        Notification
-        {notification}
-      </h3>
+     
       <div className="w-[30%] m-auto  login_form">
-        <h4
-          className=" my-6 font-bold   underline-offset-2
-     text-center font-lobs "
-        >
+        <h4  className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider"  >
           Create Account
         </h4>
         <form

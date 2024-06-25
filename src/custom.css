@@ -71,7 +71,8 @@ select {
 
 label {
   font-size: 1.4em;
-  color: black;
+  /* color: black; */
+  color:#fef08a;
   margin-bottom: 0.3em;
   font-weight: 800;
 }
@@ -94,15 +95,15 @@ label {
   padding: 0;
   margin: 0;
   font-size: medium;
-  color: #022019;
+  color:#e4178e;
   text-transform: uppercase;
 }
 
 body {
   /* background-color: rgb(212 212 212); */
 
-  background-color: white;
-    color: #0f172a; 
+  /* background-color: white;
+    color: #0f172a;  */
 
   /* color: rgb(245, 222, 179); */
   margin: 0;
@@ -112,7 +113,13 @@ body {
 
   /* background-image: (180deg, #022520 0%, #031621 100%); */
 
-  /* background-color: #070e03; */
+  background-color:  rgb(11, 4, 65);
+
+  /* background-color:  #0a2716; */
+  /* color: white;   */
+  color: #e2e8f0;  
+
+
   /* background-color: rgb(0, 78, 78);
   color: rgb(236, 229, 236);
   height: 100vh; */
@@ -225,6 +232,11 @@ input::placeholder {
 .login_form label {
   font-size: 0.99em;
   font-weight: 400;
+}
+
+h4{
+  color: rgb(207, 206, 223);
+  
 }
 
 .data {
