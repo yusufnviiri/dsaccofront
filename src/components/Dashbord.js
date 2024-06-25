@@ -4,7 +4,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { jwtDecode } from 'jwt-decode';
 import Menu from './Menu';
 
@@ -16,10 +15,9 @@ function Dashbord() {
   const isLoggedIn = JSON.stringify(localStorage.getItem('isLoggedIn'));
 
   const nullValue = JSON.stringify(localStorage.getItem('token'));
-  const userToken = JSON.stringify(localStorage.getItem('bearer')); useEffect(() => {
+  const userToken = JSON.stringify(localStorage.getItem('bearer'));
+  useEffect(() => {
   // console.log("getting Users")
-
-    // dispatch(getMemberLoans())
 
   }, [users.length]);
 

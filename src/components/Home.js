@@ -6,27 +6,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
 import gsap from 'gsap';
 import logo from '../assets/opuslogo.png';
-import { getMemberShares } from '../redux/ApiSlice';
+import { getMemberShares, getUserData } from '../redux/ApiSlice';
 import UpdateUserData from './access/UpdateUserData';
 import { Link } from 'react-router-dom';
 function Home() {
   const dispatch = useDispatch();
   const shares = useSelector((state) => state.ApiSlice.shares);
+  const users = useSelector((state) => state.ApiSlice.user);
+
   const [DetailsForm, setDetailsForm] = useState(false);
   const nullValue = JSON.stringify(localStorage.getItem('token'));
   const userToken = JSON.stringify(localStorage.getItem('bearer'));
-  const memberDetails = JSON.stringify(sessionStorage.getItem('userdata'));
+  let obj = [];
 
   if (userToken !== nullValue) {
     const decoded = jwtDecode(userToken);
-    const obj = Object.values(decoded);
-    obj.length = 2;
+    obj = Object.values(decoded);
+    obj.length = 3;
   }
-
   useEffect(() => {
     dispatch(getMemberShares());
-    console.log(memberDetails);
+    dispatch(getUserData());
+
+
   }, [shares.length]);
+
+
 
   const animations = () => {
     const t1 = gsap.timeline({ repeat: -1, repeatDelay: 10 });
@@ -52,9 +57,41 @@ function Home() {
   }, []);
   return (
     <>
-      <button onClick={() => { setDetailsForm(!DetailsForm); }} type="button" className="bg-red-800 text-white rounded px-2 w-48 relative left-3">Add Details</button>
-      <div className="flex  gap-5   px-4 mt-16 justify-between ">
-        <div id="know" className="text-left w-[40%]  p-6 ">
+
+    <div className='flex justify-between w-[95%]'>   
+    <div className="flex flex-col gap-5  h-fit items-start px-6 ">
+      
+    <div className="w-1/5">
+          <img src={logo} className="w-full  m-auto" alt="logo" />
+        </div>
+         <button onClick={() => { setDetailsForm(!DetailsForm); }} type="button" className="bg-red-800 text-white rounded px-2 w-48 relative left-0">Add Details</button>
+{
+  users.length>0?users.map((user)=>(<div className='text-left'>
+
+     <p> Name : {obj[2]} </p>
+     <p> Role : {obj[1]} </p>
+
+     <p> Date Of Birth: {user.userDataDto.dob}</p>
+     <p> District: {user.userDataDto.district    }</p>
+     <p>Sex : {user.userDataDto.sex}</p>
+     <p>Occupation : {user.userDataDto.occupation}</p>
+     <p> Next Of Kin : {user.userDataDto.nextOfKin}</p>
+     <p>Relationship : {user.userDataDto.kinRelationShip}</p>
+    <p>Loan Balance {user.loanBalance }</p>
+    <p> Account Balance {user.accountBalance }</p>
+    <p> shares {user.totalShares}</p>
+  
+  
+  </div>)):""
+}
+
+      
+
+        </div>
+
+
+      <div className="flex flex-col    px-4   ">
+        <div id="know" className="text-left   p-6 ">
           <h4 className="text-[2em] font-anton  ml-9 text-yellow-300 font-bold"> DID YOU KNOW</h4>
           <ul id="knowList">
             <li id="knowShop" className="text-[1em] py-2 ">
@@ -95,13 +132,9 @@ function Home() {
           </ul>
 
         </div>
-        <div className="w-1/5">
+       
 
-          <img src={logo} className="w-full  m-auto" alt="logo" />
-
-        </div>
-
-        <div className=" w-[40%] pl-9 text-justify  p-6 ">
+        <div className=" hidden pl-9 text-justify  p-6 ">
           <h4 className="text-[2em] font-anton text-center text-yellow-300 font-bold">FACTS ABOUT OPUS</h4>
           <div className="flex  gap-10 ml-[20%]">
             <ul className="facts">
@@ -153,6 +186,7 @@ function Home() {
 
       <UpdateUserData showForm={DetailsForm} />
       {/* <Link className=" mr-2" to="/user-data">User Details</Link> */}
+      </div>
 
     </>
   );

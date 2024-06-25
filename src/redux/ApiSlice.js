@@ -153,7 +153,6 @@ export const approveLoan = createAsyncThunk('dsacco/loanApproval', async (loanid
 // pay loan
 
 export const payLoan = createAsyncThunk('dsacco/loanPayment', async (item) => {
-  console.log(item);
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
@@ -197,10 +196,8 @@ export const apiSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       if (action.payload.status === true) {
         console.log(action.payload)
-        state.userData = action.payload.UserData;
         localStorage.clear();
         sessionStorage.clear();
-        sessionStorage.setItem('userdata', JSON.stringify(action.payload.userData));
         localStorage.setItem('bearer', JSON.stringify(action.payload.tokenString));
         localStorage.setItem('isLoggedIn', JSON.stringify('true'));
         state.logginError = 'success!!';
