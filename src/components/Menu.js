@@ -54,8 +54,8 @@ function Menu() {
   return (
     <>
       <div>
-        <menu className="bg-rose-800 w-full py-2 text-[0.7em] md:text-[0.9em]  flex justify-between px-5">
-          <Link className="text-stone-200 mr-2" to="/new-account">Create Account</Link>
+        <menu className="bg-zinc-900 w-full py-2 text-[0.7em] md:text-[0.9em]  flex justify-between px-5">
+          <Link className=" mr-2" to="/new-account">Create Account</Link>
           <Link className=" mr-2" to="/deposit">Deposit</Link>
           <Link className=" mr-2" to="/deposits">Deposits</Link>
           <Link className="mr-2" to="/withdraw">Withdraw</Link>
@@ -67,13 +67,6 @@ function Menu() {
           <button onClick={() => { setshowSharesForm(!showSharesForm); }} type="button" className="bg-indigo-800 text-white rounded px-2 ">Shares</button>
         </menu>
         <div>
-          {shares.length > 0 ? (
-            <h4>
-              Shares
-              {shares[0].numberOfShares}
-            </h4>
-          ) : ''}
-
           {showSharesForm === true ? (
             <div className=" flex justify-end items-end md:pr-5 pr-2">
               {' '}

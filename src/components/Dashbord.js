@@ -42,7 +42,7 @@ function Dashbord() {
           <div>
             {' '}
             <h2>
-              Hello:
+              <span className="mr-1">Hello :</span>
               {obj[2]}
             </h2>
           </div>

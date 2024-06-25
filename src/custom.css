@@ -5,7 +5,9 @@ a {
 }
 
 menu a {
-  color: rgb(248, 245, 243);
+  /* color: rgb(248, 245, 243); */
+  color: #f59e0b;
+
 }
 
 nav a,
@@ -99,8 +101,8 @@ label {
 body {
   /* background-color: rgb(212 212 212); */
 
-  /* background-color: white;
-    color: #022c22; */
+  background-color: white;
+    color: #0f172a; 
 
   /* color: rgb(245, 222, 179); */
   margin: 0;
@@ -111,9 +113,9 @@ body {
   /* background-image: (180deg, #022520 0%, #031621 100%); */
 
   /* background-color: #070e03; */
-  background-color: rgb(0, 78, 78);
+  /* background-color: rgb(0, 78, 78);
   color: rgb(236, 229, 236);
-  height: 100vh;
+  height: 100vh; */
 }
 
 textarea {
