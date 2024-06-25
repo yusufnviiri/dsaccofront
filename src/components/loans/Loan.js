@@ -15,7 +15,6 @@ function Loan() {
   }, [loans.length]);
 
   const item = location.state;
-  console.log(item);
   const loanData = [];
   loanData.push(item);
   const [payloan] = useState(true);

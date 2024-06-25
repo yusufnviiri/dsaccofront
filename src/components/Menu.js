@@ -3,13 +3,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
 import { buyshares, sellShares, getMemberShares } from '../redux/ApiSlice';
 
 function Menu() {
   const dispatch = useDispatch();
-  const shares = useSelector((state) => state.ApiSlice.shares);
   const [buy, setBuy] = useState(false);
   const [sell, setSell] = useState(false);
   const [showSharesForm, setshowSharesForm] = useState(false);
@@ -36,7 +35,7 @@ function Menu() {
 
   useEffect(() => {
     dispatch(getMemberShares());
-  }, [shares.length]);
+  }, [dispatch]);
 
   const shareActions = (e) => {
     e.preventDefault();

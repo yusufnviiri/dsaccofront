@@ -20,10 +20,7 @@ const Withdraw = () => {
 
   const [amount, setAmount] = useState(0);
   const [accountId, setAccountId] = useState('');
-  const withdrawDetails = {
-    amount,
-    accountId,
-  };
+  const withdrawDetails = { amount, accountId };
   const saveWithdraw = (e) => {
     e.preventDefault();
     dispatch(memberWithdraw(withdrawDetails));
@@ -33,19 +30,10 @@ const Withdraw = () => {
   };
   return (
     <>
+
       <div className="w-[30%] m-auto  login_form">
-        <h4 className=" my-6 font-bold   underline-offset-2
-     text-center font-lobs "
-        >
-          {' '}
-          Withdraw
-          {' '}
-        </h4>
-        <form
-          onSubmit={(e) => {
-            saveWithdraw(e);
-          }}
-        >
+        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">    Account Withdraw  </h4>
+        <form onSubmit={(e) => { saveWithdraw(e); }}>
           <div className="mb-1  ">
             <label className="font-bold   ml-2 block"> Select Account </label>
 
@@ -58,7 +46,6 @@ const Withdraw = () => {
               }}
             >
               <option className=" font-thin text-red-900">...select...</option>
-
               {accounts.length > 0 ? (
                 accounts.map((item) => (
                   <option

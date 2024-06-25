@@ -224,11 +224,15 @@ input::placeholder {
 
 h4 {
   color: rgb(207, 206, 223);
+  border-bottom: 2px solid #e4178e;
+  width: max-content;
+  margin: auto;
 }
 .list_data{ color: rgb(201, 182, 183);
 }
 .list_data span{ color: rgb(18, 177, 53);
 }
+
 
 
 .data {

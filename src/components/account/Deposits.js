@@ -45,7 +45,7 @@ function Deposits() {
           </p>
           <p className="font-semibold">
             Deposit Date:
-            <span className="font-bold">{item.depositDate}</span>
+            <span className="font-bold">{item.stringDate}</span>
           </p>
         </div>
       )) : (<p>No account in database</p>)}

@@ -16,7 +16,7 @@ function LoanApplication() {
   });
   const [principleAmount, setprincipleAmount] = useState(0);
   const [loanType, setloanType] = useState(0);
-  const [security, setsecurity] = useState('N/A');
+  const [security, setsecurity] = useState('salary');
   const [loanPeriod, setloanPeriod] = useState(0);
   const [firstWitnessName, setfirstWitnessName] = useState('');
   const [firstWitnessAddress, setfirstWitnessAddress] = useState('');
@@ -49,13 +49,9 @@ function LoanApplication() {
   return (
     <>
       <div className=" m-auto w-[90%] login_form">
-        <h4 className=" my-6 font-bold   underline-offset-2
-     text-center font-lobs "
-        >
-          {' '}
-          Loan Application
-          {' '}
-        </h4>
+
+        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">     Loan Application </h4>
+
         <form
           onSubmit={(e) => {
             saveLoan(e);
