@@ -8,7 +8,6 @@ import { getMemberDeposits } from '../../redux/ApiSlice';
 function Deposits() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const accounts = useSelector((state) => state.ApiSlice.accounts);
   const deposits = useSelector((state) => state.ApiSlice.deposits);
   useEffect(() => {
     dispatch(getMemberDeposits());
@@ -19,20 +18,14 @@ function Deposits() {
 
   return (
     <>
-      <h4 className=" my-4 font-bold   underline-offset-2 underline
- text-center font-poppins "
-      >
-        Number of accounts
-        {' '}
-        {accounts.length}
+      <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+        Member Deposits
       </h4>
-
-      <div>Member Deposits</div>
 
       {deposits.length > 0 ? deposits.map((item) => (
         <div
           key={item.depositId}
-          className="flex   flex-col justify-start my-5 text-left w-1/2 m-auto "
+          className="flex list_data  flex-col justify-start my-5 text-left w-1/2 m-auto "
         >
 
           <p className="font-semibold">

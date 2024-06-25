@@ -35,12 +35,9 @@ function Deposit() {
   return (
     <>
       <div className="w-[30%] m-auto  login_form">
-        <h4 className=" my-6 font-bold   underline-offset-2
-     text-center font-lobs "
-        >
-          {' '}
-          Deposit
-          {' '}
+
+        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+          Account Deposit
         </h4>
         <form
           onSubmit={(e) => {
