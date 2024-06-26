@@ -11,7 +11,7 @@ import Login from './components/access/Login';
 import NewAccount from './components/account/NewAccount';
 import Home from './components/Home';
 import MemberAccounts from './components/account/MemberAccounts';
-import { UserLoggedIn } from '../LoginStatus';
+import { UserLoggedIn } from './LoginStatus';
 import Deposit from './components/account/Deposit';
 import Deposits from './components/account/Deposits';
 import Withdraw from './components/account/Withdraw';
@@ -20,17 +20,17 @@ import LoanApplication from './components/loans/LoanApplication';
 import MemberLoans from './components/loans/MemberLoans';
 import AccessControl from './components/access/AccessControl';
 import UpdateUserData from './components/access/UpdateUserData';
-
 import Loan from './components/loans/Loan';
 
 function App() {
   const navigate = useNavigate();
 
-  const nullValue = JSON.stringify(localStorage.getItem('token'));
-  const userToken = JSON.stringify(localStorage.getItem('bearer'));
+
+
   const loginStatus = () => {
     setTimeout(() => {
       if (UserLoggedIn===true) {
+        console.log(UserLoggedIn)
         navigate('/user-control', { replace: true });
       }
     }, 3000);
