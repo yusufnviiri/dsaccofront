@@ -1,9 +1,9 @@
 /* eslint-disable  */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { XMarkIcon } from '@heroicons/react/24/solid';
-import {userData} from '../../redux/ApiSlice';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { XMarkIcon } from "@heroicons/react/24/solid";
+import { userData } from "../../redux/ApiSlice";
 
 function UpdateUserData(props) {
   const dispatch = useDispatch();
@@ -12,7 +12,9 @@ function UpdateUserData(props) {
   const [toggleForm, setToggle] = useState(props.showForm);
 
   // const [showForm,setShowForm] = useState();
-  useEffect(() => { setToggle(true); }, [showForm]);
+  useEffect(() => {
+    setToggle(true);
+  }, [showForm]);
   const [dateOfBirth, setdateOfBirth] = useState("");
   const [sex, setSex] = useState("");
   const [nextOfKin, setnextOfKin] = useState("");
@@ -28,9 +30,9 @@ function UpdateUserData(props) {
     occupation,
   };
   const handleSubmit = (e) => {
-    debugger
+    debugger;
     e.preventDefault();
-    
+
     dispatch(userData(userdetails));
     setToggle(false);
   };
@@ -40,20 +42,21 @@ function UpdateUserData(props) {
       {showForm && toggleForm ? (
         <>
           <div className="absolute   size-full pb-11 rounded top-0 bg-[rgba(0,0,0,0.8)] right-0">
-
             <div className="float-right mr-11 mt-6">
-              <XMarkIcon className="size-11 text-blue-500 text-right" onClick={() => { setToggle(false); }} />
-
+              <XMarkIcon
+                className="size-11 text-blue-500 text-right"
+                onClick={() => {
+                  setToggle(false);
+                }}
+              />
             </div>
-            <div className="relative w-3/4  md:w-1/2 lg:w-96 m-auto  h-fit sm:py-11 py-7  rounded top-24 bg-white right-0">
-
+            <div className="relative w-3/4  md:w-1/2 lg:w-96 m-auto  h-fit sm:py-11 py-7  rounded top-24 bg-[rgb(11,4,65)] right-0">
               <div className="w-[90%]   m-auto  login_form">
                 <form
                   onSubmit={(e) => {
                     handleSubmit(e);
                   }}
                 >
-
                   <div className="mb-1  ">
                     <label className="font-bold   ml-2 block"> Gender </label>
                     <select
@@ -95,7 +98,9 @@ function UpdateUserData(props) {
                     />
                   </div>
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block">Date Of Birth</label>
+                    <label className="font-bold   ml-2 block">
+                      Date Of Birth
+                    </label>
                     <input
                       required
                       value={dateOfBirth}
@@ -108,7 +113,9 @@ function UpdateUserData(props) {
                   </div>
 
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block">Next Of Kin</label>
+                    <label className="font-bold   ml-2 block">
+                      Next Of Kin
+                    </label>
                     <input
                       required
                       value={nextOfKin}
@@ -121,7 +128,10 @@ function UpdateUserData(props) {
                   </div>
 
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block"> Relationship </label>
+                    <label className="font-bold   ml-2 block">
+                      {" "}
+                      Relationship{" "}
+                    </label>
                     <select
                       className="font-bold    block w-full"
                       required
@@ -153,12 +163,13 @@ function UpdateUserData(props) {
             </div>
           </div>
         </>
-      ) : ""}
+      ) : (
+        ""
+      )}
     </>
-
   );
 }
-UpdateUserData.defaultProps = {    
-showForm:true
-}
+UpdateUserData.defaultProps = {
+  showForm: true,
+};
 export default UpdateUserData;

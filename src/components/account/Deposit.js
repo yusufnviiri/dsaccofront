@@ -69,7 +69,7 @@ function Deposit() {
 
                 ))
               ) : (
-                <p>No account in database</p>
+                <option>No account in database</option>
               )}
             </select>
           </div>

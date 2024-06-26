@@ -143,10 +143,12 @@ export const sellShares = createAsyncThunk('dsacco/sellShares', async (item) => 
 // approve loan
 export const approveLoan = createAsyncThunk('dsacco/loanApproval', async (loanid) => {
   toke = await getToken();
+  console.log(loanid);
+
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
   };
-  const res = await axios.post(`${baseUrl}/Loan/loanapproval/${loanid}`, loanid, config);
+  const res = await axios.post(`${baseUrl}/Loan/loanapproval/${loanid}`, config);
   return res.data;
 });
 
@@ -205,10 +207,7 @@ export const apiSlice = createSlice({
       } else {
         state.logginError = 'Invalid User Name or Password';
       }
-    });
-    builder.addCase(register.pending, (state) => {
-      state.logginError = 'waiting......';
-    });
+    });  
     builder.addCase(register.fulfilled, (state, action) => {
       if (action.payload === 'Accepted') {
         state.logginError = 'success!!';
@@ -300,8 +299,6 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(approveLoan.fulfilled, (state, action) => {
-      console.log(action.payload);
-
       if (action.payload === 'Accepted') {
         state.logginError = 'success!!';
         state.notification = 'Created well';

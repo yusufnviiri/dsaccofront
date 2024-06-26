@@ -13,7 +13,7 @@ function MemberAccounts() {
   useEffect(() => {
     dispatch(getMemberAccounts());
 
-    if (accounts.length < 1) {
+    if (accounts.length === 0) {
       navigate('/new-account', { replace: true });
     }
   }, [accounts.length]);

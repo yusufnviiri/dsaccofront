@@ -1,13 +1,17 @@
+/* eslint-disable */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMemberLoans } from '../../redux/ApiSlice';
+import { getMemberLoans,approveLoan } from '../../redux/ApiSlice';
 
 function MemberLoans() {
   const dispatch = useDispatch();
   const [isSeaching, setIssearching] = useState(false);
+  const [payloan] = useState(true);
+  const [amountPaid, setamountPaid] = useState(0);
+  const [loanId, setloanId] = useState(0);
 
   const [sortStatus, setsortStatus] = useState(0);
 
@@ -37,7 +41,21 @@ function MemberLoans() {
   } else {
     sortArray = loans;
   }
+  // const handleApproveLoan = (e) => {
+  //   e.preventDefault();
+  //   dispatch(approveLoan());
+  //   console.log(item.loanId * 5);
+  // };
+  
+  const setPayForm = (id, amount) => {
+    setloanId(id);
+    setamountPaid(amount);
 
+    const loanpayForm = document.getElementById(id);
+    if (id > 0) {
+      loanpayForm.style.display = 'block';
+    }
+  };
   return (
     <>
       <div className="relative">
@@ -64,41 +82,101 @@ function MemberLoans() {
         </div>
 
         {sortArray.length > 0 ? sortArray.map((item) => (
-          <div
-            key={item.loanId}
-            className="flex list_data  flex-col justify-start my-5 text-left w-1/2 m-auto "
-          >
+          <>
+             <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white rounded px-2">Pay</button>
 
-            <p className="font-semibold">
-              Loan Amount:
-              <span className="font-bold">{item.principleAmount}</span>
-            </p>
-            <p className="font-semibold">
-              Loan Type:
-              <span className="font-bold">{item.loanType.description}</span>
-            </p>
-            <p className="font-semibold">
-              Installements:
-              <span className="font-bold">{item.numberOfInstallments}</span>
-            </p>
-            <p className="font-semibold">
-              Loan  interest:
-              <span className="font-bold">
-                {item.loanInterest}
-                %
-              </span>
-            </p>
-            <p className="font-semibold">
-              Status:
-              <span className={`${item.status === 'pending' ? 'text-red-700' : 'text-blue-700'}`}>{item.status}</span>
-            </p>
+            {payloan === true ? (
 
-            <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit px-1 rounded uppercase text-zinc-950" to="/loan">Details</Link>
+              <div id={item.loanId} className="hidden">
+                <span>
+                  {' '}
+                  loan number
+                  {item.loanId}
+                </span>
+                {/* <form onSubmit={() => {
+    dispatch(approveLoan(item.loanId));
+  }}
+  > */}
+                <form
+                  onSubmit={(e) => {
+                    handleApproveLoan(e);
+                  }}
+                >
+                  <div
+                    className=" text-white submit   font-bold w-full m-auto
+text-center  bg-green-700 rounded hover:bg-slate-700"
+                  >
+                    <input
+                      value="approve"
+                      className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
+                      type="submit"
+                    />
+                  </div>
+                  {/*
+  <button type="button" onClick={() => { dispatch(approveLoan(item.loanId)); }} className="bg-red-800 text-white rounded px-2"> approve loan</button> */}
+                </form>
 
-          </div>
+                {/* <form className="mini_form" onSubmit={(e) => { approveMemberLoan(e); }}>
+    <label>Amount</label>
+
+    <input hidden value={item.loanid} data-model-id={item.loanId} placeholder="amount paid" />
+
+    <div className="mini_buttons">
+      <input type="submit" value="approve" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
+      <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-red-800 text-white rounded px-2">Close</button>
+    </div>
+  </form> */}
+                <form className="mini_form" onSubmit={(e) => { payLoanAmount(e); }}>
+                  <label>Amount</label>
+
+                  <input readOnly className={item.loanId} value={Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments))} placeholder="amount paid" />
+
+                  <div className="mini_buttons">
+                    <input type="submit" value="save" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
+                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-red-800 text-white rounded px-2">Close</button>
+                  </div>
+                </form>
+              </div>
+
+            ) : ''}
+
+            <div
+              key={item.loanId}
+              className="flex list_data  flex-col justify-start my-5 text-left w-1/2 m-auto "
+            >
+
+              <p className="font-semibold">
+                Loan Amount:
+                <span className="font-bold">{item.principleAmount}</span>
+              </p>
+              <p className="font-semibold">
+                Loan Type:
+                <span className="font-bold">{item.loanType.description}</span>
+              </p>
+              <p className="font-semibold">
+                Installements:
+                <span className="font-bold">{item.numberOfInstallments}</span>
+              </p>
+              <p className="font-semibold">
+                Loan  interest:
+                <span className="font-bold">
+                  {item.loanInterest}
+                  %
+                </span>
+              </p>
+              <p className="font-semibold">
+                Status:
+                <span className={`${item.status === 'pending' ? 'text-red-700' : 'text-blue-700'}`}>{item.status}</span>
+              </p>
+
+              <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit px-1 rounded uppercase text-zinc-950" to="/loan">Details</Link>
+
+            </div>
+          </>
 
         )) : (<p>No loan in database</p>)}
       </div>
+
     </>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -16,6 +17,7 @@ function Loan() {
   }, [loans.length]);
 
   const item = location.state;
+  // console.log(item);
   const loanData = [];
   loanData.push(item);
   const [payloan] = useState(true);
@@ -49,6 +51,12 @@ function Loan() {
     }
   };
 
+  const handleApproveLoan = (e) => {
+    e.preventDefault();
+    dispatch(approveLoan(item.loanId));
+    console.log(item.loanId * 5);
+  };
+
   // const approveMemberLoan = (e) => {
   //   e.preventDefault();
   //   if (amountPaid > 0 && loanId > 0) {
@@ -71,8 +79,33 @@ function Loan() {
           {payloan === true ? (
 
             <div id={item.loanId} className="hidden">
-
-              <button onClick={() => dispatch(approveLoan(item.loanId))} type="button" className="bg-red-800 text-white rounded px-2"> approve loan</button>
+              <span>
+                {' '}
+                loan number
+                {item.loanId}
+              </span>
+              {/* <form onSubmit={() => {
+                dispatch(approveLoan(item.loanId));
+              }}
+              > */}
+              <form
+                onSubmit={(e) => {
+                  handleApproveLoan(e);
+                }}
+              >
+                <div
+                  className=" text-white submit   font-bold w-full m-auto
+        text-center  bg-green-700 rounded hover:bg-slate-700"
+                >
+                  <input
+                    value="approve"
+                    className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
+                    type="submit"
+                  />
+                </div>
+                {/*
+              <button type="button" onClick={() => { dispatch(approveLoan(item.loanId)); }} className="bg-red-800 text-white rounded px-2"> approve loan</button> */}
+              </form>
 
               {/* <form className="mini_form" onSubmit={(e) => { approveMemberLoan(e); }}>
                 <label>Amount</label>
