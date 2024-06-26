@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMemberLoans } from '../../redux/ApiSlice';
 
@@ -9,7 +10,6 @@ function MemberLoans() {
   const [isSeaching, setIssearching] = useState(false);
 
   const [sortStatus, setsortStatus] = useState(0);
-  const sortedArray = [];
 
   let sortArray = [];
 
@@ -38,94 +38,67 @@ function MemberLoans() {
     sortArray = loans;
   }
 
-  // if(isSeaching===true){
-  //     // sortArray=[]
-
-  //     console.log("sorted Array")
-  //     // console.log(sortedArray)
-  //      sortArray= container(container())
-
-  //   } else{
-  //     sortArray=loans
-  //   }
-  console.log('sortArray');
-  console.log(sortArray);
-  console.log(sortedArray);
-  console.log('sorted Array');
-
   return (
     <>
-      <h4 className=" my-4 font-bold   underline-offset-2 underline
- text-center font-poppins "
-      >
-        Number of Loans
-        {' '}
-        {loans.length}
-      </h4>
-      <h4 className=" my-4 font-bold   underline-offset-2 underline
- text-center font-poppins "
-      >
-        Number of Loans  sort Array
-        {' '}
-        {sortArray.length}
-      </h4>
+      <div className="relative">
+        <h4 className=" my-6  font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+          Member Loans
+        </h4>
 
-      <div className="login_form">
-        <label>Sort</label>
+        <div className="search_form">
+          <select
+            onChange={(e) => {
+              setsortStatus(e.target.value);
+            }}
+            value={sortStatus}
+          >
+            <option>select</option>
+            <option>pending</option>
+            <option>Approved</option>
+          </select>
 
-        <select
-          onChange={(e) => {
-            setsortStatus(e.target.value);
-          }}
-          value={sortStatus}
-        >
-          <option>None</option>
-          <option>pending</option>
-          <option>Approved</option>
-        </select>
-
-        <div className="mini_buttons">
-          <button onClick={() => { setIssearching(true); }} type="button" className="bg-red-800 text-white rounded px-2">Sort</button>
-          <button onClick={() => { clearSort(); }} type="button" className="bg-red-800 text-white rounded px-2">Clear</button>
+          <div className="mini_buttons">
+            <button onClick={() => { setIssearching(true); }} type="button" className="bg-blue-900 font-mono text-white rounded px-2 ">Sort</button>
+            <button onClick={() => { clearSort(); }} type="button" className="bg-rose-900 text-white font-mono rounded px-2">Clear</button>
+          </div>
         </div>
+
+        {sortArray.length > 0 ? sortArray.map((item) => (
+          <div
+            key={item.loanId}
+            className="flex list_data  flex-col justify-start my-5 text-left w-1/2 m-auto "
+          >
+
+            <p className="font-semibold">
+              Loan Amount:
+              <span className="font-bold">{item.principleAmount}</span>
+            </p>
+            <p className="font-semibold">
+              Loan Type:
+              <span className="font-bold">{item.loanType.description}</span>
+            </p>
+            <p className="font-semibold">
+              Installements:
+              <span className="font-bold">{item.numberOfInstallments}</span>
+            </p>
+            <p className="font-semibold">
+              Loan  interest:
+              <span className="font-bold">
+                {item.loanInterest}
+                %
+              </span>
+            </p>
+            <p className="font-semibold">
+              Status:
+              <span className={`${item.status === 'pending' ? 'text-red-700' : 'text-blue-700'}`}>{item.status}</span>
+            </p>
+
+            <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit px-1 rounded uppercase text-zinc-950" to="/loan">Details</Link>
+
+          </div>
+
+        )) : (<p>No loan in database</p>)}
       </div>
-      {/* {console.log(sortArray)} */}
-
-      <div>MemberAccounts</div>
-      {sortArray.length > 0 ? sortArray.map((item) => (
-        <div
-          key={item.loanId}
-          className="flex  flex-col justify-start my-5 text-left w-1/2 m-auto "
-        >
-
-          <p className="font-semibold">
-            Loan Amount:
-            <span className="font-bold">{item.principleAmount}</span>
-          </p>
-          <p className="font-semibold">
-            Loan Type:
-            <span className="font-bold">{item.loanType.description}</span>
-          </p>
-          <p className="font-semibold">
-            Installements:
-            <span className="font-bold">{item.numberOfInstallments}</span>
-          </p>
-          <p className="font-semibold">
-            Loan  interest:
-            <span className="font-bold">
-              {item.loanInterest}
-              %
-            </span>
-          </p>
-          <p className="font-semibold">
-            Status:
-            <span className={`${item.status === 'pending' ? 'text-red-700' : 'text-blue-700'}`}>{item.status}</span>
-          </p>
-
-        </div>
-
-      )) : (<p>No account in database</p>)}
-
     </>
   );
 }

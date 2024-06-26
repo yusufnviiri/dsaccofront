@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
@@ -20,7 +21,7 @@ function Loan() {
   const [payloan] = useState(true);
   const [amountPaid, setamountPaid] = useState(0);
   const [loanId, setloanId] = useState(0);
-  const [loanid] = useState(0);
+  // const [loanid] = useState(0);
 
   const setPayForm = (id, amount) => {
     setloanId(id);
@@ -48,25 +49,18 @@ function Loan() {
     }
   };
 
-  const approveMemberLoan = (e) => {
-    e.preventDefault();
-    if (amountPaid > 0 && loanId > 0) {
-      dispatch(approveLoan(loanid));
-      dispatch(getMemberLoans());
-    }
-  };
+  // const approveMemberLoan = (e) => {
+  //   e.preventDefault();
+  //   if (amountPaid > 0 && loanId > 0) {
+  //     dispatch(approveLoan(loanid));
+  //     dispatch(getMemberLoans());
+  //   }
+  // };
 
   return (
     <>
-      <h4 className=" my-4 font-bold   underline-offset-2 underline
- text-center font-poppins "
-      >
-        Number of Loans
-        {' '}
-        {loans.length}
-      </h4>
+      <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">    Loan </h4>
 
-      <div>MemberAccounts</div>
       {loanData.length > 0 ? loanData.map((item) => (
         <div
           key={item.loanId}
@@ -78,9 +72,9 @@ function Loan() {
 
             <div id={item.loanId} className="hidden">
 
-              <button onClick={() => dispatch(approveLoan(item.loanId))} type="button" className="bg-red-800 text-white rounded px-2">Bro approve loan</button>
+              <button onClick={() => dispatch(approveLoan(item.loanId))} type="button" className="bg-red-800 text-white rounded px-2"> approve loan</button>
 
-              <form className="mini_form" onSubmit={(e) => { approveMemberLoan(e); }}>
+              {/* <form className="mini_form" onSubmit={(e) => { approveMemberLoan(e); }}>
                 <label>Amount</label>
 
                 <input hidden value={item.loanid} data-model-id={item.loanId} placeholder="amount paid" />
@@ -89,7 +83,7 @@ function Loan() {
                   <input type="submit" value="approve" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
                   <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-red-800 text-white rounded px-2">Close</button>
                 </div>
-              </form>
+              </form> */}
               <form className="mini_form" onSubmit={(e) => { payLoanAmount(e); }}>
                 <label>Amount</label>
 
@@ -103,11 +97,7 @@ function Loan() {
             </div>
 
           ) : ''}
-          <h4>
-            {' '}
-            loan number
-            {item.loanId}
-          </h4>
+
           <p className="font-semibold">
             Date:
             <span className="font-bold">{item.applicationDate}</span>

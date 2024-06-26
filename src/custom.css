@@ -2,6 +2,8 @@ a {
   color: blue;
   text-transform: uppercase;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  padding: 0 7px;
+  border-radius: 5%;
 }
 
 menu a {
@@ -16,10 +18,8 @@ nav button {
 }
 
 a:hover {
-  color: rgb(13, 15, 109);
-  background-color: goldenrod;
-  padding: 0 2px;
-  border-radius: 10px;
+  color: white;
+  background-color: rgb(45, 2, 88);
 }
 
 input,
@@ -35,11 +35,6 @@ select {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.search_form input,
-.search_form button {
-  font-size: 0.84em;
-  height: 100%;
-}
 
 .mini_buttons {
   display: flex;
@@ -51,6 +46,7 @@ select {
 .mini_buttons button {
   text-transform: uppercase;
   font-weight: 700;
+  margin-right: 5px;
 }
 
 .mini_buttons button:hover {
@@ -232,7 +228,20 @@ h4 {
 }
 .list_data span{ color: rgb(18, 177, 53);
 }
+.search_form input,
+.search_form button,.search_form select {
+  font-size: 0.84em;
+  height: 100%;
+}
 
+.search_form{
+  position: absolute;
+  top: 0;
+right: 2em;  
+padding: 0.5em;
+background-color: #4c9e00;
+border-radius: 5%;
+}
 
 
 .data {

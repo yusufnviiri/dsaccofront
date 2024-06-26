@@ -45,13 +45,8 @@ function Login() {
     <>
 
       <div className="w-[30%] m-auto  login_form">
-        <h4
-          className=" my-4 font-bold   underline-offset-2 underline
- text-center font-poppins "
-        >
-          LOGIN FORM
-        </h4>
 
+        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider"> LOGIN FORM</h4>
         <form
           onSubmit={(e) => {
             LoginUser(e);
