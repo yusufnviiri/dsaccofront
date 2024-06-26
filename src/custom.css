@@ -35,7 +35,6 @@ select {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-
 .mini_buttons {
   display: flex;
   justify-content: space-between;
@@ -224,25 +223,29 @@ h4 {
   width: max-content;
   margin: auto;
 }
-.list_data{ color: rgb(201, 182, 183);
+.list_data {
+  color: rgb(201, 182, 183);
 }
-.list_data span{ color: rgb(18, 177, 53);
+.list_data span {
+  /* color: rgb(18, 177, 53); */
+  color: rgb(18, 218, 61);
+
 }
 .search_form input,
-.search_form button,.search_form select {
+.search_form button,
+.search_form select {
   font-size: 0.84em;
   height: 100%;
 }
 
-.search_form{
+.search_form {
   position: absolute;
   top: 0;
-right: 2em;  
-padding: 0.5em;
-background-color: #4c9e00;
-border-radius: 5%;
+  right: 2em;
+  padding: 0.5em;
+  background-color: #4c9e00;
+  border-radius: 5%;
 }
-
 
 .data {
   font-size: 0.8812em;

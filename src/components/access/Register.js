@@ -40,9 +40,6 @@ function Register() {
       if (comparePasswords(password, confirmPassword) === true) {
         await dispatch(register(userdetails));
         navigate('/', { replace: true });
-      } else {
-        // console.log("fuck me")
-
       }
     };
     myresponse();
