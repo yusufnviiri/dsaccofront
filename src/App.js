@@ -11,6 +11,7 @@ import Login from './components/access/Login';
 import NewAccount from './components/account/NewAccount';
 import Home from './components/Home';
 import MemberAccounts from './components/account/MemberAccounts';
+import { UserLoggedIn } from '../LoginStatus';
 import Deposit from './components/account/Deposit';
 import Deposits from './components/account/Deposits';
 import Withdraw from './components/account/Withdraw';
@@ -29,7 +30,7 @@ function App() {
   const userToken = JSON.stringify(localStorage.getItem('bearer'));
   const loginStatus = () => {
     setTimeout(() => {
-      if (userToken === nullValue) {
+      if (UserLoggedIn===true) {
         navigate('/user-control', { replace: true });
       }
     }, 3000);
