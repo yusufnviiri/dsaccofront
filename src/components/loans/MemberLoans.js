@@ -92,7 +92,7 @@ function MemberLoans() {
   return (
     <>
       <div className="relative">
-        <h4 className=" my-6  font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+        <h4 className=" mt-2 mb-6  font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
           Member Loans
         </h4>
 
@@ -116,26 +116,27 @@ function MemberLoans() {
 
         {sortArray.length > 0 ? sortArray.map((item) => (
           <>
-            <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white relative left-0 rounded px-2">Show More</button>
+            <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white relative left-0 rounded px-2">SHOW MORE</button>
 
             {payloan === true ? (
 
               <div id={item.loanId} className="hidden ">
 
                 <form
-                  className=" w-fit m-auto absolute top-9 left-40 "
+                  className=" w-fit m-auto absolute top-5  left-36 "
                   onSubmit={(e) => {
                     handleApproveLoan(e, item.loanId);
                   }}
                 >
-                  <div className="text-[0.8em] mt-4">
-                    <button type="submit" className="bg-green-800 text-white rounded mr-3 px-2"> APPROVE LOAN </button>
-                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-rose-700 text-white rounded px-2">show Less</button>
+                  <div className="text-[0.8em] w-[10em] mt-4 flex flex-col">
+                    {userRole==="Manager"?( <button type="submit" className="bg-green-800 w-full  text-white rounded mb-2 "> APPROVE LOAN </button>):""}
+                   
+                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-rose-700 text-white rounded  w-full ">SHOW LESS</button>
                   </div>
 
                 </form>
 
-                <form className="mini_form absolute top-8 left-5 " onSubmit={(e) => { payLoanAmount(e); }}>
+                <form className="mini_form absolute top-4 left-5 " onSubmit={(e) => { payLoanAmount(e); }}>
                   <label className="text-[0.8em]">Amount</label>
 
                   <input id="payInput" readOnly className={item.loanId} value={Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments))} placeholder="amount paid" />
