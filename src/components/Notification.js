@@ -27,7 +27,7 @@ function Notification() {
     time.fromTo('.message', {
       position: 'absolute', padding: '5px', y: -500, color: 'white',
     }, {
-      position: 'relative', y: 0, background: `${logginError === 'success!!' ? isSuccess : isFail}`, duration: 2,
+      position: 'relative', y: 0, background: `${logginError === 'success!!' ? isSuccess : isFail}`, duration: 5,
     });
   } else {
     gsap.to('.message', { position: 'absolute', background: 'yellow', y: -100 });

@@ -255,6 +255,11 @@ h4 {
 .data {
   font-size: 0.8812em;
 }
+.userData span{
+  color: #f59e0b;
+  padding-left: 2px;
+
+}
 
 .side_menu {
   background-color: rgb(8 51 68);

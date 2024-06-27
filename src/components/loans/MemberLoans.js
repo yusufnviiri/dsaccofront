@@ -170,17 +170,19 @@ function MemberLoans() {
               <p className="font-semibold">
                 Loan  interest:
                 <span className="font-bold">
-                  {item.loanInterest}
-                  %
+                  {item.loanInterest} %
                 </span>
               </p>
               <p className="font-semibold">
+            Completed:
+            <span className="font-bold">{item.isCompleted.toString()}</span>
+          </p>
+              <div className=" inline font-semibold">
                 Status:
-                <span className={`${item.status === 'pending' ? 'text-red-700' : 'text-blue-700'}`}>{item.status}</span>
-              </p>
+                <p className={` inline  ml-2 ${item.status === 'pending' ? 'text-red-700' : 'text-teal-700'}`}>{item.status}</p>
+              </div>
 
               <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit px-1 rounded uppercase text-zinc-950" to="/loan">Details</Link>
-
             </div>
           </>
 

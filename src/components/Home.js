@@ -11,7 +11,6 @@ import UpdateUserData from './access/UpdateUserData';
 
 function Home() {
   const dispatch = useDispatch();
-  const shares = useSelector((state) => state.ApiSlice.shares);
   const users = useSelector((state) => state.ApiSlice.user);
 
   const [DetailsForm, setDetailsForm] = useState(false);
@@ -27,7 +26,7 @@ function Home() {
   useEffect(() => {
     dispatch(getMemberShares());
     dispatch(getUserData());
-  }, [shares.length]);
+  });
 
   const animations = () => {
     const t1 = gsap.timeline({ repeat: -1, repeatDelay: 10 });
@@ -63,59 +62,91 @@ function Home() {
           <button onClick={() => { setDetailsForm(!DetailsForm); }} type="button" className="bg-red-800 text-white rounded px-2 w-48 relative left-0">Add Details</button>
           {
   users.length > 0 ? users.map((user) => (
-    <div key={user.sex} className="text-left">
+    <div key={user.sex} className="text-left  userData">
 
       <p>
         {' '}
         Name :
+        <span className="" />
         {obj[2]}
       </p>
       <p>
         {' '}
         Role :
+        <span className="" />
+
         {obj[1]}
       </p>
 
       <p>
         {' '}
         Date Of Birth:
-        {user.userDataDto.dob}
+        <span className="">
+          {user.userDataDto.dob}
+        </span>
+
       </p>
       <p>
         {' '}
         District:
-        {user.userDataDto.district }
+        <span className="">
+          {' '}
+          {user.userDataDto.district }
+        </span>
+
       </p>
       <p>
         Sex :
-        {user.userDataDto.sex}
+        <span className="">
+          {user.userDataDto.sex}
+        </span>
+
       </p>
       <p>
         Occupation :
-        {user.userDataDto.occupation}
+        <span className="">
+          {user.userDataDto.occupation}
+        </span>
+
       </p>
       <p>
         {' '}
         Next Of Kin :
-        {user.userDataDto.nextOfKin}
+        <span className="">
+          {user.userDataDto.nextOfKin}
+        </span>
+
       </p>
       <p>
         Relationship :
-        {user.userDataDto.kinRelationShip}
+        <span className="">
+          {user.userDataDto.kinRelationShip}
+        </span>
+
       </p>
       <p>
-        Loan Balance
-        {user.loanBalance }
+        Loan Balance:
+        {' '}
+        <span className="">
+          {user.loanBalance }
+        </span>
+
       </p>
       <p>
         {' '}
-        Account Balance
-        {user.accountBalance }
+        Account Balance:
+        <span className="">
+          {user.accountBalance }
+        </span>
+
       </p>
       <p>
         {' '}
-        shares
-        {user.totalShares}
+        Shares:
+        <span className="">
+          {user.totalShares}
+        </span>
+
       </p>
 
     </div>
