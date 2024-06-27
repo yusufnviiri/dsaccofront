@@ -1,69 +1,12 @@
-/* eslint-disable  */
-/* eslint-disable max-len */
 /* eslint-disable linebreak-style */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { getMemberLoans, payLoan, approveLoan } from '../../redux/ApiSlice';
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
 function Loan() {
-  const dispatch = useDispatch();
   const location = useLocation();
-  const loans = useSelector((state) => state.ApiSlice.loans);
-
-  useEffect(() => {
-    dispatch(getMemberLoans());
-  }, [loans.length]);
-
   const item = location.state;
-  // console.log(item);
   const loanData = [];
   loanData.push(item);
-  const [payloan] = useState(true);
-  const [amountPaid, setamountPaid] = useState(0);
-  const [loanId, setloanId] = useState(0);
-  // const [loanid] = useState(0);
-
-  const setPayForm = (id, amount) => {
-    setloanId(id);
-    setamountPaid(amount);
-
-    const loanpayForm = document.getElementById(id);
-    if (id > 0) {
-      loanpayForm.style.display = 'block';
-    }
-  };
-  const hidePayForm = (id) => {
-    const loanpayForm = document.getElementById(id);
-    if (id > 0) {
-      loanpayForm.style.display = 'none';
-    }
-  };
-  const paymentData = {
-    amountPaid, loanId,
-  };
-  const payLoanAmount = (e) => {
-    e.preventDefault();
-    if (amountPaid > 0 && loanId > 0) {
-      dispatch(payLoan(paymentData));
-      dispatch(getMemberLoans());
-    }
-  };
-
-  const handleApproveLoan = (e) => {
-    e.preventDefault();
-    dispatch(approveLoan(item.loanId));
-    console.log(item.loanId * 5);
-  };
-
-  // const approveMemberLoan = (e) => {
-  //   e.preventDefault();
-  //   if (amountPaid > 0 && loanId > 0) {
-  //     dispatch(approveLoan(loanid));
-  //     dispatch(getMemberLoans());
-  //   }
-  // };
 
   return (
     <>
@@ -72,64 +15,9 @@ function Loan() {
       {loanData.length > 0 ? loanData.map((item) => (
         <div
           key={item.loanId}
-          className="flex  flex-col justify-start my-5 text-left w-1/2 m-auto "
+          className="flex  list_data flex-col justify-start my-5 text-left w-1/2 m-auto "
         >
-          <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white rounded px-2">Pay</button>
-
-          {payloan === true ? (
-
-            <div id={item.loanId} className="hidden">
-              <span>
-                {' '}
-                loan number
-                {item.loanId}
-              </span>
-              {/* <form onSubmit={() => {
-                dispatch(approveLoan(item.loanId));
-              }}
-              > */}
-              <form
-                onSubmit={(e) => {
-                  handleApproveLoan(e);
-                }}
-              >
-                <div
-                  className=" text-white submit   font-bold w-full m-auto
-        text-center  bg-green-700 rounded hover:bg-slate-700"
-                >
-                  <input
-                    value="approve"
-                    className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
-                    type="submit"
-                  />
-                </div>
-                {/*
-              <button type="button" onClick={() => { dispatch(approveLoan(item.loanId)); }} className="bg-red-800 text-white rounded px-2"> approve loan</button> */}
-              </form>
-
-              {/* <form className="mini_form" onSubmit={(e) => { approveMemberLoan(e); }}>
-                <label>Amount</label>
-
-                <input hidden value={item.loanid} data-model-id={item.loanId} placeholder="amount paid" />
-
-                <div className="mini_buttons">
-                  <input type="submit" value="approve" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
-                  <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-red-800 text-white rounded px-2">Close</button>
-                </div>
-              </form> */}
-              <form className="mini_form" onSubmit={(e) => { payLoanAmount(e); }}>
-                <label>Amount</label>
-
-                <input readOnly className={item.loanId} value={Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments))} placeholder="amount paid" />
-
-                <div className="mini_buttons">
-                  <input type="submit" value="save" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
-                  <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-red-800 text-white rounded px-2">Close</button>
-                </div>
-              </form>
-            </div>
-
-          ) : ''}
+          <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit  px-3 my-2 rounded uppercase text-zinc-950" to="/loan">Back</Link>
 
           <p className="font-semibold">
             Date:

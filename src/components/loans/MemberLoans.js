@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { userRole } from '../../LoginStatus';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMemberLoans,approveLoan,getAllLoans } from '../../redux/ApiSlice';
+import { getMemberLoans,approveLoan,getAllLoans,payLoan } from '../../redux/ApiSlice';
 
 function MemberLoans() {
   const dispatch = useDispatch();
@@ -68,11 +68,25 @@ function MemberLoans() {
     setloanId(id);
     setamountPaid(amount);
     setId(id)
-
-
     const loanpayForm = document.getElementById(id);
     if (id > 0) {
       loanpayForm.style.display = 'block';
+    }
+  };
+  const hidePayForm = (id) => {
+    const loanpayForm = document.getElementById(id);
+    if (id > 0) {
+      loanpayForm.style.display = 'none';
+    }
+  };
+  const paymentData = {
+    amountPaid, loanId,
+  };
+  const payLoanAmount = (e) => {
+    e.preventDefault();
+    if (amountPaid > 0 && loanId > 0) {
+      dispatch(payLoan(paymentData));
+      dispatch(getMemberLoans());
     }
   };
   return (
@@ -102,42 +116,31 @@ function MemberLoans() {
 
         {sortArray.length > 0 ? sortArray.map((item) => (
           <>
-             <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white rounded px-2"> Pay Me</button>
+             <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white relative left-0 rounded px-2">Show More</button>
 
             {payloan === true ? (
 
-              <div id={item.loanId} className="hidden">
-                <span>
-                  {' '}
-                  loan number
-                  {item.loanId}
-                </span>
-                <form onSubmit={(e) => { 
+              <div id={item.loanId} className="hidden ">
+              
+                <form className=' w-fit m-auto absolute top-9 left-40 ' onSubmit={(e) => { 
     handleApproveLoan(e,item.loanId);
   }}
-  >
-<button type="submit" className="bg-red-800 text-white rounded px-2"> approve  man form loan</button> 
-
-                {/* <button type="button" onClick={() => { dispatch(approveLoan(item.loanId)); }} className="bg-red-800 text-white rounded px-2"> approve  man loan</button>  */}
+  ><div className="text-[0.8em] mt-4">
+<button type="submit" className="bg-green-800 text-white rounded mr-3 px-2"> APPROVE LOAN </button> 
+                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-rose-700 text-white rounded px-2">show Less</button>
+                  </div>
+   
+              
 </form>
-                {/* <form className="mini_form" onSubmit={(e) => { approveMemberLoan(e); }}>
-    <label>Amount</label>
+        
+                <form className="mini_form absolute top-8 left-5 " onSubmit={(e) => { payLoanAmount(e); }}>
+                  <label className='text-[0.8em]'>Amount</label>
 
-    <input hidden value={item.loanid} data-model-id={item.loanId} placeholder="amount paid" />
-
-    <div className="mini_buttons">
-      <input type="submit" value="approve" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
-      <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-red-800 text-white rounded px-2">Close</button>
-    </div>
-  </form> */}
-                <form className="mini_form" onSubmit={(e) => { payLoanAmount(e); }}>
-                  <label>Amount</label>
-
-                  <input readOnly className={item.loanId} value={Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments))} placeholder="amount paid" />
+                  <input id="payInput" readOnly className={item.loanId} value={Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments))} placeholder="amount paid" />
 
                   <div className="mini_buttons">
-                    <input type="submit" value="save" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
-                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-red-800 text-white rounded px-2">Close</button>
+                    <input type="submit" value="PAY" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
+                   
                   </div>
                 </form>
               </div>
