@@ -1,17 +1,19 @@
-/* eslint-disable */
-/* eslint-disable linebreak-style */
+/* eslint-disable  */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+
 import React, { useEffect, useState } from 'react';
-import { userRole } from '../../LoginStatus';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMemberLoans,approveLoan,getAllLoans,payLoan } from '../../redux/ApiSlice';
+import { userRole } from '../../LoginStatus';
+import {
+  getMemberLoans, approveLoan, getAllLoans, payLoan,
+} from '../../redux/ApiSlice';
 
 function MemberLoans() {
   const dispatch = useDispatch();
   const [isSeaching, setIssearching] = useState(false);
   const [payloan] = useState(true);
-  const [refId,setId]= useState(0);
+  const [refId, setId] = useState(0);
   const [amountPaid, setamountPaid] = useState(0);
   const [loanId, setloanId] = useState(0);
 
@@ -20,20 +22,19 @@ function MemberLoans() {
   let sortArray = [];
 
   useEffect(() => {
-    if(userRole==="Manager"){
+    if (userRole === 'Manager') {
       dispatch(getAllLoans());
-    } else{
+    } else {
       dispatch(getMemberLoans());
     }
   }, [isSeaching]);
   let loans = [];
-  if(userRole==="Manager"){
-     loans = useSelector((state) => state.ApiSlice.allLoans);
-
-  }else{
-     loans = useSelector((state) => state.ApiSlice.loans);
+  if (userRole === 'Manager') {
+    loans = useSelector((state) => state.ApiSlice.allLoans);
+  } else {
+    loans = useSelector((state) => state.ApiSlice.loans);
   }
-  
+
   const objSort = { tt: [] };
 
   const sortLoans = () => {
@@ -54,20 +55,19 @@ function MemberLoans() {
   } else {
     sortArray = loans;
   }
-  const paramId={
-    refId
-  }
-  const handleApproveLoan = (e,data) => {
-
+  const paramId = {
+    refId,
+  };
+  const handleApproveLoan = (e, data) => {
     e.preventDefault();
-    console.log(data)
+    console.log(data);
     dispatch(approveLoan(paramId));
   };
-  
+
   const setPayForm = (id, amount) => {
     setloanId(id);
     setamountPaid(amount);
-    setId(id)
+    setId(id);
     const loanpayForm = document.getElementById(id);
     if (id > 0) {
       loanpayForm.style.display = 'block';
@@ -116,31 +116,33 @@ function MemberLoans() {
 
         {sortArray.length > 0 ? sortArray.map((item) => (
           <>
-             <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white relative left-0 rounded px-2">Show More</button>
+            <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white relative left-0 rounded px-2">Show More</button>
 
             {payloan === true ? (
 
               <div id={item.loanId} className="hidden ">
-              
-                <form className=' w-fit m-auto absolute top-9 left-40 ' onSubmit={(e) => { 
-    handleApproveLoan(e,item.loanId);
-  }}
-  ><div className="text-[0.8em] mt-4">
-<button type="submit" className="bg-green-800 text-white rounded mr-3 px-2"> APPROVE LOAN </button> 
+
+                <form
+                  className=" w-fit m-auto absolute top-9 left-40 "
+                  onSubmit={(e) => {
+                    handleApproveLoan(e, item.loanId);
+                  }}
+                >
+                  <div className="text-[0.8em] mt-4">
+                    <button type="submit" className="bg-green-800 text-white rounded mr-3 px-2"> APPROVE LOAN </button>
                     <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-rose-700 text-white rounded px-2">show Less</button>
                   </div>
-   
-              
-</form>
-        
+
+                </form>
+
                 <form className="mini_form absolute top-8 left-5 " onSubmit={(e) => { payLoanAmount(e); }}>
-                  <label className='text-[0.8em]'>Amount</label>
+                  <label className="text-[0.8em]">Amount</label>
 
                   <input id="payInput" readOnly className={item.loanId} value={Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments))} placeholder="amount paid" />
 
                   <div className="mini_buttons">
                     <input type="submit" value="PAY" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
-                   
+
                   </div>
                 </form>
               </div>
