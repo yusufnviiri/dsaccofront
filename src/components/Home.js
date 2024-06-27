@@ -158,7 +158,7 @@ function Home() {
 
         <div className="flex flex-col    px-4   ">
           <div id="know" className="text-left   p-6 ">
-            <h3 className="text-[2em] font-anton  ml-9 text-yellow-300 font-bold"> DID YOU KNOW</h3>
+            <h3 className="text-[1.5em] font-anton  ml-9 text-yellow-300 font-bold"> DID YOU KNOW</h3>
             <ul id="knowList">
               <li id="knowShop" className="text-[1em] py-2 ">
                 You can
@@ -200,7 +200,7 @@ function Home() {
           </div>
 
           <div className=" pl-9 text-justify  p-6 ">
-            <h4 className="text-[2em] font-anton text-center text-yellow-300 font-bold">FACTS ABOUT OPUS</h4>
+            <h3 className="text-[1.2em] font-anton text-center text-yellow-300 font-bold">FACTS ABOUT OPUS</h3>
             <div className="flex  gap-10 ml-[20%]">
               <ul className="facts">
                 <li className="text-[1em] py-2 ">
@@ -226,29 +226,6 @@ function Home() {
                   Active Member Loans
                   {' '}
                   <span className="text-orange-400   text-[1em] "> $23M</span>
-                </li>
-
-              </ul>
-              <ul className="  hidden facts">
-                <li className="text-[1em] py-2  text-green-800">
-                  {' '}
-                  9421
-                </li>
-                <li className="text-[1em] pb-2  text-red-800">
-                  {' '}
-                  $130M
-                </li>
-                <li className="text-[1em] pb-2  text-green-800">
-                  {' '}
-                  $700M
-                </li>
-                <li className="text-[1em] pb-2  text-red-800">
-                  {' '}
-                  $530M
-                </li>
-                <li className="text-[1em] pb-2  text-red-800">
-                  {' '}
-                  12934
                 </li>
 
               </ul>
