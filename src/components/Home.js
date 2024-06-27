@@ -199,28 +199,37 @@ function Home() {
 
           </div>
 
-          <div className=" hidden pl-9 text-justify  p-6 ">
+          <div className=" pl-9 text-justify  p-6 ">
             <h4 className="text-[2em] font-anton text-center text-yellow-300 font-bold">FACTS ABOUT OPUS</h4>
             <div className="flex  gap-10 ml-[20%]">
               <ul className="facts">
                 <li className="text-[1em] py-2 ">
                   Active Members:
+                  {' '}
+                  <span className="text-orange-400   text-[1em] "> $13</span>
                 </li>
                 <li className="text-[1em] pb-2 ">
                   Liabilities value YTD :
+                  {' '}
+                  <span className="text-orange-400   text-[1em] "> $293M</span>
                 </li>
                 <li className="text-[1em] by-2 ">
                   Assets value YTD :
+                  {' '}
+                  <span className="text-orange-400   text-[1em] "> $78M</span>
                 </li>
                 <li className="text-[1em] pb-2 ">
                   Annual Revenue :
+                  <span className="text-orange-400   text-[1em] "> $69M</span>
                 </li>
                 <li className="text-[1em] pb-2 ">
                   Active Member Loans
+                  {' '}
+                  <span className="text-orange-400   text-[1em] "> $23M</span>
                 </li>
 
               </ul>
-              <ul className="facts">
+              <ul className="  hidden facts">
                 <li className="text-[1em] py-2  text-green-800">
                   {' '}
                   9421
