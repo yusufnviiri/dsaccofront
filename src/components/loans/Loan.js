@@ -17,7 +17,7 @@ function Loan() {
           key={item.loanId}
           className="flex  list_data flex-col justify-start my-5 text-left w-1/2 m-auto "
         >
-          <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit  px-3 my-2 rounded uppercase text-zinc-950" to="/loan">Back</Link>
+          <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit  px-3 my-2 rounded uppercase text-zinc-950" to="/loans">Back</Link>
 
           <p className="font-semibold">
             Date:

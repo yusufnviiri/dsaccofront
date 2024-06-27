@@ -87,6 +87,7 @@ function MemberLoans() {
     if (amountPaid > 0 && loanId > 0) {
       dispatch(payLoan(paymentData));
       dispatch(getMemberLoans());
+      window.location.reload()
     }
   };
   return (
@@ -116,6 +117,9 @@ function MemberLoans() {
 
         {sortArray.length > 0 ? sortArray.map((item) => (
           <>
+                <div className="relative ">
+
+          
             <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white relative left-0 rounded px-2">SHOW MORE</button>
 
             {payloan === true ? (
@@ -123,7 +127,7 @@ function MemberLoans() {
               <div id={item.loanId} className="hidden ">
 
                 <form
-                  className=" w-fit m-auto absolute top-5  left-36 "
+                  className=" w-fit m-auto absolute -top-4  left-36 "
                   onSubmit={(e) => {
                     handleApproveLoan(e, item.loanId);
                   }}
@@ -131,18 +135,18 @@ function MemberLoans() {
                   <div className="text-[0.8em] w-[10em] mt-4 flex flex-col">
                     {userRole==="Manager"?( <button type="submit" className="bg-green-800 w-full  text-white rounded mb-2 "> APPROVE LOAN </button>):""}
                    
-                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="bg-rose-700 text-white rounded  w-full ">SHOW LESS</button>
+                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="py-[2px] bg-rose-700 text-white rounded  w-full ">SHOW LESS</button>
                   </div>
 
                 </form>
 
-                <form className="mini_form absolute top-4 left-5 " onSubmit={(e) => { payLoanAmount(e); }}>
+                <form className="mini_form absolute -top-5 left-5 " onSubmit={(e) => { payLoanAmount(e); }}>
                   <label className="text-[0.8em]">Amount</label>
 
                   <input id="payInput" readOnly className={item.loanId} value={Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments))} placeholder="amount paid" />
 
                   <div className="mini_buttons">
-                    <input type="submit" value="PAY" className=" bg-blue-800 cursor-pointer text-white rounded px-2" />
+                    <input type="submit" value="PAY" className=" bg-blue-800 w-1/2 cursor-pointer text-white rounded px-2" />
 
                   </div>
                 </form>
@@ -179,11 +183,13 @@ function MemberLoans() {
           </p>
               <div className=" inline font-semibold">
                 Status:
-                <p className={` inline  ml-2 ${item.status === 'pending' ? 'text-red-700' : 'text-teal-700'}`}>{item.status}</p>
+                <p className={` inline  ml-2 ${item.status === 'Pending' ? 'text-red-700' : 'text-teal-700'}`}>{item.status}</p>
               </div>
 
               <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit px-1 rounded uppercase text-zinc-950" to="/loan">Details</Link>
-            </div>
+            </div>            </div>
+
+            
           </>
 
         )) : (<p>No loan in database</p>)}
