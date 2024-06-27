@@ -1,4 +1,4 @@
-/* eslint-disable no-debugger */
+/* eslint-disable  */
 /* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */

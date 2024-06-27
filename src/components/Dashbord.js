@@ -48,7 +48,6 @@ function Dashbord() {
           </div>
         ) : (<h2>User: none</h2>)}
         <nav>
-
           <Link className=" mr-2" to="/register">Sign Up</Link>
           <Link className=" mr-2" to="/logins">Sign In</Link>
           <button type="button" onClick={() => logOut()} className="text-red-400 uppercase hover:text-yellow-500">Sign Out</button>

@@ -2,14 +2,16 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
+import { userRole } from '../../LoginStatus';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMemberLoans,approveLoan } from '../../redux/ApiSlice';
+import { getMemberLoans,approveLoan,getAllLoans } from '../../redux/ApiSlice';
 
 function MemberLoans() {
   const dispatch = useDispatch();
   const [isSeaching, setIssearching] = useState(false);
   const [payloan] = useState(true);
+  const [refId,setId]= useState(0);
   const [amountPaid, setamountPaid] = useState(0);
   const [loanId, setloanId] = useState(0);
 
@@ -18,9 +20,20 @@ function MemberLoans() {
   let sortArray = [];
 
   useEffect(() => {
-    dispatch(getMemberLoans());
+    if(userRole==="Manager"){
+      dispatch(getAllLoans());
+    } else{
+      dispatch(getMemberLoans());
+    }
   }, [isSeaching]);
-  const loans = useSelector((state) => state.ApiSlice.loans);
+  let loans = [];
+  if(userRole==="Manager"){
+     loans = useSelector((state) => state.ApiSlice.allLoans);
+
+  }else{
+     loans = useSelector((state) => state.ApiSlice.loans);
+  }
+  
   const objSort = { tt: [] };
 
   const sortLoans = () => {
@@ -41,15 +54,21 @@ function MemberLoans() {
   } else {
     sortArray = loans;
   }
-  // const handleApproveLoan = (e) => {
-  //   e.preventDefault();
-  //   dispatch(approveLoan());
-  //   console.log(item.loanId * 5);
-  // };
+  const paramId={
+    refId
+  }
+  const handleApproveLoan = (e,data) => {
+
+    e.preventDefault();
+    console.log(data)
+    dispatch(approveLoan(paramId));
+  };
   
   const setPayForm = (id, amount) => {
     setloanId(id);
     setamountPaid(amount);
+    setId(id)
+
 
     const loanpayForm = document.getElementById(id);
     if (id > 0) {
@@ -83,7 +102,7 @@ function MemberLoans() {
 
         {sortArray.length > 0 ? sortArray.map((item) => (
           <>
-             <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white rounded px-2">Pay</button>
+             <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white rounded px-2"> Pay Me</button>
 
             {payloan === true ? (
 
@@ -93,29 +112,14 @@ function MemberLoans() {
                   loan number
                   {item.loanId}
                 </span>
-                {/* <form onSubmit={() => {
-    dispatch(approveLoan(item.loanId));
+                <form onSubmit={(e) => { 
+    handleApproveLoan(e,item.loanId);
   }}
-  > */}
-                <form
-                  onSubmit={(e) => {
-                    handleApproveLoan(e);
-                  }}
-                >
-                  <div
-                    className=" text-white submit   font-bold w-full m-auto
-text-center  bg-green-700 rounded hover:bg-slate-700"
-                  >
-                    <input
-                      value="approve"
-                      className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
-                      type="submit"
-                    />
-                  </div>
-                  {/*
-  <button type="button" onClick={() => { dispatch(approveLoan(item.loanId)); }} className="bg-red-800 text-white rounded px-2"> approve loan</button> */}
-                </form>
+  >
+<button type="submit" className="bg-red-800 text-white rounded px-2"> approve  man form loan</button> 
 
+                {/* <button type="button" onClick={() => { dispatch(approveLoan(item.loanId)); }} className="bg-red-800 text-white rounded px-2"> approve  man loan</button>  */}
+</form>
                 {/* <form className="mini_form" onSubmit={(e) => { approveMemberLoan(e); }}>
     <label>Amount</label>
 

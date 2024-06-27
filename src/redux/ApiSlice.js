@@ -32,6 +32,17 @@ export const getMemberLoans = createAsyncThunk('dsacco/loans', async () => {
   const res = await axios.get(`${baseUrl}/Loan/loans`, config);
   return res.data;
 });
+
+// get all loans
+export const getAllLoans = createAsyncThunk('dsacco/allloans', async () => {
+  toke = await getToken();
+  const config = {
+    headers: { Authorization: `Bearer ${toke}` },
+  };
+  const res = await axios.get(`${baseUrl}/Loan/allloans`, config);
+  return res.data;
+});
+
 // get member accounts
 export const getMemberAccounts = createAsyncThunk('dsacco/accounts', async () => {
   toke = await getToken();
@@ -141,14 +152,13 @@ export const sellShares = createAsyncThunk('dsacco/sellShares', async (item) => 
   return res.data;
 });
 // approve loan
-export const approveLoan = createAsyncThunk('dsacco/loanApproval', async (loanid) => {
+export const approveLoan = createAsyncThunk('dsacco/loanApproval', async (item) => {
   toke = await getToken();
-  console.log(loanid);
-
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
   };
-  const res = await axios.post(`${baseUrl}/Loan/loanapproval/${loanid}`, config);
+  console.log(item)
+  const res = await axios.post(`${baseUrl}/Loan/approveloan`,item, config);
   return res.data;
 });
 
@@ -184,7 +194,7 @@ export const loanSubmission = createAsyncThunk('dsacco/loanApplication', async (
 export const apiSlice = createSlice({
   name: 'dsacco',
   initialState: {
-    age: 2, notification: ' ', user: [], logginError: '', loans: [], loanTypes: [], userData: {}, accounts: [], withdraws: [], deposits: [], shares: [],
+    age: 2, notification: ' ', user: [], logginError: '', loans: [], loanTypes: [],allLoans:[], userData: {}, accounts: [], withdraws: [], deposits: [], shares: [],
   },
   reducers: {
     add: (state) => {
@@ -230,7 +240,9 @@ export const apiSlice = createSlice({
     builder.addCase(getMemberLoans.fulfilled, (state, action) => {
       state.loans = action.payload;
     });
-
+    builder.addCase(getAllLoans.fulfilled, (state, action) => {
+      state.allLoans = action.payload;
+    });
     builder.addCase(loanTypes.fulfilled, (state, action) => {
       state.loanTypes = action.payload;
     });

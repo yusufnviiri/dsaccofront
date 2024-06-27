@@ -1,12 +1,27 @@
 /* eslint-disable  */
-function LogInStatus(){
-  let outPut=false;
-    const nullValue = JSON.stringify(localStorage.getItem('token'));
+
+import { jwtDecode } from 'jwt-decode';
+const nullValue = JSON.stringify(localStorage.getItem('token'));
 const userToken = JSON.stringify(localStorage.getItem('bearer'));
-if (userToken === nullValue) {
-outPut=true
-  } 
+
+function LogInStatus() {
+  let outPut = false;
+  if (userToken === nullValue) {
+    outPut = true;
+  }
   return outPut;
 }
 
-export const UserLoggedIn =LogInStatus()
+ const findUserRole=()=>{
+let obj = [];
+if (userToken !== nullValue) {
+  const decoded = jwtDecode(userToken);
+
+  obj = Object.values(decoded);
+
+}
+return obj[1]
+}
+export const UserLoggedIn = LogInStatus();
+
+export const userRole = findUserRole();
