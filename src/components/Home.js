@@ -67,21 +67,22 @@ function Home() {
       <p>
         {' '}
         Name :
-        <span className="" />
-        {obj[2]}
+        <span>
+          {obj[2]}
+        </span>
       </p>
       <p>
         {' '}
         Role :
-        <span className="" />
-
-        {obj[1]}
+        <span>
+          {obj[1]}
+        </span>
       </p>
 
       <p>
         {' '}
         Date Of Birth:
-        <span className="">
+        <span>
           {user.userDataDto.dob}
         </span>
 
@@ -89,7 +90,7 @@ function Home() {
       <p>
         {' '}
         District:
-        <span className="">
+        <span>
           {' '}
           {user.userDataDto.district }
         </span>
@@ -97,14 +98,14 @@ function Home() {
       </p>
       <p>
         Sex :
-        <span className="">
+        <span>
           {user.userDataDto.sex}
         </span>
 
       </p>
       <p>
         Occupation :
-        <span className="">
+        <span>
           {user.userDataDto.occupation}
         </span>
 
@@ -112,38 +113,38 @@ function Home() {
       <p>
         {' '}
         Next Of Kin :
-        <span className="">
+        <span>
           {user.userDataDto.nextOfKin}
         </span>
 
       </p>
       <p>
         Relationship :
-        <span className="">
+        <span>
           {user.userDataDto.kinRelationShip}
         </span>
 
       </p>
       <p>
-        Loan Balance:
+        Loan Balance :
         {' '}
-        <span className="">
+        <span>
           {user.loanBalance }
         </span>
 
       </p>
       <p>
         {' '}
-        Account Balance:
-        <span className="">
+        Account Balance :
+        <span>
           {user.accountBalance }
         </span>
 
       </p>
       <p>
         {' '}
-        Shares:
-        <span className="">
+        Shares :
+        <span>
           {user.totalShares}
         </span>
 
@@ -157,39 +158,39 @@ function Home() {
 
         <div className="flex flex-col    px-4   ">
           <div id="know" className="text-left   p-6 ">
-            <h4 className="text-[2em] font-anton  ml-9 text-yellow-300 font-bold"> DID YOU KNOW</h4>
+            <h3 className="text-[2em] font-anton  ml-9 text-yellow-300 font-bold"> DID YOU KNOW</h3>
             <ul id="knowList">
               <li id="knowShop" className="text-[1em] py-2 ">
                 You can
-                <span className="text-green-700   text-[1em] ">access</span>
+                <span className="text-orange-400   text-[1em] ">access</span>
                 {' '}
                 OPUS e-shop on
-                <span className="text-green-700 text-[1em] ">this</span>
+                <span className="text-orange-400   text-[1em] ">this</span>
                 {' '}
                 portal
               </li>
               <li id="knowApp" className="text-[1em] pb-2 ">
                 Get
-                <span className="text-green-700   text-[1em] ">all</span>
+                <span className="text-orange-400     text-[1em] ">all</span>
                 {' '}
                 our services on your
-                <span className="text-green-700 text-[1em] ">mobile</span>
+                <span className="text-orange-400   text-[1em] ">mobile</span>
               </li>
 
               <li id="knowInterest" className="text-[1em] pb-2 ">
                 Salary loan
-                <span className="text-green-700   text-[1em] ">Interest</span>
+                <span className="text-orange-400     text-[1em] ">Interest</span>
                 {' '}
                 now at
-                <span className="text-green-700 text-[1em] "> 9.99 %</span>
+                <span className="text-orange-400   text-[1em] "> 9.99 %</span>
               </li>
 
               <li id="knowMortgage" className="text-[1em] pb-2 ">
                 Dual
-                <span className="text-green-700   text-[1em] ">Mortgage</span>
+                <span className="text-orange-400     text-[1em] ">Mortgage</span>
                 {' '}
                 now
-                <span className="text-green-700 text-[1em] "> available </span>
+                <span className="text-orange-400   text-[1em] "> available </span>
                 {' '}
                 on low prices
               </li>
@@ -249,7 +250,6 @@ function Home() {
         </div>
 
         <UpdateUserData showForm={DetailsForm} />
-        {/* <Link className=" mr-2" to="/user-data">User Details</Link> */}
       </div>
 
     </>
