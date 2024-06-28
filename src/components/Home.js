@@ -26,7 +26,7 @@ function Home() {
   useEffect(() => {
     dispatch(getMemberShares());
     dispatch(getUserData());
-  });
+  }, [dispatch]);
 
   const animations = () => {
     const t1 = gsap.timeline({ repeat: -1, repeatDelay: 10 });
