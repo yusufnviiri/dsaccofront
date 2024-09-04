@@ -120,7 +120,7 @@ function MemberLoans() {
                 <div className="relative ">
 
           
-            <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white relative left-0 rounded px-2">SHOW MORE</button>
+            <button onClick={() => setPayForm(item.loanId, Math.ceil((item.payAmount / item.numberOfInstallments) + (item.payAmount % item.numberOfInstallments)))} type="button" className="bg-indigo-800 text-white relative left-0 rounded px-2">PAY LOAN</button>
 
             {payloan === true ? (
 
@@ -135,7 +135,7 @@ function MemberLoans() {
                   <div className="text-[0.8em] w-[10em] mt-4 flex flex-col">
                     {userRole==="Manager"?( <button type="submit" className="bg-green-800 w-full  text-white rounded mb-2 "> APPROVE LOAN </button>):""}
                    
-                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="py-[2px] bg-rose-700 text-white rounded  w-full ">SHOW LESS</button>
+                    <button onClick={() => hidePayForm(item.loanId)} type="button" className="py-[2px] bg-rose-700 text-white rounded  w-full ">HIDE</button>
                   </div>
 
                 </form>
