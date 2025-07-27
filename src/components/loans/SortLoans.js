@@ -9,7 +9,7 @@ function SortLoans(props) {
   const { loans } = props;
   return (
     <>
-      <h4 className=" my-4 font-bold   underline-offset-2 underline
+      <h4 className=" my-4    underline-offset-2 underline
      text-center font-poppins "
       >
         Number of Loans
@@ -44,19 +44,19 @@ function SortLoans(props) {
 
           <p className="font-semibold">
             Loan Amount:
-            <span className="font-bold">{item.principleAmount}</span>
+            <span className="">{item.principleAmount}</span>
           </p>
           <p className="font-semibold">
             Loan Type:
-            <span className="font-bold">{item.loanType.description}</span>
+            <span className="">{item.loanType.description}</span>
           </p>
           <p className="font-semibold">
             Installements:
-            <span className="font-bold">{item.numberOfInstallments}</span>
+            <span className="">{item.numberOfInstallments}</span>
           </p>
           <p className="font-semibold">
             Loan  interest:
-            <span className="font-bold">
+            <span className="">
               {item.loanInterest}
               %
             </span>

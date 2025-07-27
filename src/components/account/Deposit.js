@@ -36,7 +36,7 @@ function Deposit() {
     <>
       <div className="w-[30%] m-auto  login_form">
 
-        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
           Account Deposit
         </h4>
         <form
@@ -45,10 +45,10 @@ function Deposit() {
           }}
         >
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block"> Select Account </label>
+            <label className="   ml-2 block"> Select Account </label>
 
             <select
-              className="font-bold    block w-full"
+              className="    block w-full"
               required
               value={accountId}
               onChange={(e) => {
@@ -62,7 +62,7 @@ function Deposit() {
                   <option
                     value={item.accountId}
                     key={item.accountId}
-                    className="font-bold"
+                    className=""
                   >
                     {item.accountDescription}
                   </option>
@@ -74,7 +74,7 @@ function Deposit() {
             </select>
           </div>
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Amount</label>
+            <label className="   ml-2 block">Amount</label>
             <input
               required
               value={amount}
@@ -87,7 +87,7 @@ function Deposit() {
           </div>
 
           <div
-            className="mt-6 text-white submit   font-bold w-full m-auto
+            className="mt-6 text-white submit    w-full m-auto
         text-center  bg-green-700 rounded hover:bg-slate-700"
           >
             <input

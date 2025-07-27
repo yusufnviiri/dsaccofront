@@ -1,115 +1,92 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable  */
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 function Loan() {
-  const location = useLocation();
-  const item = location.state;
-  const loanData = [];
-  loanData.push(item);
+  const { state: item } = useLocation();
+
+  if (!item) {
+    return <p className="text-center text-red-500 mt-5">No loan data available.</p>;
+  }
+
+  const {
+    loanId,
+    applicationDate,
+    currentBalance,
+    principleAmount,
+    numberOfInstallments,
+    numberOfPayments,
+    payAmount,
+    outstandingBalance,
+    isCompleted,
+    security,
+    loanPeriod,
+    status,
+    loanWitness
+  } = item;
+
+  const {
+    firstWitnessName,
+    firstWitnessAddress,
+    firstWitnessContact,
+    secondWitnessName,
+    secondWitnessAddress,
+    secondWitnessContact
+  } = loanWitness || {};
 
   return (
     <>
-      <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">    Loan </h4>
+      <h4 className="my-6  font-robotoCo uppercase text-center tracking-wider underline-offset-2">
+        Loan
+      </h4>
 
-      {loanData.length > 0 ? loanData.map((item) => (
-        <div
-          key={item.loanId}
-          className="flex  list_data flex-col justify-start my-5 text-left w-1/2 m-auto "
+      <div
+        key={loanId}
+        className="flex list_data flex-col justify-start my-5 text-left w-full sm:w-3/4 md:w-1/2 m-auto"
+      >
+        <Link
+          to="/loans"
+          state={item}
+          className="bg-yellow-400 hover:bg-yellow-900 w-fit px-3 my-2 rounded uppercase text-zinc-950"
         >
-          <Link state={item} className="bg-yellow-400 hover:bg-yellow-900 w-fit  px-3 my-2 rounded uppercase text-zinc-950" to="/loans">Back</Link>
+          Back
+        </Link>
 
-          <p className="font-semibold">
-            Date:
-            <span className="font-bold">{item.applicationDate}</span>
+        {[
+          ['Date', applicationDate],
+          ['Available Balance', currentBalance],
+          ['Loan Amount', principleAmount],
+          ['Installments', numberOfInstallments],
+          ['Payments', numberOfPayments],
+          ['Loan Amount with Interest', payAmount],
+          ['Balance', outstandingBalance],
+          ['Completed?', isCompleted?.toString()],
+          ['Security', security],
+          ['Loan Period', loanPeriod],
+          ['Status', <span className={status === 'pending' ? 'text-red-700' : 'text-blue-700'}>{status}</span>]
+        ].map(([label, value]) => (
+          <p key={label} className="font-semibold">
+            {label}: <span className="">{value}</span>
           </p>
-          <p className="font-semibold">
-            Available Balance:
-            <span className="font-bold">{item.currentBalance}</span>
-          </p>
-          {' '}
-          <p className="font-semibold">
-            Loan Amount:
-            <span className="font-bold">{item.principleAmount}</span>
-          </p>
-          <p className="font-semibold">
-            Installements:
-            <span className="font-bold">{item.numberOfInstallments}</span>
-          </p>
-          <p className="font-semibold">
-            Payments:
-            <span className="font-bold">{item.numberOfPayments}</span>
-          </p>
-          {' '}
-          <p className="font-semibold">
-            Loan Amount with interest:
-            <span className="font-bold">{item.payAmount}</span>
-          </p>
-          {' '}
-          <p className="font-semibold">
-            Balance:
-            <span className="font-bold">{item.outstandingBalance}</span>
-          </p>
-          <p className="font-semibold">
-            Completed?
-            <span className="font-bold">{item.isCompleted.toString()}</span>
-          </p>
-          <p className="font-semibold">
-            Security:
-            <span className="font-bold">{item.security}</span>
-          </p>
-          {' '}
-          <p className="font-semibold">
-            loan Period:
-            <span className="font-bold">{item.loanPeriod}</span>
-          </p>
-          {' '}
-          <p className="font-semibold">
-            Status:
-            <span className={`${item.status === 'pending' ? 'text-red-700' : 'text-blue-700'}`}>{item.status}</span>
-          </p>
+        ))}
 
-          <div>
-            <p>Witnessess</p>
-            <p className="font-semibold">
-              Name:
-              <span className="font-bold">{item.loanWitness.firstWitnessName}</span>
-            </p>
-            <p className="font-semibold">
-              Address:
-              <span className="font-bold">{item.loanWitness.firstWitnessAddress}</span>
-            </p>
-            {' '}
-            <p className="font-semibold">
-              Contact:
-              <span className="font-bold">{item.loanWitness.firstWitnessContact}</span>
-            </p>
-            {' '}
-            <p className="font-semibold">
-              Name:
-              <span className="font-bold">{item.loanWitness.secondWitnessName}</span>
-            </p>
-            {' '}
-            <p className="font-semibold">
-              Address:
-              <span className="font-bold">{item.loanWitness.secondWitnessAddress}</span>
-            </p>
-            {' '}
-            <p className="font-semibold">
-              Name:
-              <span className="font-bold">{item.loanWitness.secondWitnessName}</span>
-            </p>
-            {' '}
-            <p className="font-semibold">
-              Contact:
-              <span className="font-bold">{item.loanWitness.secondWitnessContact}</span>
-            </p>
-          </div>
+        <div className="mt-4">
+          <p className="uppercase  underline">Witnesses</p>
 
+          {[
+            ['Name', firstWitnessName],
+            ['Address', firstWitnessAddress],
+            ['Contact', firstWitnessContact],
+            ['Name', secondWitnessName],
+            ['Address', secondWitnessAddress],
+            ['Contact', secondWitnessContact]
+          ].map(([label, value], index) => (
+            <p key={`${label}-${index}`} className="font-semibold">
+              {label}: <span className="">{value}</span>
+            </p>
+          ))}
         </div>
-
-      )) : (<p>No account in database</p>)}
-
+      </div>
     </>
   );
 }

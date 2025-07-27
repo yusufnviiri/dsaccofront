@@ -32,13 +32,13 @@ const Withdraw = () => {
     <>
 
       <div className="w-[30%] m-auto  login_form">
-        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">    Account Withdraw  </h4>
+        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">    Account Withdraw  </h4>
         <form onSubmit={(e) => { saveWithdraw(e); }}>
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block"> Select Account </label>
+            <label className="   ml-2 block"> Select Account </label>
 
             <select
-              className="font-bold    block w-full"
+              className="    block w-full"
               required
               value={accountId}
               onChange={(e) => {
@@ -51,7 +51,7 @@ const Withdraw = () => {
                   <option
                     value={item.accountId}
                     key={item.accountId}
-                    className="font-bold"
+                    className=""
                   >
                     {item.accountDescription}
                   </option>
@@ -63,7 +63,7 @@ const Withdraw = () => {
             </select>
           </div>
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Amount</label>
+            <label className="   ml-2 block">Amount</label>
             <input
               required
               value={amount}
@@ -76,11 +76,11 @@ const Withdraw = () => {
           </div>
 
           <div
-            className="mt-6 text-white submit   font-bold w-full m-auto
-        text-center  bg-green-700 rounded hover:bg-slate-700"
+            className="mt-6 text-white submit    w-full m-auto
+        text-center  bg-green-700 rounded hover:bg-slate-900"
           >
             <input
-              className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
+              className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-100"
               type="submit"
             />
           </div>

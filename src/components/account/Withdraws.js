@@ -20,7 +20,7 @@ function Withdraws() {
 
   return (
     <>
-      <h4 className=" my-6  font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+      <h4 className=" my-6   font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
         Member Withdraws
       </h4>
       {withdraws.length > 0 ? withdraws.map((item) => (
@@ -30,22 +30,22 @@ function Withdraws() {
         >
           <p className="font-semibold">
             Account :
-            <span className="font-bold">{item.account.accountDescription}</span>
+            <span className="">{item.account.accountDescription}</span>
           </p>
           <p className="font-semibold">
             Available Balance:
-            <span className="font-bold">{item.account.currentBalance}</span>
+            <span className="">{item.account.currentBalance}</span>
           </p>
           {' '}
           <p className="font-semibold">
             Amount:
-            <span className="font-bold">
+            <span className="">
               {item.amount}
             </span>
           </p>
           <p className="font-semibold">
             Withdraw Date:
-            <span className="font-bold">{item.stringDate}</span>
+            <span className="">{item.stringDate}</span>
           </p>
         </div>
       )) : (<p>No account in database</p>)}

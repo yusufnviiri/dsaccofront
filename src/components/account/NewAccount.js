@@ -32,7 +32,7 @@ function NewAccount() {
     <>
      
       <div className="w-[30%] m-auto  login_form">
-        <h4  className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider"  >
+        <h4  className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider"  >
           Create Account
         </h4>
         <form
@@ -41,10 +41,10 @@ function NewAccount() {
           }}
         >
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Account Type</label>
+            <label className="   ml-2 block">Account Type</label>
 
             <select
-              className="font-bold    block w-full"
+              className="    block w-full"
               required
               value={accountDescription}
               onChange={(e) => {
@@ -58,7 +58,7 @@ function NewAccount() {
             </select>
           </div>
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Opening Amount</label>
+            <label className="   ml-2 block">Opening Amount</label>
             <input
               required
               value={openingAmount}
@@ -71,7 +71,7 @@ function NewAccount() {
           </div>
 
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Intial Deposit</label>
+            <label className="   ml-2 block">Intial Deposit</label>
             <input
               required
               value={currentBalance}
@@ -84,7 +84,7 @@ function NewAccount() {
           </div>
 
           <div
-            className="mt-6 text-white submit   font-bold w-full m-auto
+            className="mt-6 text-white submit    w-full m-auto
         text-center  bg-green-700 rounded hover:bg-slate-700"
           >
             <input

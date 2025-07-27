@@ -93,7 +93,7 @@ function MemberLoans() {
   return (
     <>
       <div className="relative">
-        <h4 className=" mt-2 mb-6  font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+        <h4 className=" mt-2 mb-6   font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
           Member Loans
         </h4>
 
@@ -161,25 +161,25 @@ function MemberLoans() {
 
               <p className="font-semibold">
                 Loan Amount:
-                <span className="font-bold">{item.principleAmount}</span>
+                <span className="">{item.principleAmount}</span>
               </p>
               <p className="font-semibold">
                 Loan Type:
-                <span className="font-bold">{item.loanType.description}</span>
+                <span className="">{item.loanType.description}</span>
               </p>
               <p className="font-semibold">
                 Installements:
-                <span className="font-bold">{item.numberOfInstallments}</span>
+                <span className="">{item.numberOfInstallments}</span>
               </p>
               <p className="font-semibold">
                 Loan  interest:
-                <span className="font-bold">
+                <span className="">
                   {item.loanInterest} %
                 </span>
               </p>
               <p className="font-semibold">
             Completed:
-            <span className="font-bold">{item.isCompleted.toString()}</span>
+            <span className="">{item.isCompleted.toString()}</span>
           </p>
               <div className=" inline font-semibold">
                 Status:

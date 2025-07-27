@@ -49,14 +49,14 @@ function Register() {
     <>
       <div className="w-[30%] m-auto  login_form">
 
-        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">   REGISTER</h4>
+        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">   REGISTER</h4>
         <form
           onSubmit={(e) => {
             RegisterUser(e);
           }}
         >
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">First Name</label>
+            <label className="   ml-2 block">First Name</label>
             <input
               required
               value={firstName}
@@ -69,7 +69,7 @@ function Register() {
           </div>
 
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Last Name</label>
+            <label className="   ml-2 block">Last Name</label>
             <input
               required
               value={lastName}
@@ -81,10 +81,10 @@ function Register() {
             />
           </div>
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Title</label>
+            <label className="   ml-2 block">Title</label>
 
             <select
-              className="font-bold    block w-full"
+              className="    block w-full"
               required
               value={title}
               onChange={(e) => {
@@ -107,7 +107,7 @@ function Register() {
           </div>
 
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Email</label>
+            <label className="   ml-2 block">Email</label>
             <input
               required
               type="email"
@@ -120,7 +120,7 @@ function Register() {
           </div>
 
           <div className="   mb-1">
-            <label className="font-bold   ml-2 block">Password</label>
+            <label className="   ml-2 block">Password</label>
             <input
               required
               value={password}
@@ -133,7 +133,7 @@ function Register() {
           </div>
 
           <div className="   mb-1">
-            <label className="font-bold   ml-2 block"> Confirm Password</label>
+            <label className="   ml-2 block"> Confirm Password</label>
             <input
               required
               value={confirmPassword}
@@ -145,7 +145,7 @@ function Register() {
             />
           </div>
           <div
-            className="mt-6 text-white submit   font-bold w-full m-auto
+            className="mt-6 text-white submit    w-full m-auto
     text-center  bg-green-700 rounded hover:bg-slate-700"
           >
             <input

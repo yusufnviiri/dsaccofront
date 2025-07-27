@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -48,9 +48,8 @@ function LoanApplication() {
   };
   return (
     <>
-      <div className=" m-auto w-[90%] login_form">
-
-        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">     Loan Application </h4>
+      <div className="m-auto ">
+        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">     Loan Application </h4>
 
         <form
           onSubmit={(e) => {
@@ -58,13 +57,13 @@ function LoanApplication() {
           }}
         >
 
-          <div className="flex m-auto justify-center  gap-10 w-3/4 ">
-            <div>
+          <div className="flex flex-col sm:flex-row m-auto justify-center  gap-10 w-[15rem] sm:w-[25rem]  ">
+            <div className="w-full sm:w-1/2">            
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block"> Loan Type </label>
+                <label className="   ml-2 block"> Loan Type </label>
 
                 <select
-                  className="font-bold    block w-full"
+                  className="    block w-full"
                   required
                   value={loanType}
                   onChange={(e) => {
@@ -78,7 +77,7 @@ function LoanApplication() {
                       <option
                         value={item.loanTypeId}
                         key={item.loanTypeId}
-                        className="font-bold"
+                        className=""
                       >
                         {item.description}
                       </option>
@@ -90,7 +89,7 @@ function LoanApplication() {
               </div>
 
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Amount</label>
+                <label className="   ml-2 block">Amount</label>
                 <input
                   required
                   value={principleAmount}
@@ -102,7 +101,7 @@ function LoanApplication() {
                 />
               </div>
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Installements</label>
+                <label className="   ml-2 block">Installements</label>
                 <input
                   required
                   value={numberOfInstallments}
@@ -114,7 +113,7 @@ function LoanApplication() {
                 />
               </div>
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Security</label>
+                <label className="   ml-2 block">Security</label>
                 <input
                   required
                   value={security}
@@ -126,7 +125,7 @@ function LoanApplication() {
                 />
               </div>
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Loan Period</label>
+                <label className="   ml-2 block">Loan Period</label>
                 <input
                   required
                   value={loanPeriod}
@@ -138,7 +137,7 @@ function LoanApplication() {
                 />
               </div>
 
-              <h4 className=" my-2 font-bold   text-[0.77em]
+              <h4 className=" my-2    text-[0.77em]
      text-center font-lobs "
               >
                 {' '}
@@ -146,7 +145,7 @@ function LoanApplication() {
                 {' '}
               </h4>
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Name</label>
+                <label className="   ml-2 block">Name</label>
                 <input
                   required
                   value={firstWitnessName}
@@ -158,9 +157,9 @@ function LoanApplication() {
                 />
               </div>
             </div>
-            <div>
+            <div className="w-full sm:w-1/2">            
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Contact</label>
+                <label className="   ml-2 block">Contact</label>
                 <input
                   required
                   value={firstWitnessContact}
@@ -173,7 +172,7 @@ function LoanApplication() {
               </div>
               {' '}
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Address</label>
+                <label className="   ml-2 block">Address</label>
                 <input
                   required
                   value={firstWitnessAddress}
@@ -184,7 +183,7 @@ function LoanApplication() {
                   type="text"
                 />
               </div>
-              <h4 className=" my-2 font-bold   text-[0.77em]
+              <h4 className=" my-2    text-[0.77em]
      text-center font-lobs "
               >
                 {' '}
@@ -192,7 +191,7 @@ function LoanApplication() {
                 {' '}
               </h4>
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Name</label>
+                <label className="   ml-2 block">Name</label>
                 <input
                   required
                   value={secondWitnessName}
@@ -204,7 +203,7 @@ function LoanApplication() {
                 />
               </div>
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Contact</label>
+                <label className="   ml-2 block">Contact</label>
                 <input
                   required
                   value={secondWitnessContact}
@@ -217,7 +216,7 @@ function LoanApplication() {
               </div>
               {' '}
               <div className="mb-1  ">
-                <label className="font-bold   ml-2 block">Address</label>
+                <label className="   ml-2 block">Address</label>
                 <input
                   required
                   value={secondWitnessAddress}
@@ -228,15 +227,15 @@ function LoanApplication() {
                   type="text"
                 />
               </div>
-              <div
-                className="mt-6 text-white submit   font-bold w-full m-auto
-        text-center  bg-green-700 rounded hover:bg-slate-700"
-              >
-                <input
-                  className="uppercase  font-lobs text:[0.48em] sm:text-[0.71em] cursor-pointer text-yellow-300"
-                  type="submit"
-                />
-              </div>
+               <div
+            className="my-6 text-white submit    w-full m-auto
+        text-center  bg-green-700 rounded hover:bg-slate-900"
+          >
+            <input
+              className="uppercase  font-lobs  cursor-pointer text-yellow-100"
+              type="submit"
+            />
+          </div>
             </div>
           </div>
         </form>

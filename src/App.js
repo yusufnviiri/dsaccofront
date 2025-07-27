@@ -38,7 +38,7 @@ function App() {
   loginStatus();
 
   return (
-    <div className="App font-mul w-full m-auto">
+    <div className="App m-auto">
       <Notification />
       <Dashbord />
 

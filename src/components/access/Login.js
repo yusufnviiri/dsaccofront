@@ -46,14 +46,14 @@ function Login() {
 
       <div className="w-[30%] m-auto  login_form">
 
-        <h4 className=" my-6 font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider"> LOGIN FORM</h4>
+        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider"> LOGIN FORM</h4>
         <form
           onSubmit={(e) => {
             LoginUser(e);
           }}
         >
           <div className="mb-1  ">
-            <label className="font-bold   ml-2 block">Email</label>
+            <label className="   ml-2 block">Email</label>
             <input
               value={email}
               onChange={(e) => {
@@ -65,7 +65,7 @@ function Login() {
           </div>
 
           <div className="   mb-1">
-            <label className="font-bold   ml-2 block">Password</label>
+            <label className="   ml-2 block">Password</label>
             <input
               value={password}
               onChange={(e) => {
@@ -76,7 +76,7 @@ function Login() {
             />
           </div>
           <div
-            className="mt-6 text-white submit   font-bold w-full m-auto
+            className="mt-6 text-white submit    w-full m-auto
     text-center  bg-green-700 rounded hover:bg-slate-700"
           >
             <input

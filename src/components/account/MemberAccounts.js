@@ -21,32 +21,32 @@ function MemberAccounts() {
   return (
     <>
 
-      <h4 className=" my-6  font-bold font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+      <h4 className=" my-6   font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
         Number of accounts
       </h4>
       {accounts.length > 0 ? accounts.map((item) => (
         <div key={item.accountId} className="flex list_data  flex-col justify-start my-5 text-left w-1/2 m-auto ">
           <p className="font-semibold">
             Type:
-            <span className="font-bold">{item.accountDescription}</span>
+            <span className="">{item.accountDescription}</span>
           </p>
           <p className="font-semibold">
             Available Balance:
-            <span className="font-bold">{item.currentBalance}</span>
+            <span className="">{item.currentBalance}</span>
           </p>
           {' '}
           <p className="font-semibold">
             Opening Amount:
-            <span className="font-bold">{item.openingAmount}</span>
+            <span className="">{item.openingAmount}</span>
           </p>
           {' '}
           <p className="font-semibold">
             Initial Deposit:
-            <span className="font-bold">{item.initialDeposit}</span>
+            <span className="">{item.initialDeposit}</span>
           </p>
           <p className="font-semibold">
             Opening Date:
-            <span className="font-bold">{item.openingDate}</span>
+            <span className="">{item.openingDate}</span>
           </p>
         </div>
       )) : (<p>No account in database</p>)}

@@ -52,16 +52,15 @@ function Menu() {
   return (
     <>
       <div>
-        <menu className="bg-[#014701] w-full py-2 text-[0.7em] md:text-[0.9em]  flex justify-between px-5">
-          <Link className="text-yellow-500 font-bold mr-2" to="/">Home</Link>
-          <Link className=" mr-2" to="/deposit">Deposit</Link>
-          <Link className=" mr-2" to="/deposits">Deposits</Link>
-          <Link className="mr-2" to="/withdraw">Withdraw</Link>
-          <Link className=" mr-2" to="/withdraws">Withdraws</Link>
-          <Link className=" mr-2" to="/loan-application">Loan</Link>
-          <Link className=" mr-2" to="/loans">Loans</Link>
-          <Link className="mr-2" to="/accounts">Accounts</Link>
-          <Link className="mr-2" to="/new-account">New Account </Link>
+        <menu className=" py-2   flex justify-between  font-poppins  ">
+          <Link className=" " to="/deposit">Deposit</Link>
+          <Link className=" " to="/deposits">Deposits</Link>
+          <Link className="" to="/withdraw">Withdraw</Link>
+          <Link className="" to="/withdraws">Withdraws</Link>
+          <Link className=" " to="/loan-application">Loan</Link>
+          <Link className=" " to="/loans">Loans</Link>
+          <Link className="" to="/accounts">Accounts</Link>
+          <Link className="" to="/new-account">New Account </Link>
           <button onClick={() => { setshowSharesForm(!showSharesForm); }} type="button" className="bg-indigo-800 text-white rounded px-2 ">Shares</button>
         </menu>
         <div>

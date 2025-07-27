@@ -158,7 +158,7 @@ function Home() {
 
         <div className="flex flex-col    px-4   ">
           <div id="know" className="text-left   p-6 ">
-            <h3 className="text-[1.5em] font-anton  ml-9 text-yellow-300 font-bold"> DID YOU KNOW</h3>
+            <h3 className="text-[1.5em] font-anton  ml-9 text-yellow-300 "> DID YOU KNOW</h3>
             <ul id="knowList">
               <li id="knowShop" className="text-[1em] py-2 ">
                 You can
@@ -200,7 +200,7 @@ function Home() {
           </div>
 
           <div className=" pl-9 text-justify  p-6 ">
-            <h3 className="text-[1.2em] font-anton text-center text-yellow-300 font-bold">FACTS ABOUT OPUS</h3>
+            <h3 className="text-[1.2em] font-anton text-center text-yellow-300 ">FACTS ABOUT OPUS</h3>
             <div className="flex  gap-10 ml-[20%]">
               <ul className="facts">
                 <li className="text-[1em] py-2 ">

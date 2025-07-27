@@ -58,9 +58,9 @@ function UpdateUserData(props) {
                   }}
                 >
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block"> Gender </label>
+                    <label className="   ml-2 block"> Gender </label>
                     <select
-                      className="font-bold    block w-full"
+                      className="    block w-full"
                       required
                       value={sex}
                       onChange={(e) => {
@@ -74,7 +74,7 @@ function UpdateUserData(props) {
                   </div>
 
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block">District</label>
+                    <label className="   ml-2 block">District</label>
                     <input
                       required
                       value={district}
@@ -86,7 +86,7 @@ function UpdateUserData(props) {
                     />
                   </div>
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block">Occupation</label>
+                    <label className="   ml-2 block">Occupation</label>
                     <input
                       required
                       value={occupation}
@@ -98,7 +98,7 @@ function UpdateUserData(props) {
                     />
                   </div>
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block">
+                    <label className="   ml-2 block">
                       Date Of Birth
                     </label>
                     <input
@@ -113,7 +113,7 @@ function UpdateUserData(props) {
                   </div>
 
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block">
+                    <label className="   ml-2 block">
                       Next Of Kin
                     </label>
                     <input
@@ -128,12 +128,12 @@ function UpdateUserData(props) {
                   </div>
 
                   <div className="mb-1  ">
-                    <label className="font-bold   ml-2 block">
+                    <label className="   ml-2 block">
                       {" "}
                       Relationship{" "}
                     </label>
                     <select
-                      className="font-bold    block w-full"
+                      className="    block w-full"
                       required
                       value={kinRelationShip}
                       onChange={(e) => {
@@ -150,7 +150,7 @@ function UpdateUserData(props) {
                   </div>
 
                   <div
-                    className="mt-6 text-white submit   font-bold w-full m-auto
+                    className="mt-6 text-white submit    w-full m-auto
         text-center  bg-green-700 rounded hover:bg-slate-700"
                   >
                     <input
