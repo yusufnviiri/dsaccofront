@@ -36,6 +36,7 @@ function Loan() {
 
   return (
     <>
+    <div className="h-[80vh] sm:h-[85vh] mb-[10vh]  m-auto justify-center  gap-10 w-[18rem] sm:w-[30rem] px-[1rem] overflow-y-auto  ">
       <h4 className="my-6  font-robotoCo uppercase text-center tracking-wider underline-offset-2">
         Loan
       </h4>
@@ -86,7 +87,7 @@ function Loan() {
             </p>
           ))}
         </div>
-      </div>
+      </div></div>
     </>
   );
 }

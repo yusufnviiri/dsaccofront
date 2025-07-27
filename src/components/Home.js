@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 
@@ -53,16 +53,17 @@ function Home() {
   return (
     <>
 
-      <div className="flex justify-between w-[95%]">
-        <div className="flex flex-col gap-5  h-fit items-start px-6 ">
+      <div className="flex justify-betwee m-auto w-[19rem] sm:w-[52rem] h-[90vh] overflow-y-auto  items-start gap-2 sm:gap-8 ">
+ 
+        <div className="w-[90%] sm:w-1/2 m-auto flex flex-col gap-5   px-6 mt-0 ">
 
-          <div className="size-1/2">
-            <img src={logo} className="w-full  m-auto" alt="logo" />
+          <div className="hidden sm:inline w-full ">
+            <img src={logo} className="size-32  m-auto" alt="logo" />
           </div>
-          <button onClick={() => { setDetailsForm(!DetailsForm); }} type="button" className="bg-red-800 text-white rounded px-2 w-48 relative left-0">Add Details</button>
+          <button onClick={() => { setDetailsForm(!DetailsForm); }} type="button" className="bg-red-800 text-white rounded px-2 w-48 m-auto relative left-0">Add Details</button>
           {
   users.length > 0 ? users.map((user) => (
-    <div key={user.sex} className="text-left  userData">
+    <div key={user.sex} className="text-left">
 
       <p>
         {' '}
@@ -156,7 +157,7 @@ function Home() {
 
         </div>
 
-        <div className="flex flex-col    px-4   ">
+        <div className="w-[90%] sm:w-1/2 text-justify  p-6 hidden  sm:flex flex-col px-4   ">
           <div id="know" className="text-left   p-6 ">
             <h3 className="text-[1.5em] font-anton  ml-9 text-yellow-300 "> DID YOU KNOW</h3>
             <ul id="knowList">
@@ -199,8 +200,8 @@ function Home() {
 
           </div>
 
-          <div className=" pl-9 text-justify  p-6 ">
-            <h3 className="text-[1.2em] font-anton text-center text-yellow-300 ">FACTS ABOUT OPUS</h3>
+          <div className=" pl-9 text-justify  p-6 hidden sm:block">
+            <h3 className="text-[1.1rem]  font-anton text-center text-yellow-300 ">FACTS ABOUT OPUS</h3>
             <div className="flex  gap-10 ml-[20%]">
               <ul className="facts">
                 <li className="text-[1em] py-2 ">
@@ -235,8 +236,9 @@ function Home() {
 
         </div>
 
-        <UpdateUserData showForm={DetailsForm} />
       </div>
+              <UpdateUserData showForm={DetailsForm} />
+
 
     </>
   );

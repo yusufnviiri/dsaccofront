@@ -93,7 +93,7 @@ function MemberLoans() {
   return (
     <>
       <div className="relative">
-        <h4 className=" mt-2 mb-6   font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
+        <h4 className=" mt-2 mb-6   font-robotoCo uppercase underline-offset-2 text-center ">
           Member Loans
         </h4>
 

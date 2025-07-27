@@ -47,7 +47,7 @@ function Register() {
 
   return (
     <>
-      <div className="w-[30%] m-auto  login_form">
+      <div className="w-[15rem] sd:w-[20rem] m-auto h-[70vh] sm:h-[80vh]  overflow-y-auto px-[2rem] box-content pb-7  ">
 
         <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">   REGISTER</h4>
         <form

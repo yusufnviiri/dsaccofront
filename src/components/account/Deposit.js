@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable  */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React, { useState, useEffect } from 'react';
@@ -34,10 +34,9 @@ function Deposit() {
   };
   return (
     <>
-      <div className="w-[30%] m-auto  login_form">
+      <div className="w-[17rem] md:w-[20rem] m-auto  ">
 
-        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">
-          Account Deposit
+        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">Deposit Form
         </h4>
         <form
           onSubmit={(e) => {

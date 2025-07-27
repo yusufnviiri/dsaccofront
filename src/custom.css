@@ -296,7 +296,7 @@ a {
   
   menu a {
     /* color: rgb(248, 245, 243); */
-    color: #f59e0b;
+    color: #d6d1c7;
   }
   
   nav a,
@@ -394,6 +394,7 @@ a {
     /* background-color: rgb(0, 78, 78);
     color: rgb(236, 229, 236);
     height: 100vh; */
+    overflow: hidden;
   }
   
   textarea {

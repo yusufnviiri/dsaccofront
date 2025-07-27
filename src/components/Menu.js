@@ -52,7 +52,7 @@ function Menu() {
   return (
     <>
       <div>
-        <menu className=" py-2   flex justify-between  font-poppins  ">
+        <menu className=" py-2 pl-2 pr-5  flex justify-between  font-poppins text-white  ">
           <Link className=" " to="/deposit">Deposit</Link>
           <Link className=" " to="/deposits">Deposits</Link>
           <Link className="" to="/withdraw">Withdraw</Link>

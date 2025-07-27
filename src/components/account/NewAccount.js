@@ -31,7 +31,7 @@ function NewAccount() {
   return (
     <>
      
-      <div className="w-[30%] m-auto  login_form">
+      <div className="w-[17rem] md:w-[20rem] m-auto  ">
         <h4  className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider"  >
           Create Account
         </h4>
@@ -71,7 +71,7 @@ function NewAccount() {
           </div>
 
           <div className="mb-1  ">
-            <label className="   ml-2 block">Intial Deposit</label>
+            <label className="   ml-2 block">Initial Deposit</label>
             <input
               required
               value={currentBalance}

@@ -44,7 +44,7 @@ function Login() {
   return (
     <>
 
-      <div className="w-[30%] m-auto  login_form">
+      <div className="w-[17rem] md:w-[20rem] m-auto  ">
 
         <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider"> LOGIN FORM</h4>
         <form

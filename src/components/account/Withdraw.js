@@ -31,8 +31,8 @@ const Withdraw = () => {
   return (
     <>
 
-      <div className="w-[30%] m-auto  login_form">
-        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">    Account Withdraw  </h4>
+      <div className="w-[17rem] md:w-[20rem] m-auto  ">
+        <h4 className=" my-6  font-robotoCo uppercase underline-offset-2 text-center tracking-wider">  Withdraw Form  </h4>
         <form onSubmit={(e) => { saveWithdraw(e); }}>
           <div className="mb-1  ">
             <label className="   ml-2 block"> Select Account </label>

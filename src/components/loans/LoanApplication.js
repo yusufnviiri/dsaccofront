@@ -57,8 +57,8 @@ function LoanApplication() {
           }}
         >
 
-          <div className="flex flex-col sm:flex-row m-auto justify-center  gap-10 w-[15rem] sm:w-[25rem]  ">
-            <div className="w-full sm:w-1/2">            
+          <div className="h-[60vh] sm:h-[95vh] mb-[15vh] flex flex-col sm:flex-row m-auto justify-center  gap-10 w-[18rem] sm:w-[30rem] px-[1rem] overflow-y-auto  ">
+            <div className=" w-full h-full sm:w-1/2">            
               <div className="mb-1  ">
                 <label className="   ml-2 block"> Loan Type </label>
 
@@ -157,7 +157,7 @@ function LoanApplication() {
                 />
               </div>
             </div>
-            <div className="w-full sm:w-1/2">            
+            <div className="w-full h-full sm:w-1/2">            
               <div className="mb-1  ">
                 <label className="   ml-2 block">Contact</label>
                 <input
