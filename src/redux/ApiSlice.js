@@ -2,10 +2,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+const debployed ="https://localhost:5001/api"
+const baseUrl = 'https://sacco.monorib.com/api';
 
-const baseUrl = 'https://localhost:5001/api';
 
-const URL = 'https://localhost:5001/api/Login/register';
+const URL = 'https://sacco.monorib.com/api/Login/register';
 let toke = 'token';
 const getToken = async () => {
   toke = await JSON.parse(localStorage.getItem('bearer'));
