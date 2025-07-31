@@ -158,7 +158,7 @@ export const approveLoan = createAsyncThunk('dsacco/loanApproval', async (item) 
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
   };
-  console.log(item)
+  // console.log(item)
   const res = await axios.post(`${baseUrl}/Loan/approveloan`,item, config);
   return res.data;
 });
@@ -184,7 +184,7 @@ export const memberWithdraw = createAsyncThunk('dsacco/withdraw', async (item) =
 });
 // loan application
 export const loanSubmission = createAsyncThunk('dsacco/loanApplication', async (item) => {
-  console.log(item);
+  // console.log(item);
   toke = await getToken();
   const config = {
     headers: { Authorization: `Bearer ${toke}` },
@@ -208,7 +208,7 @@ export const apiSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
       if (action.payload.status === true) {
-        console.log(action.payload)
+        // console.log(action.payload)
         localStorage.clear();
         sessionStorage.clear();
         localStorage.setItem('bearer', JSON.stringify(action.payload.tokenString));
@@ -236,7 +236,7 @@ export const apiSlice = createSlice({
     });
     builder.addCase(getUserData.fulfilled, (state, action) => {
       state.user = action.payload;
-      console.log(action.payload);
+      // console.log(action.payload);
     });
     builder.addCase(getMemberLoans.fulfilled, (state, action) => {
       state.loans = action.payload;
@@ -264,7 +264,7 @@ export const apiSlice = createSlice({
     });
     builder.addCase(getMemberWithdraws.fulfilled, (state, action) => {
       state.withdraws = action.payload;
-      console.log(action.payload);
+      // console.log(action.payload);
     });
     builder.addCase(memberWithdraw.fulfilled, (state, action) => {
       if (action.payload === 'Accepted') {
@@ -283,7 +283,7 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(loanSubmission.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
 
       if (action.payload === 'Accepted') {
         state.logginError = 'success!!';
@@ -293,7 +293,7 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(buyshares.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload === 'Accepted') {
         state.logginError = 'success!!';
         state.notification = 'Created well';
@@ -302,7 +302,7 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(sellShares.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
 
       if (action.payload === 'Accepted') {
         state.logginError = 'success!!';
@@ -320,7 +320,7 @@ export const apiSlice = createSlice({
       }
     });
     builder.addCase(getMemberShares.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.shares = action.payload;
     });
    

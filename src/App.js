@@ -1,6 +1,8 @@
 /* eslint-disable  */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import './App.css';
+import { useEffect } from 'react';
+
 import {
   Route, Routes, useNavigate,
 } from 'react-router-dom';
@@ -25,17 +27,26 @@ import Loan from './components/loans/Loan';
 function App() {
   const navigate = useNavigate();
 
-
-
+useEffect(() => {
   const loginStatus = () => {
     setTimeout(() => {
-      if (UserLoggedIn===true) {
-        console.log(UserLoggedIn)
+      if (UserLoggedIn === true) {
+        console.log(UserLoggedIn);
         navigate('/user-control', { replace: true });
       }
     }, 3000);
   };
+
   loginStatus();
+}, []);
+  // const loginStatus = () => {
+  //   setTimeout(() => {
+  //     if (UserLoggedIn===true) {
+  //       console.log(UserLoggedIn)
+  //       navigate('/user-control', { replace: true });
+  //     }
+  //   }, 3000);
+  // };
 
   return (
     <div className="App m-auto">
